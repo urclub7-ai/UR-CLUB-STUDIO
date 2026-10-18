@@ -17,6 +17,16 @@
     --font-persian: 'Yekan Bakh', 'YekanBakh', 'Vazirmatn', var(--font-vazir), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
+  html {
+    background-color: var(--background);
+  }
+
+  @media (max-width: 640px) {
+    html {
+      scroll-behavior: auto !important;
+    }
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);

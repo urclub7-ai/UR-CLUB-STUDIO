@@ -9,6 +9,8 @@ import {
   Maximize2,
   Minimize2,
   Globe,
+  MousePointerClick,
+  X,
 } from "lucide-react";
 
 export interface ShowcaseProject {
@@ -58,17 +60,22 @@ export default function LiveInteractiveFrame({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeKey, setIframeKey] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isIframeLoaded, setIsIframeLoaded] = useState(false);
+  const [isMobileInteractive, setIsMobileInteractive] = useState(false);
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const handleSelectProject = (project: ShowcaseProject) => {
     setSelectedProject(project);
     setIsLoading(true);
+    setIsIframeLoaded(false);
+    setIsMobileInteractive(false);
     setIframeKey((prev) => prev + 1);
   };
 
   const handleRefresh = () => {
     setIsLoading(true);
+    setIsIframeLoaded(false);
     setIframeKey((prev) => prev + 1);
   };
 
@@ -197,20 +204,86 @@ export default function LiveInteractiveFrame({
           </div>
 
           {/* Desktop Viewport Screen */}
-          <div className="relative bg-[#040B20] w-full h-[560px] sm:h-[640px]">
+          <div className="relative bg-[#06102a] w-full h-[540px] sm:h-[640px] overflow-hidden">
+            {/* Loading Placeholder */}
+            {!isIframeLoaded && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#06102a] text-center p-4 select-none">
+                <div className="w-9 h-9 rounded-full border-2 border-[#00D2FF]/20 border-t-[#00D2FF] animate-spin mb-3 shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
+                <span className="text-xs sm:text-sm font-semibold text-white tracking-wide">
+                  در حال بارگذاری پروژه: {selectedProject.name_fa}
+                </span>
+                <span className="text-[11px] text-[#94A3B8] mt-1">کادر آنلاین در حال اتصال است...</span>
+              </div>
+            )}
+
+            {/* Mobile Interaction Shield (Touch screen protection so page scroll is 100% smooth) */}
+            {!isMobileInteractive ? (
+              <div className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#040B20]/80 backdrop-blur-[2px] p-4 text-center">
+                <div className="p-4 rounded-2xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-[0_10px_30px_rgba(0,0,0,0.85)] max-w-xs space-y-3">
+                  <div className="w-10 h-10 rounded-full bg-[#00D2FF]/15 border border-[#00D2FF]/30 mx-auto flex items-center justify-center text-[#00D2FF]">
+                    <MousePointerClick className="w-5 h-5 animate-pulse" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white">{selectedProject.name_fa}</h4>
+                    <p className="text-[11px] text-[#94A3B8] mt-1 leading-relaxed">
+                      برای فعال‌سازی و پیمایش در داخل وب‌سایت ضربه بزنید
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-2 pt-1">
+                    <button
+                      onClick={() => setIsMobileInteractive(true)}
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#00D2FF] text-[#040B20] text-xs font-bold shadow-[0_0_15px_rgba(0,210,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-transform"
+                    >
+                      <MousePointerClick className="w-3.5 h-3.5" />
+                      <span>لمس برای تعامل و تست زنده</span>
+                    </button>
+                    <a
+                      href={selectedProject.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2 px-3 rounded-xl bg-white/[0.06] hover:bg-white/10 text-[#CBD5E1] text-[11px] font-medium border border-white/10 flex items-center justify-center gap-1"
+                    >
+                      <span>باز کردن در تب جداگانه</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* Active Interaction Bar on Mobile */
+              <div className="sm:hidden absolute top-2 right-2 left-2 z-30 flex items-center justify-between p-2 rounded-xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl backdrop-blur-md">
+                <div className="flex items-center gap-1.5 text-[11px] text-[#00D2FF] font-medium pr-1">
+                  <span className="w-2 h-2 rounded-full bg-[#00D2FF] animate-ping" />
+                  <span>تعامل با کادر فعال است</span>
+                </div>
+                <button
+                  onClick={() => setIsMobileInteractive(false)}
+                  className="px-3 py-1 rounded-lg bg-red-500/20 text-red-300 border border-red-500/40 text-[11px] font-bold flex items-center gap-1 cursor-pointer active:scale-95 transition-transform"
+                >
+                  <X className="w-3 h-3" />
+                  <span>پایان و بازگشت به اسکرول</span>
+                </button>
+              </div>
+            )}
+
             <iframe
               key={`desktop-${iframeKey}-${selectedProject.id}`}
               ref={iframeRef}
               src={selectedProject.url}
               title={selectedProject.name_fa}
-              onLoad={() => setIsLoading(false)}
-              className="w-full h-full border-0 bg-black"
+              onLoad={() => {
+                setIsLoading(false);
+                setIsIframeLoaded(true);
+              }}
+              className={`w-full h-full border-0 bg-[#06102a] transition-opacity duration-300 ${
+                isIframeLoaded ? "opacity-100" : "opacity-0"
+              } ${isMobileInteractive ? "pointer-events-auto" : "pointer-events-none sm:pointer-events-auto"}`}
               allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
               loading="lazy"
             />
 
-            {/* Subtle Interactive Instruction Pill */}
-            <div className="absolute bottom-3 right-3 z-20 pointer-events-none">
+            {/* Subtle Interactive Instruction Pill (Desktop only) */}
+            <div className="hidden sm:block absolute bottom-3 right-3 z-20 pointer-events-none">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#040B20]/90 backdrop-blur-md border border-[#00D2FF]/40 text-[11px] text-[#00D2FF] font-medium shadow-lg">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00D2FF]" />
                 <span>قابلیت اسکرول و کلیک کامل در داخل کادر</span>
@@ -220,8 +293,8 @@ export default function LiveInteractiveFrame({
         </div>
       ) : (
         /* Realistic iPhone 16 Mockup in Ultramarine Blue */
-        <div className="flex flex-col items-center justify-center py-4">
-          <div className="relative w-[370px] sm:w-[415px] md:w-[425px] h-[740px] sm:h-[800px] md:h-[820px] rounded-[54px] p-3 bg-gradient-to-b from-[#1e3a8a] via-[#0f2757] to-[#1e3a8a] border-[3px] border-[#38bdf8]/50 shadow-[0_25px_70px_rgba(0,0,0,0.95),0_0_0_2px_rgba(56,189,248,0.3),0_0_50px_rgba(0,210,255,0.25)] transition-all duration-300">
+        <div className="flex flex-col items-center justify-center py-4 w-full">
+          <div className="relative w-full max-w-[min(370px,100%)] sm:max-w-[415px] md:max-w-[425px] h-[720px] sm:h-[800px] md:h-[820px] rounded-[50px] sm:rounded-[54px] p-2.5 sm:p-3 bg-gradient-to-b from-[#1e3a8a] via-[#0f2757] to-[#1e3a8a] border-[3px] border-[#38bdf8]/50 shadow-[0_25px_70px_rgba(0,0,0,0.95),0_0_0_2px_rgba(56,189,248,0.3),0_0_50px_rgba(0,210,255,0.25)] transition-all duration-300">
             {/* iPhone 16 Left Buttons (Action Button + Volume Buttons) */}
             <div className="absolute -left-[5px] top-28 w-[3px] h-7 bg-[#38bdf8]/80 rounded-l-md shadow-[0_0_6px_#38bdf8]" />
             <div className="absolute -left-[5px] top-40 w-[3px] h-12 bg-[#38bdf8]/80 rounded-l-md shadow-[0_0_6px_#38bdf8]" />
@@ -240,14 +313,57 @@ export default function LiveInteractiveFrame({
             </div>
 
             {/* Inner Phone Screen */}
-            <div className="relative w-full h-full rounded-[44px] overflow-hidden bg-black border border-white/10">
+            <div className="relative w-full h-full rounded-[40px] sm:rounded-[44px] overflow-hidden bg-[#06102a] border border-white/10">
+              {/* Loading Placeholder */}
+              {!isIframeLoaded && (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#06102a] text-center p-4 select-none">
+                  <div className="w-8 h-8 rounded-full border-2 border-[#00D2FF]/20 border-t-[#00D2FF] animate-spin mb-3 shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
+                  <span className="text-xs font-semibold text-white tracking-wide">
+                    در حال بارگذاری پروژه
+                  </span>
+                </div>
+              )}
+
+              {/* Mobile Interaction Shield */}
+              {!isMobileInteractive ? (
+                <div className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#040B20]/80 backdrop-blur-[2px] p-4 text-center">
+                  <div className="p-3.5 rounded-2xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl max-w-[260px] space-y-2.5">
+                    <MousePointerClick className="w-5 h-5 text-[#00D2FF] mx-auto animate-pulse" />
+                    <h4 className="text-xs font-bold text-white">{selectedProject.name_fa}</h4>
+                    <p className="text-[10px] text-[#94A3B8]">برای تست نمای موبایل ضربه بزنید</p>
+                    <button
+                      onClick={() => setIsMobileInteractive(true)}
+                      className="w-full py-2 px-3 rounded-xl bg-[#00D2FF] text-[#040B20] text-xs font-bold shadow-md cursor-pointer"
+                    >
+                      لمس برای تعامل زنده
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="sm:hidden absolute top-12 right-2 left-2 z-30 flex items-center justify-between p-1.5 rounded-lg bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl">
+                  <span className="text-[10px] text-[#00D2FF] font-medium pr-1">حالت تعاملی فعال</span>
+                  <button
+                    onClick={() => setIsMobileInteractive(false)}
+                    className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 text-[10px] font-bold flex items-center gap-1"
+                  >
+                    <X className="w-2.5 h-2.5" />
+                    <span>خروج</span>
+                  </button>
+                </div>
+              )}
+
               <iframe
                 key={`mobile-${iframeKey}-${selectedProject.id}`}
                 ref={iframeRef}
                 src={selectedProject.url}
                 title={selectedProject.name_fa}
-                onLoad={() => setIsLoading(false)}
-                className="w-full h-full border-0 bg-black"
+                onLoad={() => {
+                  setIsLoading(false);
+                  setIsIframeLoaded(true);
+                }}
+                className={`w-full h-full border-0 bg-[#06102a] transition-opacity duration-300 ${
+                  isIframeLoaded ? "opacity-100" : "opacity-0"
+                } ${isMobileInteractive ? "pointer-events-auto" : "pointer-events-none sm:pointer-events-auto"}`}
                 allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
                 loading="lazy"
               />

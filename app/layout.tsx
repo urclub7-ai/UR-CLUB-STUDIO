@@ -19,7 +19,7 @@ const vazir = Vazirmatn({
 
 import { defaultSiteSettings, defaultHomeContent } from "@/lib/fallback-data";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   let settings = defaultSiteSettings;
@@ -109,7 +109,10 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="fa" dir="rtl" className={`dark scroll-smooth ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
+    <html lang="fa" dir="rtl" className={`dark scroll-smooth bg-[#040B20] ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="preload" href="/images/team_logo_transparent.png" as="image" />
+      </head>
       <body
         className="min-h-screen flex flex-col bg-[#040B20] text-[#F8FAFC] antialiased selection:bg-[#00D2FF] selection:text-[#040B20]"
         suppressHydrationWarning

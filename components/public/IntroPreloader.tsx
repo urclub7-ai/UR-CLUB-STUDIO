@@ -49,13 +49,19 @@ export default function IntroPreloader() {
 
     return () => {
       clearTimeout(dismissTimer);
-      document.body.style.overflow = "";
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+      }
     };
   }, []);
 
   const forceDismiss = () => {
     setShow(false);
-    document.body.style.overflow = "";
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
   };
 
   return (
@@ -66,6 +72,7 @@ export default function IntroPreloader() {
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
+            pointerEvents: "none",
             transition: { duration: 0.35, ease: "easeInOut" },
           }}
           className="fixed inset-0 z-[99999999] flex items-center justify-center bg-[#040e26] select-none cursor-pointer"

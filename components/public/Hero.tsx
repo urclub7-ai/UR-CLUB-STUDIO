@@ -30,7 +30,7 @@ export default function Hero({}: HeroProps) {
       {/* Very faint, deep central ambiance */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[550px] bg-[radial-gradient(ellipse_75%_60%_at_50%_50%,rgba(0,210,255,0.08),rgba(4,11,32,0)_75%)] pointer-events-none" />
 
-      {/* Gentle, deeply diffused slow drift - ultra-low opacity so it's never intrusive */}
+      {/* Gentle, deeply diffused slow drift - ultra-low opacity so it's never intrusive (Desktop only to protect mobile GPU) */}
       <motion.div
         animate={{
           x: ["-20%", "20%", "-10%", "15%", "-20%"],
@@ -43,7 +43,7 @@ export default function Hero({}: HeroProps) {
           repeatType: "mirror",
           ease: "easeInOut",
         }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,210,255,0.2)_0%,rgba(4,11,32,0)_70%)] blur-[140px] pointer-events-none will-change-transform"
+        className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,210,255,0.2)_0%,rgba(4,11,32,0)_70%)] blur-[140px] pointer-events-none will-change-transform"
       />
 
       {/* Delicate, Very Subtle Grid Lines */}
