@@ -9,10 +9,15 @@ export const metadata = {
 };
 
 export default async function ServicesPage() {
-  const services = await prisma.service.findMany({
-    where: { active: true },
-    orderBy: { displayOrder: "asc" },
-  });
+  let services: any[] = [];
+  try {
+    services = await prisma.service.findMany({
+      where: { active: true },
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch (e) {
+    console.warn("ServicesPage fallback active:", e);
+  }
 
   return (
     <ServicesContentClient services={services} />

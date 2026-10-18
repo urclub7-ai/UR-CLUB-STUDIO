@@ -17,12 +17,20 @@ const vazir = Vazirmatn({
   display: "swap",
 });
 
+import { defaultSiteSettings, defaultHomeContent } from "@/lib/fallback-data";
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = await prisma.siteSettings.findUnique({
-    where: { id: "default-settings" },
-  });
+  let settings = defaultSiteSettings;
+  try {
+    const fetched = await prisma.siteSettings.findUnique({
+      where: { id: "default-settings" },
+    });
+    if (fetched) settings = fetched;
+  } catch (e) {
+    console.warn("Using default site settings metadata:", e);
+  }
 
   const siteName = settings?.siteName || "UR CLUB";
   const title = settings?.title || "توسعه پلتفرم‌های دیجیتال با فناوری‌های آماده آینده";
@@ -34,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${siteName}`,
     },
     description,
-    keywords: settings?.keywords?.split(",").map((k) => k.trim()) || [
+    keywords: settings?.keywords?.split(",").map((k: string) => k.trim()) || [
       "Graphic Design",
       "Web Design",
       "Creative Technologist",
@@ -76,19 +84,29 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const settings = await prisma.siteSettings.findUnique({
-    where: { id: "default-settings" },
-    include: {
-      socialLinks: {
-        where: { active: true },
-        orderBy: { displayOrder: "asc" },
-      },
-    },
-  });
+  let settings = defaultSiteSettings;
+  let home = defaultHomeContent;
 
-  const home = await prisma.homeContent.findUnique({
-    where: { id: "default-home" },
-  });
+  try {
+    const [fetchedSettings, fetchedHome] = await Promise.all([
+      prisma.siteSettings.findUnique({
+        where: { id: "default-settings" },
+        include: {
+          socialLinks: {
+            where: { active: true },
+            orderBy: { displayOrder: "asc" },
+          },
+        },
+      }),
+      prisma.homeContent.findUnique({
+        where: { id: "default-home" },
+      }),
+    ]);
+    if (fetchedSettings) settings = fetchedSettings;
+    if (fetchedHome) home = fetchedHome;
+  } catch (e) {
+    console.warn("Using default layout content due to database offline:", e);
+  }
 
   return (
     <html lang="fa" dir="rtl" className={`dark scroll-smooth ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>

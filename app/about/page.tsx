@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import AboutContentClient from "@/components/public/AboutContentClient";
+import { defaultAboutContent, defaultSiteSettings } from "@/lib/fallback-data";
 
 export const dynamic = "force-dynamic";
 
@@ -9,18 +10,26 @@ export const metadata = {
 };
 
 export default async function AboutPage() {
-  const about = await prisma.aboutContent.findUnique({
-    where: { id: "default-about" },
-  });
+  let about = defaultAboutContent;
+  let settings = defaultSiteSettings;
+  let skills: any[] = [];
 
-  const settings = await prisma.siteSettings.findUnique({
-    where: { id: "default-settings" },
-  });
+  try {
+    const [dbAbout, dbSettings, dbSkills] = await Promise.all([
+      prisma.aboutContent.findUnique({ where: { id: "default-about" } }),
+      prisma.siteSettings.findUnique({ where: { id: "default-settings" } }),
+      prisma.skill.findMany({
+        where: { active: true },
+        orderBy: { displayOrder: "asc" },
+      }),
+    ]);
 
-  const skills = await prisma.skill.findMany({
-    where: { active: true },
-    orderBy: { displayOrder: "asc" },
-  });
+    if (dbAbout) about = dbAbout;
+    if (dbSettings) settings = dbSettings;
+    if (dbSkills) skills = dbSkills;
+  } catch (e) {
+    console.warn("AboutPage fallback active:", e);
+  }
 
   const designSkills = skills.filter((s) => s.category === "DESIGN");
   const webSkills = skills.filter((s) => s.category === "WEB");

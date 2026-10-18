@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import ContactContentClient from "@/components/public/ContactContentClient";
+import { defaultSiteSettings } from "@/lib/fallback-data";
 
 export const dynamic = "force-dynamic";
 
@@ -9,9 +10,15 @@ export const metadata = {
 };
 
 export default async function ContactPage() {
-  const settings = await prisma.siteSettings.findUnique({
-    where: { id: "default-settings" },
-  });
+  let settings = defaultSiteSettings;
+  try {
+    const dbSettings = await prisma.siteSettings.findUnique({
+      where: { id: "default-settings" },
+    });
+    if (dbSettings) settings = dbSettings;
+  } catch (e) {
+    console.warn("ContactPage fallback active:", e);
+  }
 
   return (
     <ContactContentClient settings={settings} />

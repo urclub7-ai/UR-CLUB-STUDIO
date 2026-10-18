@@ -9,10 +9,15 @@ export const metadata = {
 };
 
 export default async function CertificatesPage() {
-  const certificates = await prisma.certificate.findMany({
-    where: { published: true },
-    orderBy: { displayOrder: "asc" },
-  });
+  let certificates: any[] = [];
+  try {
+    certificates = await prisma.certificate.findMany({
+      where: { published: true },
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch (e) {
+    console.warn("CertificatesPage fallback active:", e);
+  }
 
   return (
     <CertificatesContentClient certificates={certificates} />

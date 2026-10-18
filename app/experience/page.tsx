@@ -9,10 +9,15 @@ export const metadata = {
 };
 
 export default async function ExperiencePage() {
-  const experiences = await prisma.experience.findMany({
-    where: { published: true },
-    orderBy: { displayOrder: "asc" },
-  });
+  let experiences: any[] = [];
+  try {
+    experiences = await prisma.experience.findMany({
+      where: { published: true },
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch (e) {
+    console.warn("ExperiencePage fallback active:", e);
+  }
 
   return (
     <ExperienceContentClient experiences={experiences} />

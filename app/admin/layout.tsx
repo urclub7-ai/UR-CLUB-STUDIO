@@ -12,11 +12,16 @@ export default async function AdminLayout({
 }) {
   const session = await getAdminSession();
 
-  const unreadMessagesCount = session
-    ? await prisma.contactMessage.count({
-        where: { status: "NEW" },
-      })
-    : 0;
+  let unreadMessagesCount = 0;
+  try {
+    unreadMessagesCount = session
+      ? await prisma.contactMessage.count({
+          where: { status: "NEW" },
+        })
+      : 0;
+  } catch (e) {
+    unreadMessagesCount = 0;
+  }
 
   if (!session) {
     return <div className="min-h-screen bg-[#08090B] text-[#F8FAFC]">{children}</div>;

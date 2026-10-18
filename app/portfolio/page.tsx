@@ -9,10 +9,15 @@ export const metadata = {
 };
 
 export default async function PortfolioPage() {
-  const projects = await prisma.project.findMany({
-    where: { published: true },
-    orderBy: { displayOrder: "asc" },
-  });
+  let projects: any[] = [];
+  try {
+    projects = await prisma.project.findMany({
+      where: { published: true },
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch (e) {
+    console.warn("PortfolioPage fallback active:", e);
+  }
 
   const categorySet = new Set<string>(["All"]);
   projects.forEach((p) => {
