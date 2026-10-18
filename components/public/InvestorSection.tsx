@@ -152,14 +152,16 @@ export default function InvestorSection() {
                   </span>
                 </div>
 
-                {/* Title, Subtitle & Description */}
+                {/* Title & Description */}
                 <div>
                   <h3 className="text-base sm:text-xl font-bold text-white group-hover:text-[#00D2FF] transition-colors leading-snug">
                     {isFa ? m.title : m.title_en}
                   </h3>
-                  <div className="text-[11px] sm:text-xs font-mono text-[#00D2FF]/80 mt-1">
-                    {m.subtitle}
-                  </div>
+                  {!isFa && (
+                    <div className="text-[11px] sm:text-xs font-mono text-[#00D2FF]/80 mt-1">
+                      {m.subtitle}
+                    </div>
+                  )}
                   <p className="text-xs sm:text-sm text-[#94A3B8] mt-2 leading-relaxed">
                     {isFa ? m.desc : m.desc_en}
                   </p>
@@ -317,7 +319,7 @@ export default function InvestorSection() {
                           <option value="€5,000 – €15,000">€5,000 – €15,000</option>
                           <option value="€15,000 – €50,000">€15,000 – €50,000</option>
                           <option value="€50,000+">€50,000+</option>
-                          <option value="مذاکره و توافق بعدی">مذاکره و توافق بعدی / Flexible</option>
+                          <option value="مذاکره و توافق بعدی">{isFa ? "مذاکره و توافق بعدی" : "Flexible / Negotiation"}</option>
                         </select>
                       </div>
 
