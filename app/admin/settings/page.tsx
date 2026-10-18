@@ -23,18 +23,18 @@ export default function AdminSettingsPage() {
   const [error, setError] = useState<string | null>(null);
 
   const [settingsData, setSettingsData] = useState({
-    siteName: "تیم مهندسی و نوآوری دیجیتال",
-    designerName: "تیم توسعه دیجیتال",
+    siteName: "UR CLUB — Digital Engineering & Brand Architecture",
+    designerName: "UR CLUB",
     title: "توسعه وبسایت‌های مقیاس‌پذیر • هویت برند • پلتفرم سرمایه‌گذاری",
     tagline: "تیم تخصصی طراحی، توسعه محصولات دیجیتال و جذب سرمایه‌گذاری روی پروژه‌های نوآورانه.",
-    logoUrl: "/images/team_logo.png",
-    faviconUrl: "/images/favicon_white.png",
-    metaDescription: "پلتفرم رسمی تیم مهندسی و نوآوری دیجیتال. مشاهده نمونه‌کارهای زنده، پروژه‌های قبلی و فرصت‌های سرمایه‌گذاری مستقیم.",
-    keywords: "سرمایه‌گذاری در استارتاپ, طراحی وبسایت, تیم توسعه نرم‌افزار, هویت برند, نمونه‌کار آنلاین",
-    email: "invest@digitalcollective.tech",
-    phone: "+49 (0) 123 456789",
-    location: "Germany / International",
-    copyrightText: "© 2026 Digital Engineering Collective. All rights reserved.",
+    logoUrl: "/images/team_logo_transparent.png",
+    faviconUrl: "/favicon.ico",
+    metaDescription: "UR CLUB — استودیو تخصصی طراحی سایت، توسعه نرم‌افزار، کارت ویزیت آنلاین، طراحی لوگو و برندینگ در افغانستان و آلمان.",
+    keywords: "طراحی سایت در افغانستان, ساخت وبسایت حرفه‌ای, طراح لوگو و برندینگ, کارت ویزیت آنلاین, برنامه‌نویسی و ساخت اپلیکیشن, ساخت فروشگاه اینترنتی, طراحی وبسایت شرکتی در کابل و هرات, طراحی سایت در کابل, طراحی وبسایت در هرات, طراح وبسایت افغان, شرکت طراحی سایت افغانستان, یو آر کلاب استودیو, نظیف یوسفی, Web Design in Afghanistan, Professional Website Development, Logo Design & Branding, Smart Digital Business Card, Software & App Development, E-commerce Website Development, Corporate Website Design Kabul Herat, Web Designer Afghanistan, Web Design Kabul, Web Design Herat, UR CLUB Studio, Mohammad Nazif Yosufi, Digital Engineering Collective, Webdesign in Afghanistan, Professionelle Website-Entwicklung, Logo-Design & Branding, Digitale Web-Visitenkarte, Software & App Entwicklung, E-Commerce Onlineshop Erstellung, Unternehmenswebsite Design Kabul Herat, Webdesigner Afghanistan Deutschland, Webagentur Afghanistan",
+    email: "urclub7@gmail.com",
+    phone: "+49 162 4212685",
+    location: "Germany / Global",
+    copyrightText: "© 2026 UR CLUB. All rights reserved.",
   });
 
   const [socialLinks, setSocialLinks] = useState<SocialLinkItem[]>([]);

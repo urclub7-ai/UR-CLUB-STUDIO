@@ -34,29 +34,37 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const siteName = settings?.siteName || "UR CLUB";
   const title = settings?.title || "توسعه پلتفرم‌های دیجیتال با فناوری‌های آماده آینده";
-  const description = settings?.metaDescription || "UR CLUB — پلتفرم رسمی توسعه نرم‌افزار، کادرهای آنلاین تعاملی و سرمایه‌گذاری در پروژه‌های دیجیتال.";
+  const description = settings?.metaDescription || "UR CLUB — استودیو تخصصی طراحی سایت، توسعه نرم‌افزار، کارت ویزیت آنلاین، طراحی لوگو و برندینگ در افغانستان و آلمان.";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://urclubstudio.com";
+  const keywordList = settings?.keywords
+    ? settings.keywords.split(",").map((k: string) => k.trim()).filter(Boolean)
+    : [];
 
   return {
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: baseUrl,
+      languages: {
+        fa: baseUrl,
+        en: `${baseUrl}?lang=en`,
+        de: `${baseUrl}?lang=de`,
+      },
+    },
     title: {
       default: `${siteName} | ${title}`,
       template: `%s | ${siteName}`,
     },
     description,
-    keywords: settings?.keywords?.split(",").map((k: string) => k.trim()) || [
-      "Graphic Design",
-      "Web Design",
-      "Creative Technologist",
-      "Nazif Yosufi",
-      "Germany",
-    ],
+    keywords: keywordList,
     authors: [{ name: settings?.fullName || "Mohammad Nazif Yosufi" }],
     creator: settings?.designerName || "Nazif Yosufi",
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
     openGraph: {
-      title: siteName,
+      title: `${siteName} | ${title}`,
       description,
       siteName,
-      locale: "en_US",
+      url: baseUrl,
+      locale: "fa_AF",
+      alternateLocale: ["en_US", "de_DE"],
       type: "website",
     },
     twitter: {
@@ -67,6 +75,13 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
     icons: {
       icon: [
