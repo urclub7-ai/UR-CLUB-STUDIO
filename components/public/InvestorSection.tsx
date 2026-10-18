@@ -217,10 +217,10 @@ export default function InvestorSection() {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-xl w-full rounded-2xl border border-[#00D2FF]/30 bg-[#081432] p-6 sm:p-8 shadow-2xl overflow-hidden my-8"
             >
-              {/* Close Button */}
+              {/* Close Button (Left-aligned in RTL to prevent text overlap) */}
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-5 right-5 z-10 p-2 rounded-full bg-[#040B20] text-[#94A3B8] hover:text-white hover:bg-[#00D2FF]/20 transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 left-4 sm:left-5 rtl:left-4 rtl:sm:left-5 rtl:right-auto ltr:right-4 ltr:sm:right-5 ltr:left-auto z-20 p-2 rounded-full bg-[#040B20] text-[#94A3B8] hover:text-white hover:bg-[#00D2FF]/20 transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4" />
@@ -251,11 +251,11 @@ export default function InvestorSection() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-1">
-                    <h3 className="text-lg sm:text-xl font-bold text-white">
+                  <div className="space-y-1 rtl:pl-10 ltr:pr-10">
+                    <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
                       {isFa ? "دریافت دک معرفی و جلسه مشاوره" : "Request Pitch Deck & Consultation"}
                     </h3>
-                    <p className="text-xs text-[#94A3B8]">
+                    <p className="text-xs text-[#94A3B8] leading-relaxed">
                       {isFa
                         ? "لطفاً اطلاعات اولیه خود را درج نمایید تا اسناد مالی و مدل‌های بازگشت سرمایه برای شما ارسال شود."
                         : "Enter your contact details to receive our pitch deck and investment parameters."}
@@ -333,16 +333,16 @@ export default function InvestorSection() {
                           className="w-full h-10 px-3 rounded-xl bg-[#040B20] border border-[#00D2FF]/25 text-white text-xs focus:outline-none focus:border-[#00D2FF]"
                         >
                           <option value="سرمایه‌گذاری روی محصولات آماده">
-                            سرمایه‌گذاری روی محصولات آماده
+                            {isFa ? "سرمایه‌گذاری روی محصولات آماده" : "Scale-Up Product Funding"}
                           </option>
-                          <option value="توسعه محصول مشترک (Joint Venture)">
-                            توسعه محصول مشترک (Joint Venture)
+                          <option value="توسعه محصول مشترک">
+                            {isFa ? "توسعه محصول مشترک" : "Joint Venture Co-Founding"}
                           </option>
-                          <option value="شراکت تکنولوژی در ازای سهام (Tech for Equity)">
-                            شراکت تکنولوژی در ازای سهام (Tech for Equity)
+                          <option value="شراکت تکنولوژی در ازای سهام">
+                            {isFa ? "شراکت تکنولوژی در ازای سهام" : "Tech-for-Equity Acceleration"}
                           </option>
                           <option value="سفارش توسعه اختصاصی انترپرایز">
-                            سفارش توسعه اختصاصی انترپرایز
+                            {isFa ? "سفارش توسعه اختصاصی انترپرایز" : "Custom Enterprise Development"}
                           </option>
                         </select>
                       </div>

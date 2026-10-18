@@ -162,7 +162,7 @@ export async function submitProjectInquiry(data: {
     return {
       success: true,
       message: "سفارش شما با موفقیت ثبت شد. شناسه پیگیری: " + refNum,
-      data: { id: newMessage.id, referenceNumber: refNum },
+      data: { id: orderMessageId, referenceNumber: refNum },
     };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Failed to submit project specification";

@@ -242,7 +242,7 @@ export default function MultiAssetShowcase({
               {/* Close Button */}
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-[#040B20]/80 text-[#CBD5E1] hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                className="absolute top-4 left-4 rtl:left-4 rtl:right-auto ltr:right-4 ltr:left-auto z-20 p-2 rounded-full bg-[#040B20]/80 text-[#CBD5E1] hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
