@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azimian Markt Eisenach | Orientalischer Supermarkt & Frische Halal-Fleischerei</title>
+  <meta name="description" content="Azimian Markt in Eisenach - Ihr Spezialist für orientalische Lebensmittel, täglich frisches Obst & Gemüse, 100% Halal-Fleischerei, traditionelle Gewürze und Spezialitäten. Alexanderstraße 48.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#16a34a',
+              600: '#15803d',
+              700: '#166534',
+              800: '#14532d',
+              900: '#064e3b',
+            },
+            accent: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            persian: ['"Vazirmatn"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    .badge-halal {
+      background: linear-gradient(135deg, #064e3b 0%, #15803d 100%);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-brand-900 text-white text-xs sm:text-sm py-2 px-4 border-b border-brand-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1.5 text-emerald-300 font-medium">
+          <i class="fa-solid fa-location-dot text-accent-400"></i> Alexanderstraße 48, 99817 Eisenach
+        </span>
+        <span class="hidden md:inline-block text-slate-400">|</span>
+        <span class="hidden md:flex items-center gap-1.5 text-slate-200">
+          <i class="fa-regular fa-clock text-accent-400"></i> Mo – Sa: 08:00 – 20:00 Uhr
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="tel:015755766374" class="hover:text-accent-400 transition-colors flex items-center gap-1 font-semibold">
+          <i class="fa-solid fa-phone text-accent-400"></i> 01575 5766374
+        </a>
+        <span class="text-slate-500">|</span>
+        <span class="text-xs bg-brand-800 text-emerald-200 px-2 py-0.5 rounded font-persian">عظیمیان مارکت</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-brand-900 flex items-center justify-center text-white shadow-md shadow-brand-900/20 group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-basket-shopping text-2xl text-accent-400"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-extrabold tracking-tight text-slate-900">AZIMIAN</span>
+            <span class="text-xs font-bold uppercase tracking-widest px-2 py-0.5 bg-accent-500 text-white rounded">Markt</span>
+          </div>
+          <div class="text-xs text-slate-500 font-medium">Orientalische Frische & Halal-Fleischerei</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8 font-medium text-slate-600 text-sm">
+        <a href="#angebote" class="hover:text-brand-600 transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-tag text-accent-500"></i> Wochenangebote
+        </a>
+        <a href="#sortiment" class="hover:text-brand-600 transition-colors">Sortiment & Frische</a>
+        <a href="#fleischerei" class="hover:text-brand-600 transition-colors flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Halal-Theke
+        </a>
+        <a href="#bewertungen" class="hover:text-brand-600 transition-colors">Kundenstimmen</a>
+        <a href="#kontakt" class="hover:text-brand-600 transition-colors">Anfahrt & Öffnungszeiten</a>
+      </nav>
+
+      <!-- CTA Action -->
+      <div class="flex items-center gap-3">
+        <a href="https://maps.app.goo.gl/b7YRcCRR7bBywcnHA" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 text-sm font-semibold transition-all">
+          <i class="fa-solid fa-diamond-turn-right text-brand-600"></i> Route
+        </a>
+        <a href="https://wa.me/4915755766374?text=Hallo%20Azimian%20Markt,%20ich%20habe%20eine%20Frage" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold shadow-md shadow-brand-600/20 transition-all hover:shadow-lg">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span>WhatsApp Kontakt</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-50/50 via-white to-white py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Text Column -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-brand-800 text-xs sm:text-sm font-semibold">
+            <span class="flex h-2 w-2 rounded-full bg-brand-600"></span>
+            Eisenachs Adresse für Vielfalt & orientalischen Genuss
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            Frische Qualität, <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-emerald-500">100% Halal-Fleisch</span> 
+            & Vielfalt aus der Heimat.
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Willkommen im <strong>Azimian Markt</strong> in Eisenach. Bei uns finden Sie täglich frisches Obst & Gemüse, eine erstklassige Fleischtheke mit zertifiziertem Halal-Fleisch, erlesene orientalische Spezialitäten, Gewürze und traditionelles Fladenbrot.
+          </p>
+
+          <!-- USPs Mini Icons -->
+          <div class="grid grid-cols-3 gap-4 py-3 max-w-lg mx-auto lg:mx-0 text-left">
+            <div class="bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 text-brand-600 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-certificate text-lg"></i>
+              </div>
+              <div>
+                <div class="font-bold text-xs sm:text-sm text-slate-900">100% Halal</div>
+                <div class="text-[11px] text-slate-500">Frische Theke</div>
+              </div>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-amber-50 text-accent-600 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-apple-whole text-lg"></i>
+              </div>
+              <div>
+                <div class="font-bold text-xs sm:text-sm text-slate-900">Täglich Frisch</div>
+                <div class="text-[11px] text-slate-500">Obst & Gemüse</div>
+              </div>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-coins text-lg"></i>
+              </div>
+              <div>
+                <div class="font-bold text-xs sm:text-sm text-slate-900">Faire Preise</div>
+                <div class="text-[11px] text-slate-500">Top Angebote</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#angebote" class="px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-brand-600/25 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-fire text-accent-400"></i> Wochenangebote entdecken
+            </a>
+            <a href="https://maps.app.goo.gl/b7YRcCRR7bBywcnHA" target="_blank" class="px-7 py-3.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-800 font-bold text-sm sm:text-base shadow-sm transition-all flex items-center gap-2">
+              <i class="fa-solid fa-location-dot text-brand-600"></i> Route nach Eisenach
+            </a>
+          </div>
+
+          <!-- Rating review summary -->
+          <div class="flex items-center justify-center lg:justify-start gap-3 pt-2 text-xs text-slate-600">
+            <div class="flex text-amber-400">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <span class="font-bold text-slate-900">4.3 / 5.0</span>
+            <span>auf Google Maps von zufriedenen Kunden bewertet</span>
+          </div>
+        </div>
+
+        <!-- Right Visual Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <!-- Main Hero Image (Fresh Quality Market) -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] object-cover bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1000&q=80" alt="Frisches Obst und Gemüse im Azimian Markt" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+              
+              <div class="absolute bottom-6 left-6 right-6 text-white">
+                <div class="inline-block px-3 py-1 rounded-md bg-accent-500 font-bold text-xs uppercase tracking-wider mb-2">
+                  Direkt in Eisenach
+                </div>
+                <h3 class="text-xl font-bold">Alexanderstraße 48</h3>
+                <p class="text-xs text-slate-200 mt-1">Ihr familiärer Supermarkt mit herzlicher Kundenbetreuung.</p>
+              </div>
+            </div>
+
+            <!-- Floating Badge: Halal Fleisch -->
+            <div class="absolute -top-4 -left-4 glass-card p-4 rounded-2xl shadow-xl border border-white/80 max-w-[210px] hidden sm:block">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-brand-600 text-white flex items-center justify-center text-xl font-bold">
+                  🥩
+                </div>
+                <div>
+                  <div class="font-extrabold text-sm text-slate-900">Halal Fleisch</div>
+                  <div class="text-[11px] text-brand-700 font-semibold">Täglich frisch zerlegt</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge: Google Score -->
+            <div class="absolute -bottom-5 -right-4 glass-card p-4 rounded-2xl shadow-xl border border-white/80 hidden sm:block">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                  <i class="fa-brands fa-google text-lg"></i>
+                </div>
+                <div>
+                  <div class="flex text-amber-400 text-xs">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star text-slate-300"></i>
+                  </div>
+                  <div class="text-xs font-bold text-slate-900">„Kundenfreundlich & Top Qualität“</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT: WOCHENANGEBOTE (SPECIAL DEALS) -->
+  <section id="angebote" class="py-16 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-accent-600 mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-tag"></i> Aktuelle Aktionen
+          </div>
+          <h2 class="text-3xl font-extrabold text-slate-900">Angebote der Woche im Markt</h2>
+          <p class="text-slate-500 text-sm mt-1">Gültig solange der Vorrat reicht. Vorbeikommen und sparen!</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-emerald-50 text-brand-700 text-xs font-semibold">
+            <i class="fa-solid fa-check"></i> Alle Preise inkl. MwSt.
+          </span>
+        </div>
+      </div>
+
+      <!-- Deals Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Deal 1: Basmati Reis -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative h-44 overflow-hidden bg-slate-100">
+            <span class="absolute top-3 left-3 z-10 bg-red-600 text-white text-xs font-black px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+              - 20% Rabatt
+            </span>
+            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="Premium Basmati Reis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase text-slate-400">Reis & Vorrat</span>
+            <h3 class="font-bold text-slate-900 text-base mt-1">Premium Basmati Reis (10 kg)</h3>
+            <p class="text-xs text-slate-500 mt-1">Langkorn, duftend, original Sella Qualität.</p>
+            <div class="flex items-baseline justify-between mt-4 pt-3 border-t border-slate-100">
+              <div>
+                <span class="text-xl font-extrabold text-brand-700">19,99 €</span>
+                <span class="text-xs text-slate-400 line-through ml-1.5">24,99 €</span>
+              </div>
+              <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">10 kg Sack</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 2: Lammkoteletts frisch -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative h-44 overflow-hidden bg-slate-100">
+            <span class="absolute top-3 left-3 z-10 bg-brand-700 text-white text-xs font-black px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+              Frischetheke
+            </span>
+            <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=600&q=80" alt="Halal Lammfleisch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase text-emerald-600">100% Halal</span>
+            <h3 class="font-bold text-slate-900 text-base mt-1">Frische Lammkoteletts</h3>
+            <p class="text-xs text-slate-500 mt-1">Zartes Fleisch, täglich frisch vom Metzgermeister.</p>
+            <div class="flex items-baseline justify-between mt-4 pt-3 border-t border-slate-100">
+              <div>
+                <span class="text-xl font-extrabold text-brand-700">13,49 €</span>
+                <span class="text-xs text-slate-400 line-through ml-1.5">15,99 €</span>
+              </div>
+              <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">pro kg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 3: Granatäpfel & Frische Früchte -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative h-44 overflow-hidden bg-slate-100">
+            <span class="absolute top-3 left-3 z-10 bg-amber-500 text-white text-xs font-black px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+              Tagesfrisch
+            </span>
+            <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80" alt="Frische Granatäpfel und Früchte" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase text-slate-400">Obst & Vitamine</span>
+            <h3 class="font-bold text-slate-900 text-base mt-1">Süße Granatäpfel & Feigen</h3>
+            <p class="text-xs text-slate-500 mt-1">Saftig, intensiv aromatisch und handverlesen.</p>
+            <div class="flex items-baseline justify-between mt-4 pt-3 border-t border-slate-100">
+              <div>
+                <span class="text-xl font-extrabold text-brand-700">1,29 €</span>
+                <span class="text-xs text-slate-400 line-through ml-1.5">1,99 €</span>
+              </div>
+              <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">Stück</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 4: Fladenbrot & Baklava -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="relative h-44 overflow-hidden bg-slate-100">
+            <span class="absolute top-3 left-3 z-10 bg-purple-600 text-white text-xs font-black px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+              Bäckerei
+            </span>
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Fladenbrot und Gebäck" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="text-[11px] font-bold uppercase text-slate-400">Backwaren</span>
+            <h3 class="font-bold text-slate-900 text-base mt-1">Frisches Fladenbrot (Naan)</h3>
+            <p class="text-xs text-slate-500 mt-1">Täglich frisch geliefert, ofenwarm & weich.</p>
+            <div class="flex items-baseline justify-between mt-4 pt-3 border-t border-slate-100">
+              <div>
+                <span class="text-xl font-extrabold text-brand-700">0,99 €</span>
+                <span class="text-xs text-slate-400 line-through ml-1.5">1,49 €</span>
+              </div>
+              <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">Stück</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner Hinweis -->
+      <div class="mt-8 p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-bell text-accent-500 text-xl"></i>
+          <span class="text-sm text-slate-700 font-medium">Möchten Sie Fleisch vorbestellen oder nach bestimmten Produkten fragen?</span>
+        </div>
+        <a href="https://wa.me/4915755766374?text=Hallo%20Azimian%20Markt,%20ich%20m%C3%B6chte%20eine%20Vorbestellung%20aufgeben" class="text-xs font-bold text-brand-700 hover:text-brand-800 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm flex items-center gap-1.5">
+          <i class="fa-brands fa-whatsapp text-emerald-600"></i> Jetzt vorbestellen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SORTIMENT & ABTEILUNGEN (DEPARTMENTS) -->
+  <section id="sortiment" class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Alles unter einem Dach</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Unser vielfältiges Warensortiment</h2>
+        <p class="text-slate-600 text-sm mt-2">Von orientalischen Grundnahrungsmitteln bis zu feinsten Spezialitäten aus Afghanistan, der Türkei und dem Nahen Osten.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Category 1 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/50 transition-all flex gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-brand-600 flex items-center justify-center shrink-0 text-2xl">
+            <i class="fa-solid fa-drumstick-bite"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">100% Halal-Fleischerei</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Frisches Lamm-, Rind- und Hähnchenfleisch. Auf Wunsch schneiden und marinieren wir direkt vor Ort nach Ihren Wünschen.</p>
+          </div>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/50 transition-all flex gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 text-accent-600 flex items-center justify-center shrink-0 text-2xl">
+            <i class="fa-solid fa-lemon"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Täglich frisches Obst & Kräuter</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Frische Petersilie, Koriander, Minze, Knoblauch sowie exotische Südfrüchte, Granatäpfel und Wassermelonen.</p>
+          </div>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/50 transition-all flex gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0 text-2xl">
+            <i class="fa-solid fa-bowl-rice"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Reis, Hülsenfrüchte & Öle</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Große Auswahl an Qualitätsreis (Sella, Basmati), Linsen, Kichererbsen, Kidneybohnen und feinstes Oliven- und Sonnenblumenöl.</p>
+          </div>
+        </div>
+
+        <!-- Category 4 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/50 transition-all flex gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 text-2xl">
+            <i class="fa-solid fa-mortar-pestle"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Gewürze & Safran</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Original afghanischer Safran (Super Negin), Kreuzkümmel (Zira), Kardamom, Kurkuma, Sumach und eigene Gewürzmischungen.</p>
+          </div>
+        </div>
+
+        <!-- Category 5 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/50 transition-all flex gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 text-2xl">
+            <i class="fa-solid fa-bread-slice"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Frisches Fladenbrot & Süßes</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Traditionelles Fladenbrot, knuspriges Lavash, feinstes Baklava, Gaz, Nabat (Kandiszucker) und traditionelles Gebäck.</p>
+          </div>
+        </div>
+
+        <!-- Category 6 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/50 transition-all flex gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 text-2xl">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Tee, Datteln & Trockenobst</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Cardamom-Schwarztee, grüner Tee, Mazafati-Datteln, Mandeln, Rosinen (Kishmish) und Nüsse in bester Auswahl.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HALAL THEKE SPECIAL SECTION -->
+  <section id="fleischerei" class="py-16 bg-brand-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="inline-block px-3 py-1 rounded bg-brand-800 text-accent-400 font-bold text-xs uppercase tracking-wider mb-3">
+            Qualität & Vertrauen
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Unsere Halal-Fleischtheke: <br>
+            Täglich frisch & 100% vertrauenswürdig.
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed">
+            Als Ihr familiärer Markt legen wir allerhöchsten Wert auf Qualität, Hygiene und die Einhaltung traditioneller Halal-Standards. Unser Fleisch stammt aus zertifizierter Schlachtung und wird täglich frisch zerlegt.
+          </p>
+
+          <ul class="space-y-3 mt-6 text-sm text-slate-200">
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-accent-400 text-lg"></i>
+              <span>100% Halal-zertifiziertes Rind-, Lamm- und Hähnchenfleisch</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-accent-400 text-lg"></i>
+              <span>Wunsch-Zuschnitt direkt vor Ihren Augen</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-accent-400 text-lg"></i>
+              <span>Telefonische Vorbestellung für Feiern & Grillabende möglich</span>
+            </li>
+          </ul>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="tel:015755766374" class="px-6 py-3 rounded-xl bg-accent-500 hover:bg-accent-600 text-slate-900 font-bold text-sm transition-all flex items-center gap-2">
+              <i class="fa-solid fa-phone"></i> Fleisch vorbestellen: 01575 5766374
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-brand-800 aspect-video lg:aspect-[4/3] bg-brand-950">
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Gewürze und orientalische Küche" class="w-full h-full object-cover opacity-90">
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-white text-slate-900 p-5 rounded-2xl shadow-xl max-w-xs hidden sm:block">
+            <div class="text-xs font-bold uppercase tracking-wider text-brand-600 mb-1">Kundenstimme</div>
+            <p class="text-xs italic text-slate-600">„Sehr gute Qualität, tolle Fleischtheke und absolut faire Preise in Eisenach!“</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS (ECHTE GOOGLE BEWERTUNGEN) -->
+  <section id="bewertungen" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold mb-2">
+          <i class="fa-brands fa-google text-amber-500"></i> Echte Google-Bewertungen
+        </div>
+        <h2 class="text-3xl font-extrabold text-slate-900">Was unsere Kunden sagen</h2>
+        <p class="text-slate-500 text-sm mt-1">Freundlichkeit, Atmosphäre und Frische machen den Unterschied.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Review 1: Masoud Safawi -->
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed italic">
+              „Kundenfreundliche Mitarbeiter, gute Atmosphäre und attraktive Preise zu gute Qualität. Alles in einem 5 verdiente Sterne Bewertung 👍🏾👌🏾“
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-700 text-white font-bold flex items-center justify-center text-xs">
+                MS
+              </div>
+              <div>
+                <div class="font-bold text-xs text-slate-900">Masoud Safawi</div>
+                <div class="text-[10px] text-slate-400">Verifizierte Bewertung</div>
+              </div>
+            </div>
+            <i class="fa-brands fa-google text-slate-400"></i>
+          </div>
+        </div>
+
+        <!-- Review 2: Zaki Qanbari -->
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed italic">
+              „Unglaublich😍❤️ Gefällt mir sehr gut 👍🏻 Macht weiter 🍃🎰😍“
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-xs">
+                ZQ
+              </div>
+              <div>
+                <div class="font-bold text-xs text-slate-900">Zaki Qanbari</div>
+                <div class="text-[10px] text-slate-400">Verifizierte Bewertung</div>
+              </div>
+            </div>
+            <i class="fa-brands fa-google text-slate-400"></i>
+          </div>
+        </div>
+
+        <!-- Review 3: doody jf -->
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed italic">
+              „Schmeckt sehr gut! Tolle frische Lebensmittel und sehr freundlicher Empfang im Laden.“
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-xs">
+                DJ
+              </div>
+              <div>
+                <div class="font-bold text-xs text-slate-900">doody jf</div>
+                <div class="text-[10px] text-slate-400">Local Guide</div>
+              </div>
+            </div>
+            <i class="fa-brands fa-google text-slate-400"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ANFAHRT, ÖFFNUNGSZEITEN & KONTAKT -->
+  <section id="kontakt" class="py-16 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Info Card -->
+        <div class="lg:col-span-5 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Besuchen Sie uns</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Öffnungszeiten & Anfahrt</h2>
+            <p class="text-slate-500 text-xs mt-1">Zentral und bequem erreichbar in Eisenach.</p>
+          </div>
+
+          <!-- Address -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-slate-100 text-brand-600 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-location-dot text-lg"></i>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-slate-900">Adresse:</div>
+              <div class="text-sm text-slate-600">Alexanderstraße 48<br>99817 Eisenach, Thüringen</div>
+              <div class="text-xs text-slate-400 mt-0.5">Plus Code: X8GF+9P Eisenach</div>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-slate-100 text-brand-600 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-phone text-lg"></i>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-slate-900">Telefon & WhatsApp:</div>
+              <a href="tel:015755766374" class="text-sm font-semibold text-brand-700 hover:underline">01575 5766374</a>
+              <div class="text-xs text-slate-400 mt-0.5">Vorbestellungen gerne auch per WhatsApp</div>
+            </div>
+          </div>
+
+          <!-- Hours Table -->
+          <div class="pt-2">
+            <div class="font-bold text-sm text-slate-900 mb-2 flex items-center gap-2">
+              <i class="fa-regular fa-clock text-brand-600"></i> Öffnungszeiten:
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <div class="flex justify-between py-1 border-b border-slate-200">
+                <span class="font-medium text-slate-900">Montag – Samstag:</span>
+                <span class="font-bold text-emerald-700">08:00 – 20:00 Uhr</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="font-medium text-slate-900">Sonntag & Feiertage:</span>
+                <span class="text-red-500 font-semibold">Geschlossen</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Maps CTA -->
+          <a href="https://maps.app.goo.gl/b7YRcCRR7bBywcnHA" target="_blank" class="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-md transition-all">
+            <i class="fa-brands fa-google"></i> In Google Maps öffnen
+          </a>
+        </div>
+
+        <!-- Visual Map Placeholder Card -->
+        <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+          <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+              <span class="font-bold text-sm text-slate-800">Standort: Alexanderstraße 48, Eisenach</span>
+            </div>
+            <span class="text-xs bg-emerald-100 text-brand-800 font-bold px-2.5 py-1 rounded">Jetzt geöffnet</span>
+          </div>
+
+          <!-- Styled Map Graphic -->
+          <div class="relative flex-1 min-h-[340px] bg-slate-200 flex items-center justify-center p-8 overflow-hidden">
+            <!-- Background Map pattern -->
+            <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
+            <div class="relative z-10 text-center max-w-sm bg-white/95 backdrop-blur p-6 rounded-2xl shadow-xl border border-slate-100">
+              <div class="w-14 h-14 rounded-2xl bg-brand-600 text-white flex items-center justify-center mx-auto text-2xl mb-3 shadow-lg shadow-brand-600/30">
+                <i class="fa-solid fa-store"></i>
+              </div>
+              <h4 class="font-extrabold text-slate-900 text-lg">Azimian Markt Eisenach</h4>
+              <p class="text-xs text-slate-500 mt-1 mb-4">Alexanderstraße 48, 99817 Eisenach</p>
+              
+              <a href="https://maps.app.goo.gl/b7YRcCRR7bBywcnHA" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-sm transition-all">
+                <i class="fa-solid fa-directions"></i> Wegbeschreibung starten
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER & LEGAL (IMPRESSUM & DATENSCHUTZ) -->
+  <footer class="bg-slate-950 text-slate-400 text-xs py-12 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+        <!-- Col 1 -->
+        <div class="space-y-3">
+          <div class="text-lg font-black text-white tracking-wide">AZIMIAN MARKT</div>
+          <p class="text-slate-400 leading-relaxed text-xs">
+            Ihr verlässlicher Supermarkt für orientalische Spezialitäten, 100% Halal-Fleischtheke und täglich frisches Obst & Gemüse in Eisenach.
+          </p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="font-bold text-white mb-3 uppercase tracking-wider text-[11px]">Schnellzugriff</div>
+          <ul class="space-y-2">
+            <li><a href="#angebote" class="hover:text-white transition-colors">Wochenangebote</a></li>
+            <li><a href="#sortiment" class="hover:text-white transition-colors">Sortiment & Waren</a></li>
+            <li><a href="#fleischerei" class="hover:text-white transition-colors">Halal-Fleischtheke</a></li>
+            <li><a href="#kontakt" class="hover:text-white transition-colors">Anfahrt & Öffnungszeiten</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Kontakt -->
+        <div>
+          <div class="font-bold text-white mb-3 uppercase tracking-wider text-[11px]">Kontakt</div>
+          <div class="space-y-1.5">
+            <div>Alexanderstraße 48</div>
+            <div>99817 Eisenach</div>
+            <div class="text-emerald-400 font-semibold pt-1">Tel: 01575 5766374</div>
+            <div>WhatsApp Bestellungen möglich</div>
+          </div>
+        </div>
+
+        <!-- Col 4: Rechtliches (Trust Factor in Germany) -->
+        <div>
+          <div class="font-bold text-white mb-3 uppercase tracking-wider text-[11px]">Rechtliches (DSGVO)</div>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="#impressum" class="hover:text-white transition-colors">Impressum nach § 5 TMG</a></li>
+            <li><a href="#datenschutz" class="hover:text-white transition-colors">Datenschutzerklärung</a></li>
+            <li><span class="text-emerald-500 font-semibold">100% DSGVO & Rechtssicher</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Credits -->
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
+        <div>
+          &copy; 2026 Azimian Markt Eisenach. Alle Rechte vorbehalten.
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Webdesign & Digitalisierung von</span>
+          <span class="font-bold text-slate-300 px-2 py-0.5 rounded bg-slate-900 border border-slate-800">URCLUB Studio</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON (FOR INSTANT BOOKINGS) -->
+  <a href="https://wa.me/4915755766374?text=Hallo%20Azimian%20Markt,%20ich%20habe%20eine%20Frage%20zu%20einem%20Produkt" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition-all">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+    <span class="font-bold text-xs hidden md:inline">Frage stellen / WhatsApp</span>
+  </a>
+
+</body>
+</html>

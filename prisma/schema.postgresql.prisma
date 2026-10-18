@@ -1,0 +1,231 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  avatar       String?
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SiteSettings {
+  id                String       @id @default("default-settings")
+  siteName          String       @default("Nazif Yosufi — Graphic Designer & Web Designer")
+  designerName      String       @default("Nazif Yosufi")
+  fullName          String       @default("Mohammad Nazif Yosufi")
+  title             String       @default("Graphic Designer • Web Designer • Creative Technologist")
+  tagline           String       @default("Designing ideas into digital experiences with passion for modern technologies.")
+  logoUrl           String?
+  faviconUrl        String?
+  metaDescription   String       @default("Personal portfolio of Nazif Yosufi, showcasing graphic design, web design, digital projects, certificates and professional experience.")
+  keywords          String       @default("graphic design, web design, creative technologist, visual design, UI design, Mohammad Nazif Yosufi, Germany")
+  email             String       @default("contact@nazifyosufi.com")
+  phone             String?
+  location          String       @default("Germany")
+  copyrightText     String       @default("© 2026 Nazif Yosufi. All rights reserved.")
+  googleAnalyticsId String?
+  resumeUrl         String?      @default("/cv-nazif-yosufi.pdf")
+  socialLinks       SocialLink[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+}
+
+model SocialLink {
+  id             String        @id @default(uuid())
+  platform       String
+  url            String
+  icon           String        @default("Globe")
+  displayOrder   Int           @default(0)
+  active         Boolean       @default(true)
+  siteSettingsId String?
+  siteSettings   SiteSettings? @relation(fields: [siteSettingsId], references: [id], onDelete: Cascade)
+}
+
+model HomeContent {
+  id                 String   @id @default("default-home")
+  heroGreeting       String   @default("Nazif Yosufi")
+  heroTitle          String   @default("Designing ideas into digital experiences.")
+  heroSubtitle       String   @default("Graphic Designer • Web Designer • Creative Technologist")
+  heroDescription    String   @default("I create visual designs and digital experiences with a strong interest in technology, web development and artificial intelligence.")
+  availabilityStatus Boolean  @default(true)
+  availabilityText   String   @default("Available for new projects & collaborations")
+  heroImageUrl       String?
+  profileImageUrl    String?
+  resumeUrl          String?
+  primaryCtaText     String   @default("View My Work")
+  primaryCtaUrl      String   @default("/portfolio")
+  secondaryCtaText   String   @default("Let's Work Together")
+  secondaryCtaUrl    String   @default("/contact")
+  tertiaryCtaText    String   @default("View Certificates")
+  tertiaryCtaUrl     String   @default("/certificates")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model AboutContent {
+  id                 String   @id @default("default-about")
+  heading            String   @default("About Me")
+  subheading         String   @default("Graphic Designer, Web Designer & Creative Technologist based in Germany.")
+  bioSummary         String   @default("I’m Mohammad Nazif Yosufi, a graphic and web designer based in Germany. My interests combine visual design, web development, computer systems, AI and modern technologies.")
+  fullBio            String   @default("I’m Mohammad Nazif Yosufi, a graphic and web designer based in Germany. My interests combine visual design, web development, computer systems, AI and modern technologies.\n\nI enjoy turning ideas into practical digital experiences and continuously learning new tools and technologies.\n\nAlongside design, I have developed practical knowledge in website creation, frontend and backend development, computer systems, Windows and AI-assisted development.")
+  profilePhotoUrl    String?
+  resumeUrl          String?
+  location           String   @default("Germany")
+  languages          String   @default("Persian / Dari — Native\nGerman — B1\nEnglish — Technical / Basic knowledge")
+  strengths          String   @default("Technically interested, Motivated to learn, Reliable, Independent, Responsible, Fast learner, Enjoys working with computers")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Skill {
+  id           String   @id @default(uuid())
+  name         String
+  category     String   @default("DESIGN")
+  icon         String   @default("Palette")
+  proficiency  Int      @default(85)
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([category])
+  @@index([displayOrder])
+}
+
+model Project {
+  id               String         @id @default(uuid())
+  title            String
+  slug             String         @unique
+  category         String
+  shortDescription String
+  fullDescription  String
+  client           String?        @default("Independent Project")
+  projectYear      String         @default("2026")
+  toolsUsed        String         @default("Adobe Illustrator, Figma, Visual Studio Code")
+  servicesProvided String         @default("Graphic Design, Web Design")
+  thumbnail        String
+  projectUrl       String?
+  behanceUrl       String?
+  featured         Boolean        @default(false)
+  published        Boolean        @default(true)
+  displayOrder     Int            @default(0)
+  images           ProjectImage[]
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([featured])
+  @@index([published])
+  @@index([displayOrder])
+}
+
+model ProjectImage {
+  id           String   @id @default(uuid())
+  projectId    String
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  imageUrl     String
+  altText      String?
+  caption      String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  @@index([projectId])
+  @@index([displayOrder])
+}
+
+model Certificate {
+  id               String    @id @default(uuid())
+  title            String
+  issuer           String
+  issueDate        String
+  expirationDate   String?
+  credentialId     String?
+  score            String?
+  verificationUrl  String?
+  description      String?
+  certificateImage String?
+  pdfFile          String?
+  skillsCovered    String?
+  featured         Boolean   @default(true)
+  published        Boolean   @default(true)
+  displayOrder     Int       @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([featured])
+  @@index([published])
+  @@index([displayOrder])
+}
+
+model Experience {
+  id                   String   @id @default(uuid())
+  jobTitle             String
+  company              String
+  employmentType       String   @default("Independent / Freelance")
+  location             String   @default("Germany")
+  startDate            String
+  endDate              String?
+  currentlyWorkingHere Boolean  @default(true)
+  description          String
+  responsibilities     String   @default("Creating digital identities, responsive web layouts, and graphic design assets")
+  toolsUsed            String   @default("Figma, Illustrator, HTML, Tailwind CSS, Next.js")
+  companyLogo          String?
+  websiteUrl           String?
+  displayOrder         Int      @default(0)
+  published            Boolean  @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([published])
+  @@index([displayOrder])
+}
+
+model Service {
+  id                  String   @id @default(uuid())
+  title               String
+  slug                String   @unique
+  shortDescription    String
+  detailedDescription String
+  icon                String   @default("Sparkles")
+  startingPrice       String?
+  deliveryTime        String?
+  features            String   @default("Custom visual concept, High-resolution exports, Responsive design, Direct consultation")
+  active              Boolean  @default(true)
+  featured            Boolean  @default(false)
+  displayOrder        Int      @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([slug])
+  @@index([active])
+  @@index([displayOrder])
+}
+
+model ContactMessage {
+  id         String   @id @default(uuid())
+  name       String
+  email      String
+  company    String?
+  service    String?
+  budget     String?
+  projectUrl String?
+  message    String
+  status     String   @default("NEW")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}

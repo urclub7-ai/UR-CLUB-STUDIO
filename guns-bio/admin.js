@@ -1,0 +1,1034 @@
+document.addEventListener("DOMContentLoaded", async () => {
+  // Elements
+  const profileSelect = document.getElementById("profile-select");
+  const btnAddProfile = document.getElementById("btn-add-profile");
+  const btnDeleteProfile = document.getElementById("btn-delete-profile");
+  const btnViewPublic = document.getElementById("btn-view-public");
+  const btnSaveAll = document.getElementById("btn-save-all");
+  const previewIframe = document.getElementById("preview-iframe");
+  const previewOpenBtn = document.getElementById("preview-open-btn");
+  const toast = document.getElementById("admin-toast");
+  const toastMsg = document.getElementById("toast-msg");
+
+  const modeText = document.getElementById("mode-text");
+  const currentLiveUrl = document.getElementById("current-live-url");
+  const btnCopyUrl = document.getElementById("btn-copy-url");
+
+  // Form Fields (English Page)
+  const inputName = document.getElementById("input-name");
+  const inputSlug = document.getElementById("input-slug");
+  const inputSubtitle = document.getElementById("input-subtitle");
+  const inputViews = document.getElementById("input-views");
+  const toggleRealViews = document.getElementById("toggle-real-views");
+
+  // Persian Website Content Fields
+  const inputFaName = document.getElementById("input-fa-name");
+  const inputFaOrderBtn = document.getElementById("input-fa-order-btn");
+  const inputFaSubtitle = document.getElementById("input-fa-subtitle");
+  const inputFaEnterText = document.getElementById("input-fa-enter-text");
+  const inputFaStatus = document.getElementById("input-fa-status");
+  const btnCopyFaUrl = document.getElementById("btn-copy-fa-url");
+
+  // Avatars
+  const inputMainAvatar = document.getElementById("input-main-avatar");
+  const fileMainAvatar = document.getElementById("file-main-avatar");
+  const previewMainAvatar = document.getElementById("preview-main-avatar");
+
+  const inputPresenceAvatar = document.getElementById("input-presence-avatar");
+  const filePresenceAvatar = document.getElementById("file-presence-avatar");
+  const previewPresenceAvatar = document.getElementById("preview-presence-avatar");
+
+  // Media (PC & Mobile)
+  const inputBgVideo = document.getElementById("input-bg-video");
+  const fileBgVideo = document.getElementById("file-bg-video");
+  const inputMobileBgVideo = document.getElementById("input-mobile-bg-video");
+  const fileMobileBgVideo = document.getElementById("file-mobile-bg-video");
+
+  // Presence
+  const inputPresenceHandle = document.getElementById("input-presence-handle");
+  const inputPresenceStatus = document.getElementById("input-presence-status");
+  const colorRadios = document.querySelectorAll('input[name="presence-color"]');
+  const inputCustomColor = document.getElementById("input-custom-color");
+  let faStatusManuallyTouched = false;
+
+  // Switches
+  const toggleSparkles = document.getElementById("toggle-sparkles");
+  const toggleDotmatrix = document.getElementById("toggle-dotmatrix");
+
+  // Socials Container
+  const socialsInputsList = document.getElementById("socials-inputs-list");
+
+  // Modal Elements
+  const modalNewProfile = document.getElementById("modal-new-profile");
+  const modalClose = document.getElementById("modal-close");
+  const modalCancel = document.getElementById("modal-cancel");
+  const modalConfirm = document.getElementById("modal-confirm");
+  const newProfileName = document.getElementById("new-profile-name");
+  const newProfileSlug = document.getElementById("new-profile-slug");
+
+  const DEFAULT_AVATAR = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a855f7'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E";
+
+  let currentProfileId = "main";
+  let initialLoadedViews = "10";
+
+  // Render Social Inputs Catalog
+  function renderSocialInputs() {
+    socialsInputsList.innerHTML = "";
+    SOCIAL_CATALOG.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "social-input-item";
+      row.innerHTML = `
+        <div class="social-icon-badge" style="color: ${item.color};">
+          <i class="${item.icon}"></i>
+        </div>
+        <span class="social-name-tag">${item.name}</span>
+        <input type="text" id="social-${item.id}" data-social-id="${item.id}" placeholder="${item.placeholder}" />
+      `;
+      socialsInputsList.appendChild(row);
+    });
+  }
+
+  // Populate Profiles Dropdown
+  async function populateProfileDropdown() {
+    const profiles = await ProfileStore.getProfilesAsync();
+    profileSelect.innerHTML = "";
+
+    // Main Owner Profile first
+    const mainOpt = document.createElement("option");
+    mainOpt.value = "main";
+    const mainName = (profiles["main"] && profiles["main"].name) ? profiles["main"].name : "LEVI";
+    mainOpt.textContent = `👑 ${mainName} (Main Root Page)`;
+    if (currentProfileId === "main") mainOpt.selected = true;
+    profileSelect.appendChild(mainOpt);
+
+    // Other User Profiles
+    Object.keys(profiles).forEach((id) => {
+      if (id === "main") return;
+      const p = profiles[id];
+      const opt = document.createElement("option");
+      opt.value = id;
+      opt.textContent = `👤 ${p.name} (?u=${id})`;
+      if (id === currentProfileId) opt.selected = true;
+      profileSelect.appendChild(opt);
+    });
+  }
+
+  // Load Profile Into Form
+  async function loadProfile(id) {
+    const profile = await ProfileStore.getProfileAsync(id);
+    currentProfileId = id || "main";
+
+    inputName.value = profile.name || "";
+    inputSlug.value = profile.id || id;
+    inputSubtitle.value = profile.subtitle || "";
+
+    let rawV = profile.views || profile.baseViews || "10";
+    let vNum = parseInt(String(rawV).replace(/[^0-9]/g, ""), 10);
+    if (isNaN(vNum) || vNum < 10) vNum = 10;
+    inputViews.value = String(vNum);
+    initialLoadedViews = String(vNum);
+
+    if (toggleRealViews) toggleRealViews.checked = profile.autoIncrementViews !== false;
+
+    // Lock slug editing for main profile
+    if (currentProfileId === "main") {
+      inputSlug.disabled = true;
+      inputSlug.value = "main (Root Page)";
+      btnDeleteProfile.style.display = "none";
+    } else {
+      inputSlug.disabled = false;
+      inputSlug.value = currentProfileId;
+      btnDeleteProfile.style.display = "inline-flex";
+    }
+
+    // Persian Website Version Fields
+    const fa = profile.persian || {};
+    if (inputFaName) inputFaName.value = fa.name || "";
+    if (inputFaOrderBtn) inputFaOrderBtn.value = fa.orderBtnText || "سفارش";
+    if (inputFaSubtitle) inputFaSubtitle.value = fa.subtitle || "";
+    if (inputFaEnterText) inputFaEnterText.value = fa.enterText || "[ برای ورود به وبسایت کلیک کنید ]";
+    faStatusManuallyTouched = false;
+    const faStatusVal = (fa.presenceStatus || "").trim();
+    const enStatusVal = (profile.presence && profile.presence.status) ? profile.presence.status.trim() : "";
+    if (inputFaStatus) inputFaStatus.value = faStatusVal || enStatusVal || "آنلاین";
+
+    // Avatars
+    inputMainAvatar.value = profile.mainAvatar || "";
+    previewMainAvatar.src = profile.mainAvatar || DEFAULT_AVATAR;
+
+    inputPresenceAvatar.value = profile.presenceAvatar || "";
+    previewPresenceAvatar.src = profile.presenceAvatar || DEFAULT_AVATAR;
+
+    // Media (PC & Mobile)
+    inputBgVideo.value = profile.backgroundVideo || "";
+    inputMobileBgVideo.value = profile.mobileBackgroundVideo || "";
+
+    // Presence
+    if (profile.presence) {
+      inputPresenceHandle.value = profile.presence.handle || "";
+      inputPresenceStatus.value = enStatusVal || faStatusVal || "online";
+      const statusColor = profile.presence.statusColor || "#22c55e";
+      inputCustomColor.value = statusColor;
+      
+      let matchedRadio = false;
+      colorRadios.forEach((r) => {
+        if (r.value === statusColor) {
+          r.checked = true;
+          matchedRadio = true;
+        } else {
+          r.checked = false;
+        }
+      });
+      if (!matchedRadio) {
+        inputCustomColor.checked = true;
+      }
+    }
+
+    // Switches
+    toggleSparkles.checked = profile.showSparkles !== false;
+    toggleDotmatrix.checked = profile.showDotMatrix !== false;
+
+    // Socials
+    SOCIAL_CATALOG.forEach((item) => {
+      const input = document.getElementById(`social-${item.id}`);
+      if (input) {
+        input.value = (profile.socials && profile.socials[item.id]) ? profile.socials[item.id] : "";
+      }
+    });
+
+    updatePublicLinks(id);
+    updatePreviewFrame();
+  }
+
+  // Collect Current Form Data
+  function getFormData() {
+    let statusColor = inputCustomColor.value;
+    colorRadios.forEach((r) => {
+      if (r.checked) statusColor = r.value;
+    });
+
+    const socialsData = {};
+    SOCIAL_CATALOG.forEach((item) => {
+      const input = document.getElementById(`social-${item.id}`);
+      if (input && input.value.trim() !== "") {
+        socialsData[item.id] = input.value.trim();
+      }
+    });
+
+    let slug = (currentProfileId === "main")
+      ? "main"
+      : (inputSlug.value.trim() || currentProfileId).toLowerCase().replace(/[^a-z0-9_-]/g, "");
+
+    let enteredViews = inputViews.value.trim();
+    let vNum = parseInt(enteredViews.replace(/[^0-9]/g, ""), 10);
+    if (isNaN(vNum) || vNum < 10) vNum = 10;
+    const isExplicitlyModified = (enteredViews !== "" && String(vNum) !== initialLoadedViews);
+
+    return {
+      id: slug,
+      name: inputName.value.trim() || "LEVI",
+      username: inputPresenceHandle.value.trim() || slug,
+      subtitle: inputSubtitle.value.trim(),
+      views: String(vNum),
+      baseViews: String(vNum),
+      _preserveLiveViews: !isExplicitlyModified,
+      autoIncrementViews: toggleRealViews ? toggleRealViews.checked : true,
+      showSparkles: toggleSparkles.checked,
+      showDotMatrix: toggleDotmatrix.checked,
+      mainAvatar: inputMainAvatar.value.trim(),
+      presenceAvatar: inputPresenceAvatar.value.trim(),
+      backgroundVideo: inputBgVideo.value.trim(),
+      mobileBackgroundVideo: inputMobileBgVideo.value.trim(),
+      presence: {
+        handle: inputPresenceHandle.value.trim() || slug,
+        status: (inputPresenceStatus.value.trim() || (inputFaStatus ? inputFaStatus.value.trim() : "") || "online"),
+        statusColor: statusColor
+      },
+      persian: {
+        name: inputFaName ? inputFaName.value.trim() : "",
+        orderBtnText: inputFaOrderBtn ? (inputFaOrderBtn.value.trim() || "سفارش") : "سفارش",
+        subtitle: inputFaSubtitle ? inputFaSubtitle.value.trim() : "",
+        enterText: inputFaEnterText ? (inputFaEnterText.value.trim() || "[ برای ورود به وبسایت کلیک کنید ]") : "[ برای ورود به وبسایت کلیک کنید ]",
+        presenceStatus: (!faStatusManuallyTouched && inputPresenceStatus.value.trim())
+          ? inputPresenceStatus.value.trim()
+          : (inputFaStatus ? (inputFaStatus.value.trim() || inputPresenceStatus.value.trim() || "آنلاین") : (inputPresenceStatus.value.trim() || "آنلاین"))
+      },
+      socials: socialsData
+    };
+  }
+
+  // Update Public Links & Mode Card
+  function updatePublicLinks(slug) {
+    const isMain = (slug === "main");
+    const relativeUrl = isMain ? "index.html" : `index.html?u=${slug}`;
+    const fullPublicUrl = isMain ? "https://urclub.vercel.app/" : `https://urclub.vercel.app/?u=${slug}`;
+
+    if (modeText) {
+      modeText.innerHTML = isMain
+        ? `Root Homepage (Main Page)`
+        : `Custom Profile: <strong>${slug}</strong>`;
+    }
+    if (currentLiveUrl) {
+      currentLiveUrl.href = relativeUrl;
+      currentLiveUrl.textContent = fullPublicUrl;
+    }
+    if (btnViewPublic) btnViewPublic.href = relativeUrl;
+    if (previewOpenBtn) previewOpenBtn.href = relativeUrl;
+  }
+
+  // Copy Link Handler
+  if (btnCopyUrl) {
+    btnCopyUrl.addEventListener("click", () => {
+      const urlToCopy = currentLiveUrl ? currentLiveUrl.textContent : "https://urclub.vercel.app/";
+      navigator.clipboard.writeText(urlToCopy).then(() => {
+        showToast("Public URL copied to clipboard! 📋");
+      });
+    });
+  }
+
+  // Copy Persian Link Handler
+  if (btnCopyFaUrl) {
+    btnCopyFaUrl.addEventListener("click", () => {
+      const faUrl = "https://urclub.vercel.app/fa";
+      navigator.clipboard.writeText(faUrl).then(() => {
+        showToast("Persian page URL copied to clipboard! 📋");
+      });
+    });
+  }
+
+  // Update Preview Frame (Sends data directly to iframe without saving to cloud)
+  function updatePreviewFrame() {
+    const data = getFormData();
+    if (previewIframe && previewIframe.contentWindow) {
+      previewIframe.contentWindow.postMessage({ type: "PREVIEW_UPDATE", profile: data }, "*");
+    }
+  }
+
+  // Explicit Save Changes Button (Only saves to Supabase when clicked)
+  async function saveChanges() {
+    const originalBtnHtml = btnSaveAll.innerHTML;
+    btnSaveAll.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving to Cloud...`;
+    btnSaveAll.disabled = true;
+
+    try {
+      const data = getFormData();
+      const oldId = currentProfileId;
+      const newId = data.id;
+
+      if (oldId !== "main" && oldId !== newId) {
+        await ProfileStore.deleteProfileAsync(oldId);
+        currentProfileId = newId;
+      }
+
+      await ProfileStore.saveProfileAsync(newId, data);
+      await populateProfileDropdown();
+      updatePublicLinks(newId);
+
+      btnSaveAll.innerHTML = `<i class="fa-solid fa-circle-check"></i> Saved!`;
+      btnSaveAll.style.background = "#10b981";
+      showToast(`Profile "${data.name}" saved & updated on all devices! ✅`);
+
+      setTimeout(() => {
+        btnSaveAll.innerHTML = originalBtnHtml;
+        btnSaveAll.style.background = "";
+        btnSaveAll.disabled = false;
+      }, 2000);
+
+      // Refresh preview iframe with fresh cloud data
+      previewIframe.src = (newId === "main") ? `index.html?preview=1&t=${Date.now()}` : `index.html?u=${newId}&preview=1&t=${Date.now()}`;
+    } catch (e) {
+      console.error("Save error:", e);
+      btnSaveAll.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Error`;
+      btnSaveAll.style.background = "#ef4444";
+      showToast("Save failed. Please check internet connection.");
+      setTimeout(() => {
+        btnSaveAll.innerHTML = originalBtnHtml;
+        btnSaveAll.style.background = "";
+        btnSaveAll.disabled = false;
+      }, 2500);
+    }
+  }
+
+  // Show Toast
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3500);
+  }
+
+  // Fast High-Quality Canvas Image Resizer (Compresses to ~25KB WebP/JPEG for instant cloud sync)
+  function compressImage(file, callback) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const MAX_SIZE = 256;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_SIZE) {
+            height *= MAX_SIZE / width;
+            width = MAX_SIZE;
+          }
+        } else {
+          if (height > MAX_SIZE) {
+            width *= MAX_SIZE / height;
+            height = MAX_SIZE;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL("image/webp", 0.88);
+        callback(dataUrl);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Avatar Upload Handlers
+  function setupAvatarUpload(fileInput, textInput, previewImg) {
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      compressImage(file, (compressedDataUrl) => {
+        textInput.value = compressedDataUrl;
+        if (previewImg) previewImg.src = compressedDataUrl;
+        updatePreviewFrame();
+        showToast("Avatar image loaded! Click 'Save Changes' to publish.");
+      });
+    });
+  }
+
+  setupAvatarUpload(fileMainAvatar, inputMainAvatar, previewMainAvatar);
+  setupAvatarUpload(filePresenceAvatar, inputPresenceAvatar, previewPresenceAvatar);
+
+  // Reusable Video Upload Handler (Cloud Storage with Automatic Fallback)
+  function setupVideoUpload(fileInput, textInput, typeLabel) {
+    if (!fileInput || !textInput) return;
+    fileInput.addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      showToast(`Uploading ${typeLabel} video... ⏳`);
+
+      const sb = ProfileStore.getSupabase();
+      let uploadedUrl = null;
+
+      // 1. Try uploading to Supabase Storage Bucket 'media'
+      if (sb) {
+        try {
+          const fileExt = (file.name.split('.').pop() || "mp4").toLowerCase();
+          const fileName = `video_${typeLabel.toLowerCase()}_${currentProfileId}_${Date.now()}.${fileExt}`;
+          
+          const { data, error } = await sb.storage.from('media').upload(fileName, file, {
+            contentType: file.type || 'video/mp4',
+            cacheControl: '31536000',
+            upsert: true
+          });
+
+          if (!error && data) {
+            const { data: publicUrlData } = sb.storage.from('media').getPublicUrl(fileName);
+            if (publicUrlData && publicUrlData.publicUrl) {
+              uploadedUrl = publicUrlData.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.warn("Storage upload fallback:", err);
+        }
+      }
+
+      // 2. If Storage Bucket is not configured, use Base64 Data URL (up to 4.5MB)
+      if (!uploadedUrl) {
+        if (file.size <= 4.5 * 1024 * 1024) {
+          const reader = new FileReader();
+          reader.onload = (re) => {
+            textInput.value = re.target.result;
+            updatePreviewFrame();
+            showToast(`${typeLabel} video loaded! Click 'Save Changes' to publish. ☁️`);
+          };
+          reader.readAsDataURL(file);
+          return;
+        } else {
+          showToast("Video is over 4.5MB. Please paste a direct MP4 link! ⚠️");
+          return;
+        }
+      }
+
+      textInput.value = uploadedUrl;
+      updatePreviewFrame();
+      showToast(`${typeLabel} video uploaded to Cloud CDN! Click 'Save Changes' to publish. ☁️`);
+    });
+  }
+
+  setupVideoUpload(fileBgVideo, inputBgVideo, "PC");
+  setupVideoUpload(fileMobileBgVideo, inputMobileBgVideo, "Mobile");
+
+  // Avatar text change listeners
+  inputMainAvatar.addEventListener("input", (e) => {
+    previewMainAvatar.src = e.target.value || DEFAULT_AVATAR;
+    updatePreviewFrame();
+  });
+  inputPresenceAvatar.addEventListener("input", (e) => {
+    previewPresenceAvatar.src = e.target.value || DEFAULT_AVATAR;
+    updatePreviewFrame();
+  });
+
+  // Sync Presence Status inputs so that editing one updates the other smoothly
+  if (inputPresenceStatus && inputFaStatus) {
+    inputFaStatus.addEventListener("input", () => {
+      faStatusManuallyTouched = true;
+    });
+    inputPresenceStatus.addEventListener("input", () => {
+      if (!faStatusManuallyTouched) {
+        inputFaStatus.value = inputPresenceStatus.value;
+      }
+    });
+  }
+
+  // Attach live preview updates (WITHOUT saving to cloud until Save is clicked)
+  document.addEventListener("input", (e) => {
+    if (e.target.matches("input, textarea, select")) {
+      updatePreviewFrame();
+    }
+  });
+
+  document.addEventListener("change", (e) => {
+    if (e.target.matches("input, textarea, select")) {
+      updatePreviewFrame();
+    }
+  });
+
+  // Profile Switcher
+  profileSelect.addEventListener("change", (e) => {
+    loadProfile(e.target.value);
+  });
+
+  // Save Button
+  btnSaveAll.addEventListener("click", saveChanges);
+
+  // Delete Profile
+  btnDeleteProfile.addEventListener("click", async () => {
+    if (currentProfileId === "main") {
+      alert("You cannot delete the Main Owner profile.");
+      return;
+    }
+    if (confirm(`Are you sure you want to delete profile "${currentProfileId}"?`)) {
+      await ProfileStore.deleteProfileAsync(currentProfileId);
+      currentProfileId = "main";
+      await populateProfileDropdown();
+      await loadProfile("main");
+      showToast("Profile deleted.");
+    }
+  });
+
+  // Color picker sync
+  inputCustomColor.addEventListener("input", () => {
+    colorRadios.forEach((r) => (r.checked = false));
+    updatePreviewFrame();
+  });
+
+  // New Profile Modal
+  btnAddProfile.addEventListener("click", () => {
+    modalNewProfile.classList.add("active");
+    newProfileName.value = "";
+    newProfileSlug.value = "";
+    newProfileName.focus();
+  });
+
+  modalClose.addEventListener("click", () => modalNewProfile.classList.remove("active"));
+  modalCancel.addEventListener("click", () => modalNewProfile.classList.remove("active"));
+
+  modalConfirm.addEventListener("click", async () => {
+    const name = newProfileName.value.trim();
+    let slug = newProfileSlug.value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
+
+    if (!name || !slug) {
+      alert("Please provide both a Display Name and a Unique Slug.");
+      return;
+    }
+
+    if (slug === "main" || slug === "admin") {
+      alert("This slug is reserved. Please pick another one (e.g. kayhan, alex).");
+      return;
+    }
+
+    const profiles = await ProfileStore.getProfilesAsync();
+    if (profiles[slug]) {
+      alert("A profile with this slug already exists.");
+      return;
+    }
+
+    // Create fresh new profile
+    const newProfile = {
+      id: slug,
+      name: name,
+      username: slug,
+      subtitle: "",
+      views: "10",
+      baseViews: "10",
+      autoIncrementViews: true,
+      showSparkles: true,
+      showDotMatrix: true,
+      mainAvatar: "",
+      presenceAvatar: "",
+      backgroundVideo: "",
+      presence: {
+        handle: slug,
+        status: "online",
+        statusColor: "#22c55e"
+      },
+      socials: {}
+    };
+
+    await ProfileStore.saveProfileAsync(slug, newProfile);
+    currentProfileId = slug;
+    await populateProfileDropdown();
+    await loadProfile(slug);
+    modalNewProfile.classList.remove("active");
+    showToast(`New profile "${name}" created! Link: ?u=${slug}`);
+  });
+
+  // Init
+  renderSocialInputs();
+  await populateProfileDropdown();
+  await loadProfile("main");
+
+  // ==========================================================================
+  // TAB NAVIGATION (BIO SETTINGS vs ORDER CODES MANAGEMENT)
+  // ==========================================================================
+  const tabNavBio = document.getElementById("tab-nav-bio");
+  const tabNavCodes = document.getElementById("tab-nav-codes");
+  const tabContentBio = document.getElementById("tab-content-bio");
+  const tabContentCodes = document.getElementById("tab-content-codes");
+
+  const bioHeaderControls = document.getElementById("bio-header-controls");
+  const codesHeaderControls = document.getElementById("codes-header-controls");
+  const bioHeaderActions = document.getElementById("bio-header-actions");
+  const codesHeaderActions = document.getElementById("codes-header-actions");
+
+  function switchTab(target) {
+    if (target === "codes") {
+      tabNavBio.classList.remove("active");
+      tabNavCodes.classList.add("active");
+      tabContentBio.style.display = "none";
+      tabContentCodes.style.display = "block";
+
+      if (bioHeaderControls) bioHeaderControls.style.display = "none";
+      if (codesHeaderControls) codesHeaderControls.style.display = "flex";
+      if (bioHeaderActions) bioHeaderActions.style.display = "none";
+      if (codesHeaderActions) codesHeaderActions.style.display = "flex";
+
+      loadAndRenderCodes();
+    } else {
+      tabNavBio.classList.add("active");
+      tabNavCodes.classList.remove("active");
+      tabContentBio.style.display = "block";
+      tabContentCodes.style.display = "none";
+
+      if (bioHeaderControls) bioHeaderControls.style.display = "flex";
+      if (codesHeaderControls) codesHeaderControls.style.display = "none";
+      if (bioHeaderActions) bioHeaderActions.style.display = "flex";
+      if (codesHeaderActions) codesHeaderActions.style.display = "none";
+    }
+  }
+
+  if (tabNavBio) tabNavBio.addEventListener("click", () => switchTab("bio"));
+  if (tabNavCodes) tabNavCodes.addEventListener("click", () => switchTab("codes"));
+
+  // ==========================================================================
+  // ORDER CODES MANAGEMENT LOGIC
+  // ==========================================================================
+  const statActiveCodes = document.getElementById("stat-active-codes");
+  const statUsedCodes = document.getElementById("stat-used-codes");
+  const statTotalCodes = document.getElementById("stat-total-codes");
+  const navActiveCodesCount = document.getElementById("nav-active-codes-count");
+
+  const inputSearchCodes = document.getElementById("input-search-codes");
+  const selectFilterStatus = document.getElementById("select-filter-status");
+  const codesTableBody = document.getElementById("codes-table-body");
+
+  const btnOpenCreateCode = document.getElementById("btn-open-create-code");
+  const btnHeaderCreateCode = document.getElementById("btn-header-create-code");
+  const btnHeaderRefreshCodes = document.getElementById("btn-header-refresh-codes");
+
+  // Create Code Modal Elements
+  const modalCreateCode = document.getElementById("modal-create-code");
+  const modalCloseCreateCode = document.getElementById("modal-close-create-code");
+  const modalCancelCreateCode = document.getElementById("modal-cancel-create-code");
+  const modalConfirmCreateCode = document.getElementById("modal-confirm-create-code");
+  const inputNewCode = document.getElementById("input-new-code");
+  const inputNewClient = document.getElementById("input-new-client");
+  const inputNewNote = document.getElementById("input-new-note");
+  const btnRandomCode = document.getElementById("btn-random-code");
+
+  // Success Modal Elements
+  const modalCodeSuccess = document.getElementById("modal-code-success");
+  const modalCloseCodeSuccess = document.getElementById("modal-close-code-success");
+  const modalDoneCodeSuccess = document.getElementById("modal-done-code-success");
+  const displayCreatedCode = document.getElementById("display-created-code");
+  const btnCopyCreatedCode = document.getElementById("btn-copy-created-code");
+  const btnCopyFormLink = document.getElementById("btn-copy-form-link");
+  const btnWhatsappSendCode = document.getElementById("btn-whatsapp-send-code");
+
+  // View Order Modal Elements
+  const modalViewOrder = document.getElementById("modal-view-order");
+  const modalCloseViewOrder = document.getElementById("modal-close-view-order");
+  const modalDoneViewOrder = document.getElementById("modal-done-view-order");
+  const viewOrderFolderName = document.getElementById("view-order-folder-name");
+  const btnCopyFolderName = document.getElementById("btn-copy-folder-name");
+  const orderDetailsContainer = document.getElementById("order-details-container");
+  const btnCopyAllOrderJson = document.getElementById("btn-copy-all-order-json");
+
+  let allCodesList = [];
+  let lastCreatedCode = "";
+  let currentViewingOrder = null;
+
+  async function loadAndRenderCodes() {
+    if (typeof OrderCodeStore === "undefined") return;
+
+    if (codesTableBody) {
+      codesTableBody.innerHTML = `
+        <tr>
+          <td colspan="6" class="table-loading">
+            <i class="fa-solid fa-spinner fa-spin"></i> در حال بارگذاری کدهای سفارش از سرور...
+          </td>
+        </tr>
+      `;
+    }
+
+    try {
+      allCodesList = await OrderCodeStore.getAllCodesAsync();
+      updateCodesStats();
+      renderCodesTable();
+    } catch (err) {
+      console.error("Error loading order codes:", err);
+      if (codesTableBody) {
+        codesTableBody.innerHTML = `
+          <tr>
+            <td colspan="6" class="table-empty" style="color: #f87171;">
+              خطا در دریافت کدها از سرور. لطفاً اتصال اینترنت را بررسی فرمایید.
+            </td>
+          </tr>
+        `;
+      }
+    }
+  }
+
+  function updateCodesStats() {
+    const active = allCodesList.filter((c) => c.status === "active").length;
+    const used = allCodesList.filter((c) => c.status === "used").length;
+    const total = allCodesList.length;
+
+    if (statActiveCodes) statActiveCodes.textContent = active;
+    if (statUsedCodes) statUsedCodes.textContent = used;
+    if (statTotalCodes) statTotalCodes.textContent = total;
+    if (navActiveCodesCount) navActiveCodesCount.textContent = active;
+  }
+
+  function renderCodesTable() {
+    if (!codesTableBody) return;
+
+    const searchTerm = (inputSearchCodes ? inputSearchCodes.value : "").trim().toLowerCase();
+    const filterStatus = selectFilterStatus ? selectFilterStatus.value : "all";
+
+    const filtered = allCodesList.filter((item) => {
+      if (filterStatus !== "all" && item.status !== filterStatus) return false;
+      if (searchTerm) {
+        const c = (item.code || "").toLowerCase();
+        const client = (item.clientName || "").toLowerCase();
+        const note = (item.note || "").toLowerCase();
+        const proj = (item.projectName || "").toLowerCase();
+        return c.includes(searchTerm) || client.includes(searchTerm) || note.includes(searchTerm) || proj.includes(searchTerm);
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      codesTableBody.innerHTML = `
+        <tr>
+          <td colspan="6" class="table-empty">
+            ${searchTerm || filterStatus !== "all" ? "No access codes match your filter criteria." : "No access codes created yet. Click 'Create New Code' to create one for your customer!"}
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    codesTableBody.innerHTML = filtered.map((item) => {
+      const codeStr = item.code;
+      const statusPill = item.status === "active"
+        ? `<span class="status-pill status-active"><i class="fa-solid fa-circle-dot"></i> Active (Ready)</span>`
+        : item.status === "used"
+        ? `<span class="status-pill status-used"><i class="fa-solid fa-circle-check"></i> Order Submitted</span>`
+        : `<span class="status-pill status-revoked"><i class="fa-solid fa-ban"></i> Revoked</span>`;
+
+      const dateStr = item.createdAt ? new Date(item.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "---";
+
+      // Linked order / project folder recommendation
+      let orderCellHtml = "";
+      if (item.status === "used") {
+        const safeClient = (item.clientName || "Client").replace(/[^a-zA-Z0-9_-]/g, "_").replace(/_+/g, "_");
+        const folderName = `URCLUB_${OrderCodeStore.normalize(item.code)}_${safeClient}`;
+        orderCellHtml = `
+          <div class="order-cell-info">
+            <span class="order-title-tag"><i class="fa-solid fa-cubes"></i> ${item.projectName || "Submitted Order"}</span>
+            <div class="order-folder-tag" data-copy="${folderName}" title="Click to copy folder name">
+              <i class="fa-regular fa-folder"></i> ${folderName}
+            </div>
+            <button type="button" class="btn-action-sm btn-action-view" data-action="view-order" data-code="${codeStr}">
+              <i class="fa-solid fa-eye"></i> View Order Details
+            </button>
+          </div>
+        `;
+      } else {
+        orderCellHtml = `<span style="color: var(--text-muted); font-size: 0.84rem;">Awaiting client submission...</span>`;
+      }
+
+      const directFormUrl = `https://urclub.vercel.app/form?code=${encodeURIComponent(codeStr)}`;
+      const waMsg = encodeURIComponent(`Hello,\nHere is your exclusive access code to submit your project order on URCLUB:\n🔑 Code: ${codeStr}\n🔗 Direct Form Link:\n${directFormUrl}\n\nThank you, URCLUB Studio`);
+      const waLink = `https://wa.me/?text=${waMsg}`;
+
+      return `
+        <tr>
+          <td>
+            <div class="code-cell-wrap">
+              <span>${codeStr}</span>
+              <button type="button" class="btn-table-icon" data-copy="${codeStr}" title="Copy Code">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </td>
+          <td>
+            <strong>${item.clientName || "---"}</strong>
+            ${item.note ? `<br><small style="color: var(--text-muted);">${item.note}</small>` : ""}
+          </td>
+          <td style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">${dateStr}</td>
+          <td>${statusPill}</td>
+          <td>${orderCellHtml}</td>
+          <td>
+            <div class="table-actions">
+              <button type="button" class="btn-action-sm btn-action-view" data-copy="${directFormUrl}" title="Copy direct form URL">
+                <i class="fa-solid fa-link"></i> Form Link
+              </button>
+              <a href="${waLink}" target="_blank" class="btn-action-sm btn-action-wa" title="Send to client via WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+              <button type="button" class="btn-table-icon" data-action="toggle-status" data-code="${codeStr}" title="${item.status === 'revoked' ? 'Reactivate code' : 'Revoke code'}">
+                <i class="fa-solid ${item.status === 'revoked' ? 'fa-arrow-rotate-left' : 'fa-ban'}"></i>
+              </button>
+              <button type="button" class="btn-table-icon" style="color: #ef4444;" data-action="delete-code" data-code="${codeStr}" title="Delete code">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join("");
+
+    // Attach copy buttons
+    codesTableBody.querySelectorAll("[data-copy]").forEach((el) => {
+      el.addEventListener("click", () => {
+        const text = el.dataset.copy;
+        navigator.clipboard.writeText(text);
+        showToast(`Copied to clipboard: ${text}`);
+      });
+    });
+
+    // Attach row actions
+    codesTableBody.querySelectorAll("[data-action]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const action = btn.dataset.action;
+        const code = btn.dataset.code;
+
+        if (action === "toggle-status") {
+          const item = allCodesList.find((c) => OrderCodeStore.normalize(c.code) === OrderCodeStore.normalize(code));
+          if (item) {
+            const nextStatus = item.status === "active" ? "revoked" : "active";
+            await OrderCodeStore.updateStatusAsync(code, nextStatus);
+            showToast(`Code status changed to ${nextStatus === 'active' ? 'Active' : 'Revoked'}.`);
+            await loadAndRenderCodes();
+          }
+        } else if (action === "delete-code") {
+          if (confirm(`Are you sure you want to permanently delete code "${code}"?`)) {
+            await OrderCodeStore.deleteCodeAsync(code);
+            showToast(`Code "${code}" was deleted.`);
+            await loadAndRenderCodes();
+          }
+        } else if (action === "view-order") {
+          openViewOrderModal(code);
+        }
+      });
+    });
+  }
+
+  // Filter & Search Events
+  if (inputSearchCodes) inputSearchCodes.addEventListener("input", renderCodesTable);
+  if (selectFilterStatus) selectFilterStatus.addEventListener("change", renderCodesTable);
+  if (btnHeaderRefreshCodes) btnHeaderRefreshCodes.addEventListener("click", () => {
+    loadAndRenderCodes();
+    showToast("Order codes refreshed successfully.");
+  });
+
+  // Open Create Code Modal
+  function openCreateCodeModal() {
+    if (!modalCreateCode) return;
+    modalCreateCode.classList.add("active");
+    if (inputNewCode) inputNewCode.value = OrderCodeStore.generateCode();
+    if (inputNewClient) inputNewClient.value = "";
+    if (inputNewNote) inputNewNote.value = "";
+    if (inputNewClient) inputNewClient.focus();
+  }
+
+  if (btnOpenCreateCode) btnOpenCreateCode.addEventListener("click", openCreateCodeModal);
+  if (btnHeaderCreateCode) btnHeaderCreateCode.addEventListener("click", openCreateCodeModal);
+
+  if (btnRandomCode) {
+    btnRandomCode.addEventListener("click", () => {
+      if (inputNewCode) inputNewCode.value = OrderCodeStore.generateCode();
+    });
+  }
+
+  if (modalCloseCreateCode) modalCloseCreateCode.addEventListener("click", () => modalCreateCode.classList.remove("active"));
+  if (modalCancelCreateCode) modalCancelCreateCode.addEventListener("click", () => modalCreateCode.classList.remove("active"));
+
+  if (modalConfirmCreateCode) {
+    modalConfirmCreateCode.addEventListener("click", async () => {
+      const codeVal = (inputNewCode ? inputNewCode.value : "").trim().toUpperCase();
+      const clientVal = (inputNewClient ? inputNewClient.value : "").trim();
+      const noteVal = (inputNewNote ? inputNewNote.value : "").trim();
+
+      if (!codeVal) {
+        alert("Please enter a valid code or click the Random button.");
+        return;
+      }
+
+      try {
+        const created = await OrderCodeStore.createCodeAsync({
+          code: codeVal,
+          clientName: clientVal,
+          note: noteVal
+        });
+
+        lastCreatedCode = created.code;
+        modalCreateCode.classList.remove("active");
+        showToast(`Access code ${created.code} successfully created and activated!`);
+
+        openSuccessModal(created.code);
+        await loadAndRenderCodes();
+      } catch (err) {
+        alert(err.message || "Error creating access code.");
+      }
+    });
+  }
+
+  // Success Modal
+  function openSuccessModal(code) {
+    if (!modalCodeSuccess) return;
+    if (displayCreatedCode) displayCreatedCode.textContent = code;
+
+    const directFormUrl = `https://urclub.vercel.app/form?code=${encodeURIComponent(code)}`;
+    const waMsg = encodeURIComponent(`Hello,\nHere is your exclusive access code to submit your project order on URCLUB:\n🔑 Code: ${code}\n🔗 Direct Form Link:\n${directFormUrl}\n\nThank you, URCLUB Studio`);
+
+    if (btnWhatsappSendCode) {
+      btnWhatsappSendCode.href = `https://wa.me/?text=${waMsg}`;
+    }
+
+    if (btnCopyCreatedCode) {
+      btnCopyCreatedCode.onclick = () => {
+        navigator.clipboard.writeText(code);
+        showToast(`Code ${code} copied!`);
+      };
+    }
+
+    if (btnCopyFormLink) {
+      btnCopyFormLink.onclick = () => {
+        navigator.clipboard.writeText(directFormUrl);
+        showToast("Direct form link copied!");
+      };
+    }
+
+    modalCodeSuccess.classList.add("active");
+  }
+
+  if (modalCloseCodeSuccess) modalCloseCodeSuccess.addEventListener("click", () => modalCodeSuccess.classList.remove("active"));
+  if (modalDoneCodeSuccess) modalDoneCodeSuccess.addEventListener("click", () => modalCodeSuccess.classList.remove("active"));
+
+  // View Order Details Modal
+  async function openViewOrderModal(code) {
+    if (!modalViewOrder) return;
+    modalViewOrder.classList.add("active");
+
+    if (orderDetailsContainer) {
+      orderDetailsContainer.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted);"><i class="fa-solid fa-spinner fa-spin"></i> Loading order details from server...</div>`;
+    }
+
+    try {
+      const orderData = await OrderCodeStore.getOrderDetailsAsync(code);
+      currentViewingOrder = orderData;
+
+      const codeItem = allCodesList.find((c) => OrderCodeStore.normalize(c.code) === OrderCodeStore.normalize(code));
+      const clientName = (orderData && (orderData["Client Name / نام کارفرما"] || orderData["Client Name"])) || (codeItem && codeItem.clientName) || "Client";
+      const safeClient = clientName.replace(/[^a-zA-Z0-9_-]/g, "_").replace(/_+/g, "_");
+      const folderName = `URCLUB_${OrderCodeStore.normalize(code)}_${safeClient}`;
+
+      if (viewOrderFolderName) viewOrderFolderName.textContent = folderName;
+      if (btnCopyFolderName) {
+        btnCopyFolderName.onclick = () => {
+          navigator.clipboard.writeText(folderName);
+          showToast(`Folder name copied: ${folderName}`);
+        };
+      }
+
+      if (orderData && orderDetailsContainer) {
+        const ignoredKeys = ["_captcha", "_template", "normCode", "updated_at"];
+        orderDetailsContainer.innerHTML = Object.entries(orderData)
+          .filter(([k]) => !ignoredKeys.includes(k))
+          .map(([k, v]) => `
+            <div class="order-detail-card">
+              <span class="detail-label">${k}</span>
+              <span class="detail-val">${String(v)}</span>
+            </div>
+          `).join("");
+      } else if (orderDetailsContainer) {
+        orderDetailsContainer.innerHTML = `
+          <div style="text-align:center; padding:20px; color:var(--text-muted);">
+            No extended order data found for this code in database. Access code: ${code}
+          </div>
+        `;
+      }
+    } catch (err) {
+      console.error("Error viewing order:", err);
+      if (orderDetailsContainer) {
+        orderDetailsContainer.innerHTML = `<div style="color:#f87171; text-align:center;">Failed to load order details.</div>`;
+      }
+    }
+  }
+
+  if (modalCloseViewOrder) modalCloseViewOrder.addEventListener("click", () => modalViewOrder.classList.remove("active"));
+  if (modalDoneViewOrder) modalDoneViewOrder.addEventListener("click", () => modalViewOrder.classList.remove("active"));
+
+  if (btnCopyAllOrderJson) {
+    btnCopyAllOrderJson.addEventListener("click", () => {
+      if (currentViewingOrder) {
+        navigator.clipboard.writeText(JSON.stringify(currentViewingOrder, null, 2));
+        showToast("Full order details JSON copied to clipboard!");
+      }
+    });
+  }
+
+  // Pre-load codes count badge on init
+  OrderCodeStore.getAllCodesAsync().then((list) => {
+    allCodesList = list;
+    updateCodesStats();
+  }).catch(() => {});
+});
+

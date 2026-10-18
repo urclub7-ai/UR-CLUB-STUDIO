@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>نوین‌پِی | نئوبانک ابری و زیرساخت پرداخت هوشمند</title>
+  <meta name="description" content="پلتفرم جامع بانکداری مدرن، انتقال آنی سرمایه، صدور کارت مجازی و مدیریت هوشمند دارایی‌ها">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cyan: '#00F2FE',
+              blue: '#4FACFE',
+              purple: '#7F00FF',
+              dark: '#050B17',
+              card: '#0C172E',
+            }
+          },
+          fontFamily: {
+            vazir: ['"Vazirmatn"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Vazirmatn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #050B17;
+      color: #F8FAFC;
+    }
+    html, body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    html::-webkit-scrollbar, body::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    .neon-cyan-glow {
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+    }
+    .gradient-cyan-text {
+      background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #9055FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glass-card {
+      background: rgba(12, 23, 46, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#050B17] text-slate-100 selection:bg-cyan-500 selection:text-black">
+
+  <!-- Floating Network Status -->
+  <header class="bg-gradient-to-r from-[#071329] via-[#0D1C38] to-[#071329] border-b border-cyan-500/20 py-2 px-4 flex items-center justify-between text-xs">
+    <div class="flex items-center gap-2 text-cyan-400 font-medium mx-auto">
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+      <span>شبکه شتاب، پایا و ساتنا با پایداری ۹۹.۹۹٪ عملیاتی است</span>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-0 z-40 bg-[#050B17]/90 backdrop-blur-md border-b border-white/[0.08] px-4 sm:px-8 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white text-lg shadow-[0_0_20px_rgba(0,242,254,0.3)]">
+        <i class="fa-solid fa-wallet"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-base sm:text-lg font-black text-white tracking-wide">نوین‌پِی</span>
+          <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">نسخه ۴</span>
+        </div>
+        <p class="text-[10px] text-slate-400 font-medium">نئوبانک هوشمند نسل بعد</p>
+      </div>
+    </div>
+
+    <!-- Nav Links for Desktop -->
+    <div class="hidden md:flex items-center gap-6 text-xs text-slate-300 font-medium">
+      <a href="#services" class="hover:text-cyan-400 transition-colors">خدمات بانکی</a>
+      <a href="#dashboard" class="hover:text-cyan-400 transition-colors">داشبورد زنده</a>
+      <a href="#cards" class="hover:text-cyan-400 transition-colors">کارت‌های اعتباری</a>
+      <a href="#security" class="hover:text-cyan-400 transition-colors">امنیت کوانتومی</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex items-center gap-2">
+      <button onclick="simulateOpenAccount()" class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 hover:opacity-90 text-[#050B17] text-xs font-bold transition-all shadow-md">
+        افتتاح حساب آنی
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative px-4 sm:px-8 pt-8 pb-10 text-center overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <div class="relative max-w-3xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
+        <i class="fa-solid fa-bolt text-cyan-400"></i>
+        <span>تجربه بانکداری دیجیتال بدون صف و بدون کاغذبازی</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
+        کنترل کامل دارایی‌ها با <span class="gradient-cyan-text">سرعت نور</span>
+      </h1>
+
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl mx-auto font-normal">
+        سامانه نوین‌پِی راهکاری یکپارچه برای مدیریت حساب‌های چندارزی، صدور فوری مسترکارت و ویزاکارت بین‌المللی و تسویه خودکار بازرگانان است.
+      </p>
+
+      <!-- Interactive Balance Preview Card -->
+      <div class="pt-2 max-w-md mx-auto">
+        <div class="glass-card rounded-2xl p-5 text-right relative overflow-hidden group border border-white/10 hover:border-cyan-500/40 transition-all duration-300 shadow-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-[11px] text-slate-400 block">موجودی کل حساب جاری</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span id="balanceValue" class="text-2xl sm:text-3xl font-extrabold text-white tracking-wider">
+                  ۲۸۴,۶۵۰,۰۰۰
+                </span>
+                <span class="text-xs text-cyan-400 font-bold">تومان</span>
+              </div>
+            </div>
+            <button id="toggleBalanceBtn" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors" title="مخفی‌سازی موجودی">
+              <i id="eyeIcon" class="fa-regular fa-eye text-sm"></i>
+            </button>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="grid grid-cols-4 gap-2 pt-2 border-t border-white/[0.08]">
+            <button onclick="triggerQuickAction('انتقال وجه')" class="flex flex-col items-center gap-1 p-2 rounded-xl bg-white/[0.03] hover:bg-cyan-500/20 text-slate-200 hover:text-cyan-300 transition-all group/btn">
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs text-cyan-400 group-hover/btn:scale-110 transition-transform"></i>
+              <span class="text-[10px] font-medium">واریز / انتقال</span>
+            </button>
+            <button onclick="triggerQuickAction('درخواست کارت شتاب')" class="flex flex-col items-center gap-1 p-2 rounded-xl bg-white/[0.03] hover:bg-cyan-500/20 text-slate-200 hover:text-cyan-300 transition-all group/btn">
+              <i class="fa-solid fa-credit-card text-xs text-blue-400 group-hover/btn:scale-110 transition-transform"></i>
+              <span class="text-[10px] font-medium">صدور کارت</span>
+            </button>
+            <button onclick="triggerQuickAction('پرداخت قبوض و شارژ')" class="flex flex-col items-center gap-1 p-2 rounded-xl bg-white/[0.03] hover:bg-cyan-500/20 text-slate-200 hover:text-cyan-300 transition-all group/btn">
+              <i class="fa-solid fa-receipt text-xs text-purple-400 group-hover/btn:scale-110 transition-transform"></i>
+              <span class="text-[10px] font-medium">قبوض هوشمند</span>
+            </button>
+            <button onclick="triggerQuickAction('تبدیل به ارز دیجیتال')" class="flex flex-col items-center gap-1 p-2 rounded-xl bg-white/[0.03] hover:bg-cyan-500/20 text-slate-200 hover:text-cyan-300 transition-all group/btn">
+              <i class="fa-solid fa-coins text-xs text-amber-400 group-hover/btn:scale-110 transition-transform"></i>
+              <span class="text-[10px] font-medium">کیف رمز‌ارز</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Transactions Section -->
+  <section id="dashboard" class="px-4 sm:px-8 py-6 max-w-3xl mx-auto w-full">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+        <h2 class="text-sm sm:text-base font-bold text-white">تراکنش‌های اخیر حساب</h2>
+      </div>
+      <span class="text-[11px] text-cyan-400 font-semibold cursor-pointer hover:underline">دریافت گردش حساب (PDF)</span>
+    </div>
+
+    <div class="space-y-2.5">
+      <!-- Item 1 -->
+      <div class="glass-card rounded-xl p-3.5 flex items-center justify-between hover:border-white/20 transition-all">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-arrow-down-left"></i>
+          </div>
+          <div class="text-right">
+            <h3 class="text-xs sm:text-sm font-bold text-white">واریز پایا از شرکت فناوران داده</h3>
+            <p class="text-[10px] text-slate-400">امروز • ساعت ۱۱:۴۲ • شناسه رهگیری: ۴۹۲۸۱۹۲</p>
+          </div>
+        </div>
+        <div class="text-left">
+          <span class="text-xs sm:text-sm font-extrabold text-emerald-400 dir-ltr">+۴۵,۰۰۰,۰۰۰</span>
+          <span class="text-[10px] text-slate-400 block">تومان</span>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="glass-card rounded-xl p-3.5 flex items-center justify-between hover:border-white/20 transition-all">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-red-500/15 text-red-400 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-arrow-up-right"></i>
+          </div>
+          <div class="text-right">
+            <h3 class="text-xs sm:text-sm font-bold text-white">خرید اشتراک سرور ابری آلمان</h3>
+            <p class="text-[10px] text-slate-400">دیروز • ساعت ۱۹:۱۵ • درگاه پرداخت بین‌الملل</p>
+          </div>
+        </div>
+        <div class="text-left">
+          <span class="text-xs sm:text-sm font-extrabold text-slate-200 dir-ltr">-۳,۴۵۰,۰۰۰</span>
+          <span class="text-[10px] text-slate-400 block">تومان</span>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="glass-card rounded-xl p-3.5 flex items-center justify-between hover:border-white/20 transition-all">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-repeat"></i>
+          </div>
+          <div class="text-right">
+            <h3 class="text-xs sm:text-sm font-bold text-white">تبدیل هوشمند به تتر (USDT)</h3>
+            <p class="text-[10px] text-slate-400">۲ روز قبل • با کارمزد صفر شبکه نوین‌پی</p>
+          </div>
+        </div>
+        <div class="text-left">
+          <span class="text-xs sm:text-sm font-extrabold text-cyan-300 dir-ltr">+۴۵۰ USDT</span>
+          <span class="text-[10px] text-slate-400 block">موجودی ارزی</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Quick Transfer Form -->
+  <section class="px-4 sm:px-8 py-6 max-w-3xl mx-auto w-full">
+    <div class="glass-card rounded-2xl p-5 border border-cyan-500/20">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-paper-plane text-cyan-400"></i>
+          <span>انتقال سریع کارت به کارت و شبا</span>
+        </h2>
+        <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300">سقف روزانه ۲۰۰ میلیون</span>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="text-[11px] text-slate-400 block mb-1">شماره کارت یا شماره شبا مقصد:</label>
+          <input 
+            type="text" 
+            id="destinationCard" 
+            placeholder="۶۰۳۷ - ۹۹۱۸ - .... - ...." 
+            class="w-full h-11 px-3 rounded-xl bg-[#071329] border border-white/10 text-white text-xs text-left tracking-widest placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors"
+          >
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">مبلغ به تومان:</label>
+            <input 
+              type="text" 
+              id="transferAmount" 
+              placeholder="مثال: ۵,۰۰۰,۰۰۰" 
+              class="w-full h-11 px-3 rounded-xl bg-[#071329] border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors"
+            >
+          </div>
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">بابت / توضیحات:</label>
+            <input 
+              type="text" 
+              id="transferNote" 
+              placeholder="تسویه فاکتور، قرض‌الحسنه..." 
+              class="w-full h-11 px-3 rounded-xl bg-[#071329] border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors"
+            >
+          </div>
+        </div>
+
+        <button 
+          id="submitTransferBtn" 
+          onclick="handleTransferSubmit()" 
+          class="w-full h-11 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 hover:opacity-95 text-[#050B17] text-xs font-extrabold transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <span>تایید و ارسال آنی وجه</span>
+          <i class="fa-solid fa-arrow-left text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Live Success / Toast Banner -->
+      <div id="transferAlert" class="hidden mt-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-sm"></i>
+        <span id="transferAlertText">تراکنش با موفقیت ثبت و پیامک تایید ارسال شد.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Pillar Grid -->
+  <section id="services" class="px-4 sm:px-8 py-8 max-w-4xl mx-auto w-full">
+    <div class="text-center mb-6">
+      <h2 class="text-lg sm:text-2xl font-bold text-white">چرا بازرگانان و کاربران نوین‌پِی را برمی‌گزینند؟</h2>
+      <p class="text-xs text-slate-400 mt-1">ترکیبی از سرعت بانکداری ابری و امنیت رمزنگاری پیشرفته</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+      <div class="glass-card p-5 rounded-2xl hover:border-cyan-400/40 transition-all">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-lg mb-3">
+          <i class="fa-solid fa-shield-virus"></i>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1.5">امنیت کوانتومی و بایومتریک</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          ورود با تشخیص چهره FaceID و اثرانگشت به همراه رمزنگاری انتهای به انتهای تراکنش‌ها.
+        </p>
+      </div>
+
+      <div class="glass-card p-5 rounded-2xl hover:border-blue-400/40 transition-all">
+        <div class="w-10 h-10 rounded-xl bg-blue-500/15 text-blue-400 flex items-center justify-center text-lg mb-3">
+          <i class="fa-solid fa-globe"></i>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1.5">حساب‌های بین‌المللی چندارزی</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          دریافت و ارسال حواله‌های یورو، دلار و درهم با کمترین کارمزد صرافی در سراسر دنیا.
+        </p>
+      </div>
+
+      <div class="glass-card p-5 rounded-2xl hover:border-purple-400/40 transition-all">
+        <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center text-lg mb-3">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3 class="text-sm font-bold text-white mb-1.5">سرمایه‌گذاری خودکار با هوش مصنوعی</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          واریز سود روزشمار ۲۵٪ به موجودی راکد و سبدگردانی هوشمند بدون ریسک بازار.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-white/[0.08] bg-[#040812] py-6 px-4 text-center text-xs text-slate-400">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>
+        <span class="font-bold text-white">سامانه نوین‌پِی (NovinPay)</span> — دارای مجوز رسمی از بانک مرکزی و عضو شبکه شتاب
+      </div>
+      <div class="text-[11px] text-slate-500">
+        پشتیبانی ۲۴ ساعته: ۰۲۱-۸۸۹۹۰۰۰۰
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // Toggle Balance visibility
+    let balanceVisible = true;
+    const balanceValue = document.getElementById('balanceValue');
+    const eyeIcon = document.getElementById('eyeIcon');
+    const toggleBalanceBtn = document.getElementById('toggleBalanceBtn');
+
+    toggleBalanceBtn.addEventListener('click', () => {
+      balanceVisible = !balanceVisible;
+      if (balanceVisible) {
+        balanceValue.innerText = '۲۸۴,۶۵۰,۰۰۰';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+      } else {
+        balanceValue.innerText = '••••••••••••';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+      }
+    });
+
+    // Quick Action Trigger
+    function triggerQuickAction(actionName) {
+      alert(`سرویس «${actionName}» آماده فعال‌سازی است.`);
+    }
+
+    function simulateOpenAccount() {
+      alert('فرم افتتاح حساب آنلاین باز شد. احراز هویت با کارت ملی هوشمند در کمتر از ۳ دقیقه.');
+    }
+
+    // Handle Transfer Submit
+    function handleTransferSubmit() {
+      const card = document.getElementById('destinationCard').value.trim();
+      const amount = document.getElementById('transferAmount').value.trim();
+      const alertBox = document.getElementById('transferAlert');
+      const alertText = document.getElementById('transferAlertText');
+
+      if (!card || !amount) {
+        alertBox.classList.remove('hidden', 'bg-emerald-500/20', 'border-emerald-500/40', 'text-emerald-300');
+        alertBox.classList.add('bg-amber-500/20', 'border-amber-500/40', 'text-amber-300');
+        alertText.innerText = 'لطفاً شماره کارت مقصد و مبلغ واریز را وارد فرمایید.';
+        return;
+      }
+
+      alertBox.classList.remove('hidden', 'bg-amber-500/20', 'border-amber-500/40', 'text-amber-300');
+      alertBox.classList.add('bg-emerald-500/20', 'border-emerald-500/40', 'text-emerald-300');
+      alertText.innerText = `حواله به مبلغ ${amount} تومان به کارت ${card} با موفقیت در صف شتاب قرار گرفت.`;
+      
+      document.getElementById('destinationCard').value = '';
+      document.getElementById('transferAmount').value = '';
+      document.getElementById('transferNote').value = '';
+    }
+  </script>
+</body>
+</html>
