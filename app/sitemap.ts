@@ -23,18 +23,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1.0 : route.startsWith("/privacy") || route.startsWith("/terms") || route.startsWith("/policies") ? 0.5 : 0.8,
   }));
 
-  const projects = await prisma.project.findMany({
-    where: { published: true },
-    select: { slug: true, updatedAt: true },
-  });
+  let projectPages: MetadataRoute.Sitemap = [];
+  try {
+    const projects = await prisma.project.findMany({
+      where: { published: true },
+      select: { slug: true, updatedAt: true },
+    });
 
-  const projectPages = projects.map((p) => ({
-    url: `${baseUrl}/portfolio/${p.slug}`,
-    lastModified: p.updatedAt,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+    projectPages = projects.map((p) => ({
+      url: `${baseUrl}/portfolio/${p.slug}`,
+      lastModified: p.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.warn("Could not query projects for sitemap at build time (database might be offline):", error);
+  }
 
   return [...staticPages, ...projectPages];
 }
-
