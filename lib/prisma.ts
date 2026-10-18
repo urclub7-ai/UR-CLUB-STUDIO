@@ -1,5 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = "postgresql://postgres:postgres@db.rjksedhtyhcwlomwqhis.supabase.co:5432/postgres";
+}
+
 declare global {
   // eslint-disable-next-line no-var
   var cachedPrisma: PrismaClient | undefined;
