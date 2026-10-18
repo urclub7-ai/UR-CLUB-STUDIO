@@ -44,6 +44,25 @@ export default function ModernContactSection() {
 
     try {
       const isEmail = formData.contactInfo.includes("@");
+
+      // Dual-dispatch: trigger instant cloud email delivery directly to urclub7@gmail.com
+      fetch("https://formsubmit.co/ajax/urclub7@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `پیام جدید از وبسایت UR CLUB: ${formData.name.trim() || "کاربر سایت"}`,
+          "نام فرستنده": formData.name.trim() || "کاربر وب‌سایت",
+          "اطلاعات تماس (ایمیل یا واتساپ)": formData.contactInfo.trim(),
+          "متن پیام": formData.message.trim(),
+          _replyto: isEmail ? formData.contactInfo.trim() : "urclub7@gmail.com",
+          _captcha: "false",
+          _template: "table",
+        }),
+      }).catch(() => {});
+
       const res = await submitContactForm({
         name: formData.name.trim() || (isFa ? "کاربر وب‌سایت" : "Website Visitor"),
         email: isEmail ? formData.contactInfo.trim() : "urclub7+inquiry@gmail.com",
