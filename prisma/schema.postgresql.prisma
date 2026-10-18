@@ -229,3 +229,38 @@ model ContactMessage {
   @@index([status])
   @@index([createdAt])
 }
+
+model ShowcaseWebsite {
+  id           String   @id @default(uuid())
+  name         String
+  name_fa      String
+  url          String
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([active])
+  @@index([displayOrder])
+}
+
+model BrandAsset {
+  id             String   @id @default(uuid())
+  type           String   @default("logo") // "logo" or "poster"
+  title          String
+  title_fa       String
+  category       String
+  category_fa    String
+  description    String?
+  description_fa String?
+  image          String
+  displayOrder   Int      @default(0)
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([type])
+  @@index([active])
+  @@index([displayOrder])
+}
+

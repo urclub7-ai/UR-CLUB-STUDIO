@@ -258,8 +258,42 @@ CREATE TABLE IF NOT EXISTS "ContactMessage" (
 CREATE INDEX IF NOT EXISTS "ContactMessage_status_idx" ON "ContactMessage"("status");
 CREATE INDEX IF NOT EXISTS "ContactMessage_createdAt_idx" ON "ContactMessage"("createdAt");
 
+-- 13. ShowcaseWebsite Table (Upload & Manage Live Websites in Admin)
+CREATE TABLE IF NOT EXISTS "ShowcaseWebsite" (
+    "id" TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
+    "name" TEXT NOT NULL,
+    "name_fa" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "displayOrder" INTEGER NOT NULL DEFAULT 0,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS "ShowcaseWebsite_active_idx" ON "ShowcaseWebsite"("active");
+CREATE INDEX IF NOT EXISTS "ShowcaseWebsite_displayOrder_idx" ON "ShowcaseWebsite"("displayOrder");
+
+-- 14. BrandAsset Table (Upload & Manage Logos and Posters in Admin)
+CREATE TABLE IF NOT EXISTS "BrandAsset" (
+    "id" TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
+    "type" TEXT NOT NULL DEFAULT 'logo',
+    "title" TEXT NOT NULL,
+    "title_fa" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "category_fa" TEXT NOT NULL,
+    "description" TEXT,
+    "description_fa" TEXT,
+    "image" TEXT NOT NULL,
+    "displayOrder" INTEGER NOT NULL DEFAULT 0,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS "BrandAsset_type_idx" ON "BrandAsset"("type");
+CREATE INDEX IF NOT EXISTS "BrandAsset_active_idx" ON "BrandAsset"("active");
+CREATE INDEX IF NOT EXISTS "BrandAsset_displayOrder_idx" ON "BrandAsset"("displayOrder");
+
 -- ============================================================================
--- 13. Supabase Storage Buckets Setup
+-- 15. Supabase Storage Buckets Setup
 -- ============================================================================
 
 INSERT INTO storage.buckets (id, name, public)
@@ -272,7 +306,7 @@ VALUES
   ('uploads', 'uploads', true)
 ON CONFLICT (id) DO UPDATE SET public = true;
 
--- Storage Policies for Public Reading
+-- Storage Policies for Public Reading & Uploads
 DO $$
 BEGIN
   IF NOT EXISTS (
@@ -313,9 +347,31 @@ BEGIN
 END $$;
 
 -- ============================================================================
--- 14. Initial Seed Data (UR CLUB & urclub7@gmail.com)
+-- 16. Initial Seed Data (Admin, Settings, Showcase Websites, Brand Assets)
 -- ============================================================================
 
+-- Admin User: urclub7@gmail.com and admin@portfolio.com (Password: Admin@2026!)
+INSERT INTO "Admin" ("id", "email", "passwordHash", "name", "role")
+VALUES 
+    (
+        'admin-urclub-id',
+        'urclub7@gmail.com',
+        '$2a$12$hGud.2XdJO6/DWao7fT/J.CN69UlKBGG4HxSRY4SDwLl2LT7GJOMW',
+        'UR CLUB Admin',
+        'SUPER_ADMIN'
+    ),
+    (
+        'admin-portfolio-id',
+        'admin@portfolio.com',
+        '$2a$12$hGud.2XdJO6/DWao7fT/J.CN69UlKBGG4HxSRY4SDwLl2LT7GJOMW',
+        'Nazif Yosufi',
+        'ADMIN'
+    )
+ON CONFLICT ("email") DO UPDATE SET
+    "passwordHash" = EXCLUDED."passwordHash",
+    "updatedAt" = CURRENT_TIMESTAMP;
+
+-- Site Settings
 INSERT INTO "SiteSettings" (
     "id", "siteName", "designerName", "fullName", "title", "tagline",
     "logoUrl", "metaDescription", "email", "phone", "location", "copyrightText"
@@ -339,6 +395,7 @@ ON CONFLICT ("id") DO UPDATE SET
     "email" = 'urclub7@gmail.com',
     "updatedAt" = CURRENT_TIMESTAMP;
 
+-- Home Content
 INSERT INTO "HomeContent" (
     "id", "heroGreeting", "heroTitle", "heroSubtitle", "heroDescription"
 )
@@ -351,6 +408,7 @@ VALUES (
 )
 ON CONFLICT ("id") DO NOTHING;
 
+-- About Content
 INSERT INTO "AboutContent" (
     "id", "heading", "subheading", "bioSummary"
 )
@@ -360,4 +418,25 @@ VALUES (
     'تیم مهندسی نرم‌افزار، هویت برند و نوآوری دیجیتال',
     'مجموعه‌ای متعهد به استانداردهای بین‌المللی، کدهای بهینه و تحویل سریع پلتفرم‌های مدرن.'
 )
+ON CONFLICT ("id") DO NOTHING;
+
+-- Showcase Websites (5 default interactive websites)
+INSERT INTO "ShowcaseWebsite" ("id", "name", "name_fa", "url", "displayOrder", "active")
+VALUES 
+    ('web-1', 'LEVI Smart Web Business Card', 'کارت ویزیت انترنتی صفحه (LEVI)', 'https://urclub.vercel.app/', 1, true),
+    ('web-2', 'Ideology Mahdaviyat', 'ایدئولوژی مهدویت', 'https://www.ideologymahdaviyat.org/', 2, true),
+    ('web-3', 'Novin Pay Financial Portal', 'سامانه مالی نوین‌پِی', '/showcase/novin-pay/index.html', 3, true),
+    ('web-4', 'Aura Cloud English', 'Aura Cloud (انگلیسی)', '/showcase/aura-tech/index.html', 4, true),
+    ('web-5', 'Azimian Market', 'عظیمیان مارکت', '/showcase/azimian-markt/index.html', 5, true)
+ON CONFLICT ("id") DO NOTHING;
+
+-- Brand Assets (Logos & Posters)
+INSERT INTO "BrandAsset" ("id", "type", "title", "title_fa", "category", "category_fa", "description", "description_fa", "image", "displayOrder", "active")
+VALUES 
+    ('asset-1', 'logo', 'AriaTech Cloud Solutions', 'لوگوی فناوری آریا تک', 'Cloud & Software', 'فناوری و نرم‌افزار', 'Minimalist cloud architecture layer emblem.', 'طراحی مینیمال برای پلتفرم‌های ابری و هوش مصنوعی.', '/showcase/designs/logo_ariatech.png', 1, true),
+    ('asset-2', 'logo', 'Royal Coffee & Roastery', 'لوگوی کافه رویال', 'Cafe & Restaurant', 'کافه و رستورانت', 'Warm gold and espresso coffee emblem.', 'نشان‌واره اصیل قهوه با تایپوگرافی طلایی و گرم.', '/showcase/designs/logo_royalcafe.png', 2, true),
+    ('asset-3', 'logo', 'Saze Architecture Studio', 'لوگوی مهندسی سازه', 'Architecture & Design', 'معماری و ساختمانی', 'Isometric geometric cube symbol.', 'طراحی نماد ایزومتریک مکعبی برای شرکت‌های ساختمانی.', '/showcase/designs/logo_saze.png', 3, true),
+    ('asset-4', 'logo', 'Pishro Currency Exchange', 'لوگوی صرافی پیشرو', 'Fintech & Remittance', 'صرافی و فین‌تک', 'Dynamic dual-arrow currency exchange loop.', 'طراحی نماد چرخه تبادل و انتقال سریع ارزها.', '/showcase/designs/logo_pishro.png', 4, true),
+    ('asset-5', 'poster', 'Shefa 24/7 Pharmacy Poster', 'پوستر دواخانه شفا', 'Promotional Poster', 'پوستر تبلیغاتی', '24/7 medicine delivery and doctor consultation.', 'معرفی خدمات ادویه، مشاوره و تحویل فوری ۲۴ ساعته.', '/showcase/designs/poster_pharmacy.png', 5, true),
+    ('asset-6', 'poster', 'Palace Cafe & Lounge Poster', 'پوستر کافه پالاس', 'Promotional Poster', 'پوستر تبلیغاتی', 'Specialty roast, fresh pastries, and workspace.', 'معرفی قهوه دمی تخصصی، دسرها و فضای کار اختصاصی.', '/showcase/designs/poster_cafe_v2.png', 6, true)
 ON CONFLICT ("id") DO NOTHING;
