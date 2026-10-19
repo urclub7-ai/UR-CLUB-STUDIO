@@ -37,6 +37,24 @@
   },
   {
     "id": "member-3",
+    "name": "Sahel",
+    "name_fa": "ساحل",
+    "nickname": null,
+    "role": "Client Assurance & Customer Guarantee",
+    "role_fa": "ضمانت قراردادها و تعهدات اجرایی مشتریان در افغانستان",
+    "location": null,
+    "location_fa": null,
+    "age": null,
+    "avatar": "/images/sahel_profile.jpg",
+    "bio": "Sahel leads in-person client engagement and contract verification for clients in Afghanistan. Responsible for execution guarantees, client assurance, and establishing solid mutual trust with studio partners.",
+    "bio_fa": "ساحل، مسئول تعاملات حضوری، پیگیری قراردادها و ارائه ضمانت‌های معتبر برای مشتریان در افغانستان. تضمین‌کننده حسن انجام تعهدات اجرایی و اطمینان از اعتماد کامل مشتریان در کلیه پروژه‌ها.",
+    "skills": "In-Person Client Assurance, Contract Verification, Customer Support, Partner Relations",
+    "skills_fa": "ضمانت حضوری، پیگیری قراردادها، امور مشتریان، تعهدات اجرایی و حسن انجام کار",
+    "displayOrder": 3,
+    "active": true
+  },
+  {
+    "id": "member-4",
     "name": "Mohammad Kabir",
     "name_fa": "محمد کبیر",
     "nickname": null,
@@ -50,7 +68,7 @@
     "bio_fa": "محمد کبیر، مسئول مذاکرات رو در رو و تعاملات تجاری حضوری با مشتریان. ارائه ضمانت‌های معتبر قراردادی، پیگیری حقوقی پروژه‌ها و اطمینان از اعتماد ۱۰۰ درصدی شرکای تجاری.",
     "skills": "In-Person Negotiation, Contract Assurance, Market Expansion, Enterprise Relations",
     "skills_fa": "مذاکرات حضوری، ضمانت تجاری و تعهدات قراردادی، توسعه بازار، مدیریت روابط سازمانی",
-    "displayOrder": 3,
-    "active": true
+    "displayOrder": 4,
+    "active": false
   }
 ]
