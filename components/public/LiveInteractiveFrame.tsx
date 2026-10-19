@@ -95,11 +95,11 @@ export default function LiveInteractiveFrame({
       <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-[#00D2FF]/5 blur-[100px] pointer-events-none rounded-full" />
 
       {/* Clean Centered Header matching other sections */}
-      <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
+      <div className="flex flex-col items-center text-center mb-4 sm:mb-8">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white">
           {isFa ? "مشاهده و اسکرول در وبسایت‌های قبلی" : "Explore & Scroll Previous Websites Live"}
         </h2>
-        <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
             ? "امکان اسکرول و بررسی زنده پروژه‌ها به صورت تعاملی در داخل کادر"
             : "Interactive capability to scroll and inspect live projects directly inside the frame"}
@@ -216,7 +216,7 @@ export default function LiveInteractiveFrame({
           </div>
 
           {/* Desktop Viewport Screen */}
-          <div className="relative bg-[#06102a] w-full h-[540px] sm:h-[640px] overflow-hidden">
+          <div className="relative bg-[#06102a] w-full h-[380px] sm:h-[640px] overflow-hidden">
             {/* Loading Placeholder */}
             {!isIframeLoaded && (
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#06102a] text-center p-4 select-none">

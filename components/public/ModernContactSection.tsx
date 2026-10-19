@@ -91,11 +91,11 @@ export default function ModernContactSection() {
   return (
     <div id="contact-section" className="relative w-full scroll-mt-28">
       {/* ─── Clean Header ─── */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+      <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
           {isFa ? "آماده‌اید پروژه بعدی خود را آغاز کنید؟" : "Ready to Build Your Next Project?"}
         </h2>
-        <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-[#94A3B8] leading-relaxed">
           {isFa
             ? "برای مشاوره فنی، برآورد هزینه و زمان یا آغاز همکاری، مستقیماً از راه‌های زیر با ما در ارتباط باشید."
             : "Reach out for technical advisory, project timeline estimation, or new venture discussions."}
@@ -103,9 +103,9 @@ export default function ModernContactSection() {
       </div>
 
       {/* ─── Modern 2-Column Split Layout ─── */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 max-w-5xl mx-auto items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 sm:gap-6 max-w-5xl mx-auto items-stretch">
         {/* Left / Right Card: Direct Fast Channels (2 Columns width) */}
-        <div className="lg:col-span-2 p-5 sm:p-8 rounded-2xl bg-[#081432]/60 border border-white/[0.08] flex flex-col justify-between space-y-5 sm:space-y-6">
+        <div className="lg:col-span-2 p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] flex flex-col justify-between space-y-4 sm:space-y-6">
           <div className="space-y-4 sm:space-y-5">
             <div>
               <span className="text-xs font-mono font-bold text-[#00D2FF] tracking-wider uppercase">
@@ -184,12 +184,12 @@ export default function ModernContactSection() {
         </div>
 
         {/* Right / Left Form: Quick, Sleek Inquiry (3 Columns width) */}
-        <div className="lg:col-span-3 p-5 sm:p-8 rounded-2xl bg-[#081432]/60 border border-white/[0.08] flex flex-col justify-between">
+        <div className="lg:col-span-3 p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] flex flex-col justify-between">
           <div>
             <h3 className="text-base sm:text-lg font-bold text-white mb-1">
               {isFa ? "ارسال پیام و استعلام سریع" : "Quick Message & Inquiry"}
             </h3>
-            <p className="text-xs text-[#94A3B8] mb-6 leading-relaxed">
+            <p className="text-xs text-[#94A3B8] mb-4 sm:mb-6 leading-relaxed">
               {isFa
                 ? "نام و راه ارتباطی خود را بنویسید تا پیام مستقیماً به تیم UrClub ارسال شود."
                 : "Leave your contact info and brief notes. We will get back to you shortly."}

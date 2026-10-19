@@ -161,60 +161,60 @@ export default function MultiAssetShowcase({
         </div>
       </div>
 
-      {/* Grid of Clean 3-Column Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      {/* Grid of Clean 2-Column Cards on mobile, 3-Column on desktop */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6">
         {filteredItems.map((item, idx) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05, duration: 0.3 }}
-            className="p-5 sm:p-6 rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/30 transition-all duration-300 flex flex-col justify-between text-right group overflow-hidden"
+            className="p-3 sm:p-6 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/30 transition-all duration-300 flex flex-col justify-between text-right group overflow-hidden"
           >
             <div>
               {/* Image Container with Subtle Zoom */}
               <div
                 onClick={() => setSelectedImage(item)}
-                className="relative aspect-square rounded-xl overflow-hidden bg-[#040B20] border border-white/[0.05] cursor-pointer flex items-center justify-center p-3 group-hover:scale-[1.02] transition-transform duration-300"
+                className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-[#040B20] border border-white/[0.05] cursor-pointer flex items-center justify-center p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
               >
                 <Image
                   src={item.image}
                   alt={isFa ? item.title_fa : item.title}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
-                  className="object-contain p-2"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 360px"
+                  className="object-contain p-1.5 sm:p-2"
                 />
                 <div className="absolute inset-0 bg-[#040B20]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="p-2 rounded-full bg-[#00D2FF] text-[#040B20] shadow-md">
-                    <Maximize2 className="w-4 h-4" />
+                  <div className="p-1.5 sm:p-2 rounded-full bg-[#00D2FF] text-[#040B20] shadow-md">
+                    <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
               </div>
 
               {/* Short & Clean Text Details */}
-              <div className="mt-4 space-y-1">
-                <span className="text-[10px] font-semibold text-[#00D2FF] uppercase tracking-wide block">
+              <div className="mt-2.5 sm:mt-4 space-y-0.5 sm:space-y-1">
+                <span className="text-[9px] sm:text-[10px] font-semibold text-[#00D2FF] uppercase tracking-wide block truncate">
                   {isFa ? item.category_fa : item.category}
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#00D2FF] transition-colors">
+                <h3 className="text-xs sm:text-lg font-bold text-white group-hover:text-[#00D2FF] transition-colors truncate">
                   {isFa ? item.title_fa : item.title}
                 </h3>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                <p className="hidden sm:block text-xs text-[#94A3B8] leading-relaxed">
                   {isFa ? item.description_fa : item.description}
                 </p>
               </div>
             </div>
 
             {/* Bottom Row: View Link & Subtle Watermark */}
-            <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between">
+            <div className="mt-2.5 sm:mt-4 pt-2 sm:pt-3 border-t border-white/[0.06] flex items-center justify-between">
               <button
                 onClick={() => setSelectedImage(item)}
-                className="text-xs text-[#00D2FF] hover:text-white font-medium flex items-center gap-1 transition-colors cursor-pointer"
+                className="text-[11px] sm:text-xs text-[#00D2FF] hover:text-white font-medium flex items-center gap-1 transition-colors cursor-pointer"
               >
-                <span>{isFa ? "مشاهده طرح" : "View"}</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>{isFa ? "مشاهده" : "View"}</span>
+                <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               </button>
-              <span className="text-[10px] font-mono tracking-widest text-[#94A3B8]/40 uppercase select-none">
+              <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-[#94A3B8]/40 uppercase select-none">
                 UrClub
               </span>
             </div>

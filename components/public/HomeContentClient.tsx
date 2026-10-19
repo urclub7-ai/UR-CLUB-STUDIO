@@ -38,7 +38,7 @@ export default function HomeContentClient({
   const isFa = language === "fa";
 
   return (
-    <div className="space-y-14 sm:space-y-28 bg-[#040B20] text-white">
+    <div className="space-y-8 sm:space-y-28 bg-[#040B20] text-white">
       {/* ─── 1. HERO SECTION (Dribbble HexaCore Centered Aesthetic) ─── */}
       <Hero />
 
@@ -68,7 +68,7 @@ export default function HomeContentClient({
       </MotionSection>
 
       {/* ─── 7. ABOUT US, TEAM CREDIBILITY & MEMBERS (درباره ما، اعتبار تیم و اعضای استودیو) ─── */}
-      <div id="about-section" className="space-y-14 sm:space-y-28 scroll-mt-28">
+      <div id="about-section" className="space-y-8 sm:space-y-28 scroll-mt-28">
         <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
           <TeamCredibilitySection />
         </MotionSection>

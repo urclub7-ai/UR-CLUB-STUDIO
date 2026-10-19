@@ -47,11 +47,11 @@ export default function WhyChooseUsSection() {
   return (
     <div className="relative w-full">
       {/* Clean Centered Header */}
-      <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
+      <div className="flex flex-col items-center text-center mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white">
           {isFa ? "چرا شرکا و سرمایه‌گذاران UR CLUB را انتخاب می‌کنند؟" : "Why Partners and Investors Choose UR CLUB"}
         </h2>
-        <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
             ? "سرعت بالا، شفافیت کامل و کیفیت مطمئن در اجرای پروژه‌ها"
             : "High velocity, complete transparency, and reliable execution quality"}
@@ -59,23 +59,23 @@ export default function WhyChooseUsSection() {
       </div>
 
       {/* 4-Pillar Symmetrical Grid (2x2) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-6">
         {features.map((item, idx) => {
           const Icon = item.icon;
           return (
             <div
               key={idx}
-              className="relative p-5 sm:p-8 rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/30 transition-all duration-300 flex flex-col justify-start text-start group overflow-hidden"
+              className="relative p-3.5 sm:p-8 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/30 transition-all duration-300 flex flex-col justify-start text-start group overflow-hidden"
             >
               {/* Subtle accent highlight on top */}
               <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#00D2FF]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               {/* Header: Icon + Title */}
-              <div className="flex items-center gap-3.5 mb-2.5 sm:mb-3.5">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#00D2FF]/10 border border-[#00D2FF]/20 flex items-center justify-center text-[#00D2FF] shrink-0">
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+              <div className="flex items-center gap-2.5 sm:gap-3.5 mb-2 sm:mb-3.5">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#00D2FF]/10 border border-[#00D2FF]/20 flex items-center justify-center text-[#00D2FF] shrink-0">
+                  <Icon className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-base sm:text-xl font-bold text-white">
+                <h3 className="text-sm sm:text-xl font-bold text-white">
                   {isFa ? item.title : item.title_en}
                 </h3>
               </div>

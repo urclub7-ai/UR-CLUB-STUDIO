@@ -120,13 +120,13 @@ export default function InvestorSection() {
   return (
     <div id="investor-section" className="relative w-full scroll-mt-28">
       {/* ─── Clean Centered Header (Matching upper sections) ─── */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+      <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
           {isFa
             ? "فرصت‌های سرمایه‌گذاری و شراکت استراتژیک"
             : "Investment & Co-Venture Opportunities"}
         </h2>
-        <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-[#94A3B8] leading-relaxed">
           {isFa
             ? "مدل‌های همکاری شفاف و سودآور برای مقیاس‌دهی محصولات فناورانه و رشد ارزش بلندمدت"
             : "Transparent, yield-focused partnership models to scale digital assets with technical excellence."}
@@ -134,12 +134,12 @@ export default function InvestorSection() {
       </div>
 
       {/* ─── 3 Investment Cards (Sleek cards, glow ONLY on hover) ─── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2.5 sm:gap-6">
         {investmentModels.map((m) => {
           return (
             <div
               key={m.id}
-              className="group relative p-5 sm:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 overflow-hidden bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/40 hover:bg-[#081432]/90 hover:shadow-[0_0_30px_rgba(0,210,255,0.15)]"
+              className="group relative p-4 sm:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between transition-all duration-300 overflow-hidden bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/40 hover:bg-[#081432]/90 hover:shadow-[0_0_30px_rgba(0,210,255,0.15)]"
             >
               {/* Top glow line - only visible on hover */}
               <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#00D2FF]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

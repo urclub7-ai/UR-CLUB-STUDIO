@@ -26,7 +26,7 @@ export default function Hero({}: HeroProps) {
   const isFa = language === "fa";
 
   return (
-    <section id="hero-section" className="relative w-full min-h-[78vh] sm:min-h-[calc(100vh-5rem)] flex items-center justify-center bg-[#040B20] overflow-hidden pt-24 sm:pt-32 pb-14 sm:pb-24 border-b border-[#00D2FF]/15 scroll-mt-28">
+    <section id="hero-section" className="relative w-full min-h-[66vh] sm:min-h-[calc(100vh-5rem)] flex items-center justify-center bg-[#040B20] overflow-hidden pt-20 sm:pt-32 pb-10 sm:pb-24 border-b border-[#00D2FF]/15 scroll-mt-28">
       {/* ─── Ultra-Subtle, Deep Ambient Glow (Faded, Soft & Dark) ─── */}
       {/* Very faint, deep central ambiance */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[550px] bg-[radial-gradient(ellipse_75%_60%_at_50%_50%,rgba(0,210,255,0.08),rgba(4,11,32,0)_75%)] pointer-events-none" />

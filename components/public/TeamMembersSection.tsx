@@ -50,7 +50,7 @@ export default function TeamMembersSection({
   return (
     <div id="team-members" className="relative w-full scroll-mt-28">
       {/* ─── Clean Header matching other site sections ─── */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+      <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
           {isFa
             ? "اعضای تیم و مهندسان سازنده استودیو"
@@ -63,8 +63,68 @@ export default function TeamMembersSection({
         </p>
       </div>
 
-      {/* ─── Responsive Team Layout (Entire Card is Clickable) ─── */}
-      <div className="flex flex-wrap justify-center gap-5 sm:gap-6 items-stretch">
+      {/* ─── Mobile Compact Stacked Rows (به اندازه یک کادر قبلی جای می‌گیرد) ─── */}
+      <div className="block sm:hidden space-y-2">
+        {members.map((member, idx) => {
+          const name = isFa ? member.name_fa || member.name : member.name;
+          const role = isFa ? member.role_fa || member.role : member.role;
+          const avatarUrl = member.avatar || "/images/default_avatar.png";
+
+          return (
+            <motion.div
+              key={`mobile-${member.id}`}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05, duration: 0.25 }}
+              onClick={() => {
+                setSelectedMember(member);
+                setIsPhotoZoomed(false);
+              }}
+              className="group relative p-2.5 rounded-xl bg-[#081432]/60 active:bg-[#081432]/95 border border-white/[0.08] active:border-[#00D2FF]/60 flex items-center justify-between gap-3 cursor-pointer select-none transition-all duration-200"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                {/* Compact Avatar */}
+                <div className="relative w-11 h-11 rounded-xl overflow-hidden border border-[#00D2FF]/30 shrink-0 bg-[#040B20]">
+                  <Image
+                    src={avatarUrl}
+                    alt={name}
+                    fill
+                    sizes="44px"
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Name & Role */}
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-sm font-bold text-white group-hover:text-[#00D2FF] transition-colors truncate">
+                      {name}
+                    </span>
+                    {member.nickname && (
+                      <span className="px-1.5 py-0.2 rounded bg-[#00D2FF]/15 text-[#00D2FF] text-[9.5px] font-mono font-extrabold tracking-wider border border-[#00D2FF]/30 uppercase">
+                        {member.nickname}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[11px] text-[#00D2FF] font-medium truncate mt-0.5 leading-tight">
+                    {role}
+                  </p>
+                </div>
+              </div>
+
+              {/* Action indicator pill */}
+              <div className="flex items-center gap-1 text-[11px] font-semibold text-[#94A3B8] shrink-0 bg-white/[0.04] px-2.5 py-1 rounded-lg border border-white/[0.06]">
+                <span>{isFa ? "مشاهده" : "View"}</span>
+                <ArrowUpRight className="w-3 h-3 text-[#00D2FF]" />
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* ─── Desktop Team Layout (Unchanged 3-column / 2-column Grid) ─── */}
+      <div className="hidden sm:flex flex-wrap justify-center gap-5 sm:gap-6 items-stretch">
         {members.map((member, idx) => {
           const name = isFa ? member.name_fa || member.name : member.name;
           const role = isFa ? member.role_fa || member.role : member.role;
