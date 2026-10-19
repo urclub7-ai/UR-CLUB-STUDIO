@@ -124,9 +124,23 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="fa" dir="rtl" className={`dark scroll-smooth bg-[#040B20] ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
+    <html lang="en" dir="ltr" className={`dark scroll-smooth bg-[#040B20] ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preload" href="/images/team_logo_transparent.png" as="image" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var params = new URLSearchParams(window.location.search);
+                var urlLang = params.get("lang");
+                var savedLang = localStorage.getItem("site_language");
+                var lang = (urlLang === "en" || urlLang === "fa") ? urlLang : (savedLang === "en" || savedLang === "fa") ? savedLang : "en";
+                document.documentElement.setAttribute("lang", lang);
+                document.documentElement.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body
         className="min-h-screen flex flex-col bg-[#040B20] text-[#F8FAFC] antialiased selection:bg-[#00D2FF] selection:text-[#040B20]"

@@ -714,12 +714,12 @@ const LanguageContext = createContext<LanguageContextType>({
   language: "en",
   setLanguage: () => {},
   toggleLanguage: () => {},
-  dir: "rtl",
-  t: translations.fa,
+  dir: "ltr",
+  t: translations.en,
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("fa");
+  const [language, setLanguageState] = useState<Language>("en");
 
   useEffect(() => {
     try {
@@ -730,7 +730,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         ? urlLang
         : (savedLang === "en" || savedLang === "fa")
           ? savedLang
-          : "fa";
+          : "en";
 
       setLanguageState(targetLang);
       document.documentElement.setAttribute("lang", targetLang);

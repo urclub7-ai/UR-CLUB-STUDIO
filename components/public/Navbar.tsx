@@ -197,7 +197,7 @@ export default function Navbar({
               aria-label="Toggle language"
             >
               <Globe className="w-3.5 h-3.5 text-[#00D2FF]" />
-              <span className="font-mono text-[11px] font-bold uppercase tracking-wider">{isFa ? "EN" : "فا"}</span>
+              <span className="text-[11.5px] font-bold tracking-wide">{isFa ? "English" : "فارسی"}</span>
             </button>
 
             <Link
@@ -213,7 +213,7 @@ export default function Navbar({
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={toggleLanguage}
-              className="px-2.5 py-1.5 rounded-full bg-[#081432]/90 border border-[#00D2FF]/25 text-[#CBD5E1] hover:text-[#00D2FF] text-[11px] font-bold flex items-center gap-1 cursor-pointer"
+              className="px-2.5 py-1.5 rounded-full bg-[#081432]/90 border border-[#00D2FF]/25 text-[#CBD5E1] hover:text-[#00D2FF] text-[11px] font-bold flex items-center gap-1.5 cursor-pointer"
               title={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
               aria-label="Toggle language"
             >
@@ -268,6 +268,22 @@ export default function Navbar({
                   </Link>
                 );
               })}
+
+              <button
+                onClick={() => {
+                  toggleLanguage();
+                  setIsOpen(false);
+                }}
+                className="mt-2 w-full py-2.5 px-4 rounded-xl bg-[#081432] hover:bg-[#00D2FF]/10 border border-[#00D2FF]/25 text-white text-xs font-semibold flex items-center justify-between cursor-pointer"
+              >
+                <span className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-[#00D2FF]" />
+                  <span>{isFa ? "Switch to English" : "تغییر به زبان فارسی"}</span>
+                </span>
+                <span className="text-xs font-bold text-[#00D2FF] font-mono">
+                  {isFa ? "EN" : "فا"}
+                </span>
+              </button>
             </div>
 
             <div className="pt-5 border-t border-[#00D2FF]/20 flex flex-col gap-2.5">
