@@ -63,8 +63,8 @@ export default function TeamMembersSection({
         </p>
       </div>
 
-      {/* ─── 3-Column Team Grid (Entire Card is Clickable) ─── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+      {/* ─── Responsive Team Grid (Entire Card is Clickable) ─── */}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 ${members.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-5 sm:gap-6 items-stretch`}>
         {members.map((member, idx) => {
           const name = isFa ? member.name_fa || member.name : member.name;
           const role = isFa ? member.role_fa || member.role : member.role;
