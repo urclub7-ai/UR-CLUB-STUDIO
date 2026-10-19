@@ -12,6 +12,7 @@ import TeamCredibilitySection from "@/components/public/TeamCredibilitySection";
 import InvestorSection from "@/components/public/InvestorSection";
 import ModernContactSection from "@/components/public/ModernContactSection";
 import MotionSection from "@/components/public/MotionSection";
+import { useLanguage } from "@/lib/i18n";
 
 interface HomeContentClientProps {
   homeContent?: any;
@@ -30,6 +31,9 @@ export default function HomeContentClient({
   showcaseWebsites,
   brandAssets,
 }: HomeContentClientProps) {
+  const { language } = useLanguage();
+  const isFa = language === "fa";
+
   return (
     <div className="space-y-14 sm:space-y-28 bg-[#040B20] text-white">
       {/* ─── 1. HERO SECTION (Dribbble HexaCore Centered Aesthetic) ─── */}
@@ -76,15 +80,21 @@ export default function HomeContentClient({
       <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-6 sm:p-10 rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/25 transition-all duration-300 text-center space-y-3 sm:space-y-4">
           <span className="text-[11px] sm:text-xs font-semibold text-[#00D2FF] tracking-wide block">
-            پیکربندی هوشمند و صدور شناسه پوشه اختصاصی
+            {isFa
+              ? "پیکربندی هوشمند و صدور شناسه پوشه اختصاصی"
+              : "Intelligent Configuration & Dedicated Repository Indexing"}
           </span>
 
           <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
-            می‌خواهید پروژه اختصاصی خود را شروع کنید؟
+            {isFa
+              ? "می‌خواهید پروژه اختصاصی خود را شروع کنید؟"
+              : "Ready to Build Your Custom Project?"}
           </h3>
 
           <p className="text-xs sm:text-sm text-[#94A3B8] max-w-2xl mx-auto leading-relaxed">
-            نوع پروژه (وب‌سایت، اپلیکیشن موبایل، نرم‌افزار، طراحی پوستر)، دامنه و هاستینگ Vercel/Supabase و امکانات دلخواه را در فرم آنلاین انتخاب کنید.
+            {isFa
+              ? "نوع پروژه (وب‌سایت، اپلیکیشن موبایل، نرم‌افزار، طراحی پوستر)، دامنه و هاستینگ Vercel/Supabase و امکانات دلخواه را در فرم آنلاین انتخاب کنید."
+              : "Select your project type (website, mobile app, software, poster design), domain, Vercel/Supabase hosting, and preferred features in the online form."}
           </p>
 
           <div className="pt-2 flex justify-center">
@@ -92,7 +102,7 @@ export default function HomeContentClient({
               href="/order"
               className="px-7 sm:px-9 py-2.5 sm:py-3 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] font-bold text-xs sm:text-sm transition-all shadow-[0_0_15px_rgba(0,210,255,0.25)] hover:shadow-[0_0_25px_rgba(0,210,255,0.45)] inline-flex items-center justify-center cursor-pointer"
             >
-              شروع سفارش و صدور شناسه
+              {isFa ? "شروع سفارش و صدور شناسه" : "Start Order & Generate Tracking ID"}
             </Link>
           </div>
         </div>

@@ -7,27 +7,39 @@ import {
   Zap,
   ShieldCheck,
 } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 export default function WhyChooseUsSection() {
+  const { language } = useLanguage();
+  const isFa = language === "fa";
+
   const features = [
     {
       title: "ارتباط مستقیم با تیم فنی",
+      title_en: "Direct Communication with Technical Team",
       desc: "گفتگوی مستقیم با خود برنامه‌نویسان و مهندسان پروژه، بدون واسطه و با پاسخگویی سریع.",
+      desc_en: "Direct dialogue with the software engineers and developers themselves, without intermediaries and with rapid response.",
       icon: Users2,
     },
     {
       title: "همراهی گام‌به‌گام تا راه‌اندازی",
+      title_en: "Step-by-Step Guidance to Launch",
       desc: "از ایده اولیه و طراحی تا پیاده‌سازی نهایی و پشتیبانی، در تمام مسیر همراه شما هستیم.",
+      desc_en: "From initial concept and design to final implementation and ongoing support, we stand with you throughout the journey.",
       icon: Workflow,
     },
     {
       title: "سرعت بالا و اجرای تمیز",
+      title_en: "High Velocity & Clean Execution",
       desc: "کدنویسی بهینه‌سازی‌شده برای بارگذاری فوق‌سریع صفحات و عملکرد روان در تمام دستگاه‌ها.",
+      desc_en: "Optimized code architecture engineered for ultra-fast page loads and fluid performance across all devices.",
       icon: Zap,
     },
     {
       title: "شفافیت کامل و مالکیت کدها",
+      title_en: "Total Transparency & Full IP Ownership",
       desc: "گزارش‌دهی منظم از مراحل کار و تحویل صددرصد کامل فایل‌ها و کدهای منبع به شما.",
+      desc_en: "Structured milestone reporting throughout development and 100% complete handover of source files and code repositories to you.",
       icon: ShieldCheck,
     },
   ];
@@ -37,10 +49,12 @@ export default function WhyChooseUsSection() {
       {/* Clean Centered Header */}
       <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white">
-          چرا شرکا و سرمایه‌گذاران UR CLUB را انتخاب می‌کنند؟
+          {isFa ? "چرا شرکا و سرمایه‌گذاران UR CLUB را انتخاب می‌کنند؟" : "Why Partners and Investors Choose UR CLUB"}
         </h2>
         <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
-          سرعت بالا، شفافیت کامل و کیفیت مطمئن در اجرای پروژه‌ها
+          {isFa
+            ? "سرعت بالا، شفافیت کامل و کیفیت مطمئن در اجرای پروژه‌ها"
+            : "High velocity, complete transparency, and reliable execution quality"}
         </p>
       </div>
 
@@ -51,7 +65,7 @@ export default function WhyChooseUsSection() {
           return (
             <div
               key={idx}
-              className="relative p-5 sm:p-8 rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/30 transition-all duration-300 flex flex-col justify-start text-right group overflow-hidden"
+              className="relative p-5 sm:p-8 rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/30 transition-all duration-300 flex flex-col justify-start text-start group overflow-hidden"
             >
               {/* Subtle accent highlight on top */}
               <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#00D2FF]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -62,13 +76,13 @@ export default function WhyChooseUsSection() {
                   <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <h3 className="text-base sm:text-xl font-bold text-white">
-                  {item.title}
+                  {isFa ? item.title : item.title_en}
                 </h3>
               </div>
 
-              {/* Legible Persian Description */}
+              {/* Description */}
               <p className="text-xs sm:text-[15px] text-[#94A3B8] sm:text-[#CBD5E1] leading-relaxed font-normal">
-                {item.desc}
+                {isFa ? item.desc : item.desc_en}
               </p>
             </div>
           );

@@ -1,23 +1,33 @@
 "use client";
 
 import React from "react";
+import { useLanguage } from "@/lib/i18n";
 
 export default function StatsHorizonSection() {
+  const { language } = useLanguage();
+  const isFa = language === "fa";
+
   const stats = [
     {
-      value: "۱۵+",
+      value: isFa ? "۱۵+" : "15+",
       title: "پروژه‌های موفق و فعال",
+      title_en: "Successful & Active Projects",
       desc: "پیاده‌سازی و استقرار کامل سیستم‌ها با پایداری فنی مداوم",
+      desc_en: "Complete deployment and maintenance of platforms with continuous technical stability",
     },
     {
-      value: "۱۰۰٪",
+      value: isFa ? "۱۰۰٪" : "100%",
       title: "انطباق با استانداردهای مهندسی",
+      title_en: "Engineering Standards Compliance",
       desc: "کدنویسی تمیز، امنیت بالا و زیرساخت مقیاس‌پذیر",
+      desc_en: "Clean code, robust security protocols, and scalable infrastructure",
     },
     {
-      value: "۴.۹۸",
+      value: "4.98",
       title: "رضایت شرکا و سرمایه‌گذاران",
+      title_en: "Partner & Investor Satisfaction",
       desc: "شاخص اعتماد و رضایت همکاران تجاری از کیفیت خدمات",
+      desc_en: "Index of trust and client satisfaction regarding service excellence",
     },
   ];
 
@@ -26,10 +36,12 @@ export default function StatsHorizonSection() {
       {/* Clean Centered Header matching other sections */}
       <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white">
-          برای اطمینان، عملکرد و آمار ما را ببینید
+          {isFa ? "برای اطمینان، عملکرد و آمار ما را ببینید" : "Examine Our Verified Performance & Metrics"}
         </h2>
         <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
-          شاخص‌های شفاف و ثبت‌شده از رضایت شرکا، کیفیت اجرا و پایداری پروژه‌ها
+          {isFa
+            ? "شاخص‌های شفاف و ثبت‌شده از رضایت شرکا، کیفیت اجرا و پایداری پروژه‌ها"
+            : "Transparent, recorded indicators of partner satisfaction, execution quality, and platform stability"}
         </p>
       </div>
 
@@ -50,12 +62,12 @@ export default function StatsHorizonSection() {
 
             {/* Title */}
             <h3 className="text-sm sm:text-lg font-bold text-white mb-1.5">
-              {item.title}
+              {isFa ? item.title : item.title_en}
             </h3>
 
             {/* Description */}
             <p className="text-xs sm:text-sm text-[#94A3B8] sm:text-[#CBD5E1] leading-relaxed">
-              {item.desc}
+              {isFa ? item.desc : item.desc_en}
             </p>
           </div>
         ))}

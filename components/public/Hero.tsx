@@ -22,7 +22,8 @@ interface HeroProps {
 }
 
 export default function Hero({}: HeroProps) {
-  const { dir } = useLanguage();
+  const { dir, language } = useLanguage();
+  const isFa = language === "fa";
 
   return (
     <section id="hero-section" className="relative w-full min-h-[78vh] sm:min-h-[calc(100vh-5rem)] flex items-center justify-center bg-[#040B20] overflow-hidden pt-24 sm:pt-32 pb-14 sm:pb-24 border-b border-[#00D2FF]/15 scroll-mt-28">
@@ -50,17 +51,19 @@ export default function Hero({}: HeroProps) {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#00D2FF07_1px,transparent_1px),linear-gradient(to_bottom,#00D2FF07_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,#000_65%,transparent_100%)] pointer-events-none" />
 
       <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center my-auto">
-        {/* Main Headline (Scaled down on mobile for crisp modern balance) */}
+        {/* Main Headline */}
         <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] font-extrabold text-white leading-[1.35] tracking-normal max-w-4xl">
-          توسعه پلتفرم‌های دیجیتال با{" "}
+          {isFa ? "توسعه پلتفرم‌های دیجیتال با " : "Digital Platform Development with "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#00D2FF] to-white drop-shadow-[0_0_35px_rgba(0,210,255,0.4)]">
-            فناوری‌های آماده آینده
+            {isFa ? "فناوری‌های آماده آینده" : "Future-Ready Technologies"}
           </span>
         </h1>
 
-        {/* Subtitle (Clean & readable on mobile screens) */}
+        {/* Subtitle */}
         <p className="mt-4 sm:mt-6 text-xs sm:text-base md:text-lg text-[#94A3B8] sm:text-[#CBD5E1] max-w-2xl leading-relaxed font-normal">
-          از تدوین استراتیژی تا مهندسی کد و جذب سرمایه‌گذاری؛ UR CLUB همکار تخصصی شما در پیاده‌سازی و مقیاس‌دهی محصولات مدرن وب.
+          {isFa
+            ? "از تدوین استراتیژی تا مهندسی کد و جذب سرمایه‌گذاری؛ UR CLUB همکار تخصصی شما در پیاده‌سازی و مقیاس‌دهی محصولات مدرن وب."
+            : "From strategy formulation to code engineering and capital acquisition; UR CLUB is your specialized partner in building and scaling modern web products."}
         </p>
 
         {/* Centered Dual Action Buttons */}
@@ -71,8 +74,8 @@ export default function Hero({}: HeroProps) {
             className="h-11 sm:h-12 px-5 sm:px-7 rounded-full bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] text-xs sm:text-sm font-bold transition-all duration-300 shadow-[0_0_25px_rgba(0,210,255,0.4)] hover:shadow-[0_0_35px_rgba(0,210,255,0.6)] inline-flex items-center gap-2 group cursor-pointer"
           >
             <MonitorPlay className="w-4 h-4 text-[#040B20]" />
-            <span>مشاهده کادر آنلاین و پروژه‌ها</span>
-            <ArrowLeft className="w-4 h-4 text-[#040B20] transition-transform duration-200 group-hover:-translate-x-1" />
+            <span>{isFa ? "مشاهده کادر آنلاین و پروژه‌ها" : "View Live Frame & Projects"}</span>
+            <ArrowLeft className={`w-4 h-4 text-[#040B20] transition-transform duration-200 ${isFa ? "group-hover:-translate-x-1" : "group-hover:translate-x-1 rotate-180"}`} />
           </Link>
 
           {/* Secondary CTA (Configure Order) */}
@@ -80,7 +83,7 @@ export default function Hero({}: HeroProps) {
             href="/order"
             className="h-11 sm:h-12 px-5 sm:px-7 rounded-full bg-white/[0.08] hover:bg-white text-white hover:text-[#040B20] border border-white/15 text-xs sm:text-sm font-bold transition-all duration-300 inline-flex items-center gap-2 cursor-pointer"
           >
-            <span>شروع سفارش اختصاصی</span>
+            <span>{isFa ? "شروع سفارش اختصاصی" : "Start Custom Order"}</span>
           </Link>
         </div>
 

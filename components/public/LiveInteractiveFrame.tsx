@@ -13,9 +13,12 @@ import {
   X,
 } from "lucide-react";
 
+import { useLanguage } from "@/lib/i18n";
+
 export interface ShowcaseProject {
   id: string;
   name_fa: string;
+  name_en?: string;
   url: string;
 }
 
@@ -23,26 +26,31 @@ const DEFAULT_PROJECTS: ShowcaseProject[] = [
   {
     id: "urclub",
     name_fa: "کارت ویزیت انترنتی صفحه (LEVI)",
+    name_en: "LEVI Smart Web Business Card",
     url: "https://urclub.vercel.app/",
   },
   {
     id: "ideologymahdaviyat",
     name_fa: "ایدئولوژی مهدویت",
+    name_en: "Ideology Mahdaviyat",
     url: "https://www.ideologymahdaviyat.org/",
   },
   {
     id: "novinpay",
     name_fa: "سامانه مالی نوین‌پِی",
+    name_en: "Novin Pay Financial Portal",
     url: "/showcase/novin-pay/index.html",
   },
   {
     id: "auratech",
     name_fa: "Aura Cloud (انگلیسی)",
+    name_en: "Aura Cloud (English)",
     url: "/showcase/aura-tech/index.html",
   },
   {
     id: "azimian",
     name_fa: "عظیمیان مارکت",
+    name_en: "Azimian Market",
     url: "/showcase/azimian-markt/index.html",
   },
 ];
@@ -54,6 +62,8 @@ export default function LiveInteractiveFrame({
 }: {
   initialProjects?: ShowcaseProject[];
 } = {}) {
+  const { language } = useLanguage();
+  const isFa = language === "fa";
   const projectsList = initialProjects && initialProjects.length > 0 ? initialProjects : DEFAULT_PROJECTS;
   const [selectedProject, setSelectedProject] = useState<ShowcaseProject>(projectsList[0]);
   const [deviceView, setDeviceView] = useState<DeviceView>("desktop");
@@ -87,10 +97,12 @@ export default function LiveInteractiveFrame({
       {/* Clean Centered Header matching other sections */}
       <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white">
-          مشاهده و اسکرول در وبسایت‌های قبلی
+          {isFa ? "مشاهده و اسکرول در وبسایت‌های قبلی" : "Explore & Scroll Previous Websites Live"}
         </h2>
         <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
-          امکان اسکرول و بررسی زنده پروژه‌ها به صورت تعاملی در داخل کادر
+          {isFa
+            ? "امکان اسکرول و بررسی زنده پروژه‌ها به صورت تعاملی در داخل کادر"
+            : "Interactive capability to scroll and inspect live projects directly inside the frame"}
         </p>
       </div>
 
@@ -111,7 +123,7 @@ export default function LiveInteractiveFrame({
                 }`}
               >
                 <Globe className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isSelected ? "text-[#040B20]" : "text-[#00D2FF]"}`} />
-                <span>{proj.name_fa}</span>
+                <span>{isFa ? proj.name_fa : (proj.name_en || proj.name_fa)}</span>
               </button>
             );
           })}
@@ -123,7 +135,7 @@ export default function LiveInteractiveFrame({
           <div className="flex items-center gap-1 bg-[#081432]/80 p-1.5 rounded-xl border border-white/[0.08]">
             <button
               onClick={() => setDeviceView("desktop")}
-              title="نمای کامپیوتر (دسکتاپ)"
+              title={isFa ? "نمای کامپیوتر (دسکتاپ)" : "Desktop View"}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 deviceView === "desktop"
                   ? "bg-[#00D2FF] text-[#040B20] font-bold shadow-sm"
@@ -131,11 +143,11 @@ export default function LiveInteractiveFrame({
               }`}
             >
               <Monitor className="w-3.5 h-3.5" />
-              <span>کامپیوتر</span>
+              <span>{isFa ? "کامپیوتر" : "Desktop"}</span>
             </button>
             <button
               onClick={() => setDeviceView("mobile")}
-              title="نمای موبایل"
+              title={isFa ? "نمای موبایل" : "Mobile View"}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 deviceView === "mobile"
                   ? "bg-[#00D2FF] text-[#040B20] font-bold shadow-sm"
@@ -143,7 +155,7 @@ export default function LiveInteractiveFrame({
               }`}
             >
               <Smartphone className="w-3.5 h-3.5" />
-              <span>موبایل</span>
+              <span>{isFa ? "موبایل" : "Mobile"}</span>
             </button>
           </div>
 
@@ -151,7 +163,7 @@ export default function LiveInteractiveFrame({
           <div className="flex items-center gap-1 bg-[#081432]/80 p-1.5 rounded-xl border border-white/[0.08]">
             <button
               onClick={handleRefresh}
-              title="تازه‌سازی کادر"
+              title={isFa ? "تازه‌سازی کادر" : "Refresh Frame"}
               className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#00D2FF] hover:bg-[#00D2FF]/10 transition-colors"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin text-[#00D2FF]" : ""}`} />
@@ -160,7 +172,7 @@ export default function LiveInteractiveFrame({
               href={selectedProject.url}
               target="_blank"
               rel="noopener noreferrer"
-              title="باز کردن در صفحه جداگانه"
+              title={isFa ? "باز کردن در صفحه جداگانه" : "Open in new window"}
               className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#00D2FF] hover:bg-[#00D2FF]/10 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
@@ -188,14 +200,14 @@ export default function LiveInteractiveFrame({
 
             {/* Clean indicator: active project title */}
             <div className="text-xs font-medium text-[#94A3B8] truncate px-3">
-              {selectedProject.name_fa}
+              {isFa ? selectedProject.name_fa : (selectedProject.name_en || selectedProject.name_fa)}
             </div>
 
             {/* Maximize Button */}
             <div className="flex items-center gap-1 shrink-0">
               <button
                 onClick={() => setIsFullscreen(!isFullscreen)}
-                title={isFullscreen ? "خروج از تمام‌صفحه" : "بزرگ‌نمایی کادر"}
+                title={isFullscreen ? (isFa ? "خروج از تمام‌صفحه" : "Exit Fullscreen") : (isFa ? "بزرگ‌نمایی کادر" : "Maximize Frame")}
                 className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#00D2FF] hover:bg-[#00D2FF]/10 transition-colors"
               >
                 {isFullscreen ? <Minimize2 className="w-3.5 h-3.5 text-[#00D2FF]" /> : <Maximize2 className="w-3.5 h-3.5" />}
@@ -210,9 +222,11 @@ export default function LiveInteractiveFrame({
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#06102a] text-center p-4 select-none">
                 <div className="w-9 h-9 rounded-full border-2 border-[#00D2FF]/20 border-t-[#00D2FF] animate-spin mb-3 shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
                 <span className="text-xs sm:text-sm font-semibold text-white tracking-wide">
-                  در حال بارگذاری پروژه: {selectedProject.name_fa}
+                  {isFa ? `در حال بارگذاری پروژه: ${selectedProject.name_fa}` : `Loading project: ${selectedProject.name_en || selectedProject.name_fa}`}
                 </span>
-                <span className="text-[11px] text-[#94A3B8] mt-1">کادر آنلاین در حال اتصال است...</span>
+                <span className="text-[11px] text-[#94A3B8] mt-1">
+                  {isFa ? "کادر آنلاین در حال اتصال است..." : "Online frame connecting..."}
+                </span>
               </div>
             )}
 
@@ -224,9 +238,13 @@ export default function LiveInteractiveFrame({
                     <MousePointerClick className="w-5 h-5 animate-pulse" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white">{selectedProject.name_fa}</h4>
+                    <h4 className="text-xs font-bold text-white">
+                      {isFa ? selectedProject.name_fa : (selectedProject.name_en || selectedProject.name_fa)}
+                    </h4>
                     <p className="text-[11px] text-[#94A3B8] mt-1 leading-relaxed">
-                      برای فعال‌سازی و پیمایش در داخل وب‌سایت ضربه بزنید
+                      {isFa
+                        ? "برای فعال‌سازی و پیمایش در داخل وب‌سایت ضربه بزنید"
+                        : "Tap to enable interaction and navigate inside the website"}
                     </p>
                   </div>
                   <div className="flex flex-col gap-2 pt-1">
@@ -235,7 +253,7 @@ export default function LiveInteractiveFrame({
                       className="w-full py-2.5 px-4 rounded-xl bg-[#00D2FF] text-[#040B20] text-xs font-bold shadow-[0_0_15px_rgba(0,210,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-transform"
                     >
                       <MousePointerClick className="w-3.5 h-3.5" />
-                      <span>لمس برای تعامل و تست زنده</span>
+                      <span>{isFa ? "لمس برای تعامل و تست زنده" : "Tap for Live Interaction & Testing"}</span>
                     </button>
                     <a
                       href={selectedProject.url}
@@ -243,7 +261,7 @@ export default function LiveInteractiveFrame({
                       rel="noopener noreferrer"
                       className="w-full py-2 px-3 rounded-xl bg-white/[0.06] hover:bg-white/10 text-[#CBD5E1] text-[11px] font-medium border border-white/10 flex items-center justify-center gap-1"
                     >
-                      <span>باز کردن در تب جداگانه</span>
+                      <span>{isFa ? "باز کردن در تب جداگانه" : "Open in new tab"}</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
@@ -254,14 +272,14 @@ export default function LiveInteractiveFrame({
               <div className="sm:hidden absolute top-2 right-2 left-2 z-30 flex items-center justify-between p-2 rounded-xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl backdrop-blur-md">
                 <div className="flex items-center gap-1.5 text-[11px] text-[#00D2FF] font-medium pr-1">
                   <span className="w-2 h-2 rounded-full bg-[#00D2FF] animate-ping" />
-                  <span>تعامل با کادر فعال است</span>
+                  <span>{isFa ? "تعامل با کادر فعال است" : "Frame interaction active"}</span>
                 </div>
                 <button
                   onClick={() => setIsMobileInteractive(false)}
                   className="px-3 py-1 rounded-lg bg-red-500/20 text-red-300 border border-red-500/40 text-[11px] font-bold flex items-center gap-1 cursor-pointer active:scale-95 transition-transform"
                 >
                   <X className="w-3 h-3" />
-                  <span>پایان و بازگشت به اسکرول</span>
+                  <span>{isFa ? "پایان و بازگشت به اسکرول" : "End & Return to Page Scroll"}</span>
                 </button>
               </div>
             )}
@@ -270,7 +288,7 @@ export default function LiveInteractiveFrame({
               key={`desktop-${iframeKey}-${selectedProject.id}`}
               ref={iframeRef}
               src={selectedProject.url}
-              title={selectedProject.name_fa}
+              title={isFa ? selectedProject.name_fa : (selectedProject.name_en || selectedProject.name_fa)}
               onLoad={() => {
                 setIsLoading(false);
                 setIsIframeLoaded(true);
@@ -286,7 +304,7 @@ export default function LiveInteractiveFrame({
             <div className="hidden sm:block absolute bottom-3 right-3 z-20 pointer-events-none">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#040B20]/90 backdrop-blur-md border border-[#00D2FF]/40 text-[11px] text-[#00D2FF] font-medium shadow-lg">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00D2FF]" />
-                <span>قابلیت اسکرول و کلیک کامل در داخل کادر</span>
+                <span>{isFa ? "قابلیت اسکرول و کلیک کامل در داخل کادر" : "Full scroll and click capability inside the frame"}</span>
               </div>
             </div>
           </div>
@@ -319,7 +337,7 @@ export default function LiveInteractiveFrame({
                 <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#06102a] text-center p-4 select-none">
                   <div className="w-8 h-8 rounded-full border-2 border-[#00D2FF]/20 border-t-[#00D2FF] animate-spin mb-3 shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
                   <span className="text-xs font-semibold text-white tracking-wide">
-                    در حال بارگذاری پروژه
+                    {isFa ? "در حال بارگذاری پروژه" : "Loading project..."}
                   </span>
                 </div>
               )}
@@ -329,25 +347,31 @@ export default function LiveInteractiveFrame({
                 <div className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#040B20]/80 backdrop-blur-[2px] p-4 text-center">
                   <div className="p-3.5 rounded-2xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl max-w-[260px] space-y-2.5">
                     <MousePointerClick className="w-5 h-5 text-[#00D2FF] mx-auto animate-pulse" />
-                    <h4 className="text-xs font-bold text-white">{selectedProject.name_fa}</h4>
-                    <p className="text-[10px] text-[#94A3B8]">برای تست نمای موبایل ضربه بزنید</p>
+                    <h4 className="text-xs font-bold text-white">
+                      {isFa ? selectedProject.name_fa : (selectedProject.name_en || selectedProject.name_fa)}
+                    </h4>
+                    <p className="text-[10px] text-[#94A3B8]">
+                      {isFa ? "برای تست نمای موبایل ضربه بزنید" : "Tap to test mobile view"}
+                    </p>
                     <button
                       onClick={() => setIsMobileInteractive(true)}
                       className="w-full py-2 px-3 rounded-xl bg-[#00D2FF] text-[#040B20] text-xs font-bold shadow-md cursor-pointer"
                     >
-                      لمس برای تعامل زنده
+                      {isFa ? "لمس برای تعامل زنده" : "Tap for Live Interaction"}
                     </button>
                   </div>
                 </div>
               ) : (
                 <div className="sm:hidden absolute top-12 right-2 left-2 z-30 flex items-center justify-between p-1.5 rounded-lg bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl">
-                  <span className="text-[10px] text-[#00D2FF] font-medium pr-1">حالت تعاملی فعال</span>
+                  <span className="text-[10px] text-[#00D2FF] font-medium pr-1">
+                    {isFa ? "حالت تعاملی فعال" : "Interactive mode active"}
+                  </span>
                   <button
                     onClick={() => setIsMobileInteractive(false)}
                     className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 text-[10px] font-bold flex items-center gap-1"
                   >
                     <X className="w-2.5 h-2.5" />
-                    <span>خروج</span>
+                    <span>{isFa ? "خروج" : "Exit"}</span>
                   </button>
                 </div>
               )}

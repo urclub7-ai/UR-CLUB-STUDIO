@@ -84,25 +84,33 @@ export default function TeamCredibilitySection() {
       {/* ─── Minimalist Stats Strip (Clean, integrated, not repetitive) ─── */}
       <div className="mt-8 sm:mt-10 py-6 sm:py-8 px-6 rounded-2xl bg-[#081432]/30 border border-white/[0.06] grid grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y lg:divide-y-0 lg:divide-x lg:divide-x-reverse divide-white/[0.06]">
         <div className="pt-3 lg:pt-0">
-          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">+۱۵</div>
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">
+            {isFa ? "+۱۵" : "+15"}
+          </div>
           <div className="text-xs text-[#94A3B8] mt-1">
             {isFa ? "پروژه‌های اجرا شده" : "Executed Projects"}
           </div>
         </div>
         <div className="pt-3 lg:pt-0">
-          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">&lt; ۱ ثانیه</div>
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">
+            {isFa ? "< ۱ ثانیه" : "< 1s"}
+          </div>
           <div className="text-xs text-[#94A3B8] mt-1">
             {isFa ? "میانگین زمان بارگذاری وب" : "Avg. Load Speed"}
           </div>
         </div>
         <div className="pt-3 lg:pt-0">
-          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">۱۰۰٪</div>
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">
+            {isFa ? "۱۰۰٪" : "100%"}
+          </div>
           <div className="text-xs text-[#94A3B8] mt-1">
             {isFa ? "کدنویسی تمیز و استاندارد" : "Clean Code & Quality"}
           </div>
         </div>
         <div className="pt-3 lg:pt-0">
-          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">۲۴ / ۷</div>
+          <div className="text-2xl sm:text-3xl font-extrabold text-[#00D2FF] font-mono">
+            {isFa ? "۲۴ / ۷" : "24/7"}
+          </div>
           <div className="text-xs text-[#94A3B8] mt-1">
             {isFa ? "پشتیبانی و نظارت فنی" : "Uptime & Support"}
           </div>

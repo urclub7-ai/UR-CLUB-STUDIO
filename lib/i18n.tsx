@@ -722,18 +722,31 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("fa");
 
   useEffect(() => {
-    // Strictly Dari (Persian) per user requirement
-    setLanguageState("fa");
-    localStorage.setItem("site_language", "fa");
-    document.documentElement.setAttribute("lang", "fa");
-    document.documentElement.setAttribute("dir", "rtl");
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get("lang") as Language | null;
+      const savedLang = localStorage.getItem("site_language") as Language | null;
+      const targetLang: Language = (urlLang === "en" || urlLang === "fa")
+        ? urlLang
+        : (savedLang === "en" || savedLang === "fa")
+          ? savedLang
+          : "fa";
+
+      setLanguageState(targetLang);
+      document.documentElement.setAttribute("lang", targetLang);
+      document.documentElement.setAttribute("dir", targetLang === "fa" ? "rtl" : "ltr");
+    } catch {
+      // fallback
+    }
   }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem("site_language", lang);
-    document.documentElement.setAttribute("lang", lang);
-    document.documentElement.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
+    try {
+      localStorage.setItem("site_language", lang);
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
+    } catch {}
   };
 
   const toggleLanguage = () => {

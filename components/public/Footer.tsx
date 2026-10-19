@@ -39,10 +39,10 @@ export default function Footer({
   const isFa = language === "fa";
 
   const footerLinks = [
-    { href: "/", label: "صفحه اصلی" },
-    { href: "/#projects-section", label: "پروژه‌های قبلی" },
-    { href: "/#about-section", label: "درباره ما" },
-    { href: "/#contact-section", label: "تماس با ما" },
+    { href: "/", label: isFa ? "صفحه اصلی" : "Home" },
+    { href: "/#projects-section", label: isFa ? "پروژه‌های قبلی" : "Showcase & Projects" },
+    { href: "/#about-section", label: isFa ? "درباره ما" : "About Us" },
+    { href: "/#contact-section", label: isFa ? "تماس با ما" : "Contact Us" },
   ];
 
   const displaySocials = socialLinks.length > 0 ? socialLinks : [
@@ -60,7 +60,7 @@ export default function Footer({
             <div className="relative w-8 h-8 shrink-0 flex items-center justify-center drop-shadow-[0_0_12px_rgba(0,210,255,0.7)]">
               <Image
                 src="/images/team_logo_transparent.png"
-                alt="لوگوی آر کلاب"
+                alt={isFa ? "لوگوی آر کلاب" : "UR CLUB Logo"}
                 width={32}
                 height={32}
                 className="w-full h-full object-contain"

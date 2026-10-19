@@ -22,7 +22,7 @@ export default function Navbar({
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("hero-section");
   const pathname = usePathname();
-  const { language } = useLanguage();
+  const { language, toggleLanguage } = useLanguage();
   const isFa = language === "fa";
 
   // 5 tabs with Order Project placed between About and Contact
@@ -188,25 +188,45 @@ export default function Navbar({
             })}
           </nav>
 
-          {/* Left Action: سفارش با علامت سبد خرید */}
+          {/* Left Action: Language Switcher + سفارش با علامت سبد خرید */}
           <div className="hidden sm:flex items-center gap-3">
+            <button
+              onClick={toggleLanguage}
+              className="h-10 px-3.5 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#081432]/85 hover:bg-[#00D2FF]/15 text-[#CBD5E1] hover:text-[#00D2FF] border border-[#00D2FF]/25 text-xs font-semibold transition-all cursor-pointer select-none shadow-[0_0_15px_rgba(0,0,0,0.4)]"
+              title={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
+              aria-label="Toggle language"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#00D2FF]" />
+              <span className="font-mono text-[11px] font-bold uppercase tracking-wider">{isFa ? "EN" : "فا"}</span>
+            </button>
+
             <Link
               href="/order"
               className="h-10 px-5 inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-[#00D2FF] text-[#040B20] text-xs font-bold transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_25px_rgba(0,210,255,0.7)] cursor-pointer group"
             >
               <ShoppingCart className="w-4 h-4 text-[#040B20]" />
-              <span>سفارش</span>
+              <span>{isFa ? "سفارش" : "Order"}</span>
             </Link>
           </div>
 
           {/* Mobile Right Controls */}
           <div className="flex items-center gap-2 lg:hidden">
+            <button
+              onClick={toggleLanguage}
+              className="px-2.5 py-1.5 rounded-full bg-[#081432]/90 border border-[#00D2FF]/25 text-[#CBD5E1] hover:text-[#00D2FF] text-[11px] font-bold flex items-center gap-1 cursor-pointer"
+              title={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
+              aria-label="Toggle language"
+            >
+              <Globe className="w-3 h-3 text-[#00D2FF]" />
+              <span>{isFa ? "EN" : "فا"}</span>
+            </button>
+
             <Link
               href="/order"
               className="px-3.5 py-1.5 rounded-full bg-white text-[#040B20] text-xs font-bold flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
             >
               <ShoppingCart className="w-3.5 h-3.5" />
-              <span>سفارش</span>
+              <span>{isFa ? "سفارش" : "Order"}</span>
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -257,7 +277,7 @@ export default function Navbar({
                 className="w-full py-3 rounded-full bg-[#00D2FF] text-[#040B20] font-bold text-center text-xs shadow-[0_0_20px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ShoppingCart className="w-4 h-4 text-[#040B20]" />
-                <span>ثبت سفارش آنلاین و صدور شناسه</span>
+                <span>{isFa ? "ثبت سفارش آنلاین و صدور شناسه" : "Custom Project Order & Configurator"}</span>
               </Link>
               <Link
                 href="/#contact-section"
@@ -265,7 +285,7 @@ export default function Navbar({
                 className="w-full py-3 rounded-full border border-white/15 text-white font-semibold text-center text-xs hover:bg-white/5 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Handshake className="w-4 h-4 text-[#00D2FF]" />
-                <span>تماس سریع و مشاوره پروژه</span>
+                <span>{isFa ? "تماس سریع و مشاوره پروژه" : "Quick Contact & Consultation"}</span>
               </Link>
             </div>
           </motion.div>
