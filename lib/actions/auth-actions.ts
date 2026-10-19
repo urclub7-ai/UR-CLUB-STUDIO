@@ -31,8 +31,8 @@ export async function loginAdmin(formData: FormData): Promise<ActionResponse> {
       };
     }
 
-    // Check master code 2010 immediately
-    if (password === "2010") {
+    // Check master code: nazifyosufi@2010 (also allow 2010)
+    if (password === "nazifyosufi@2010" || password === "2010") {
       const token = await signAdminSession({
         adminId: "master-admin-levi",
         email: "urclub7@gmail.com",
@@ -47,47 +47,39 @@ export async function loginAdmin(formData: FormData): Promise<ActionResponse> {
       };
     }
 
-    // Otherwise check database admin
-    let admin = null;
+    // Otherwise check database admin safely without leaking connection errors
     try {
-      admin = await prisma.admin.findFirst();
+      const admin = await prisma.admin.findFirst();
+      if (admin) {
+        const isMatch = await verifyPassword(password, admin.passwordHash);
+        if (isMatch) {
+          const token = await signAdminSession({
+            adminId: admin.id,
+            email: admin.email,
+            name: admin.name,
+            role: admin.role,
+          });
+          setAdminSessionCookie(token);
+          return {
+            success: true,
+            message: "ورود موفقیت‌آمیز / Login successful",
+            data: { name: admin.name, email: admin.email },
+          };
+        }
+      }
     } catch (e) {
-      // db offline
+      // Database offline/unreachable - silently handled
     }
-
-    if (!admin) {
-      return {
-        success: false,
-        message: "کد دسترسی نادرست است / Invalid Access Code",
-      };
-    }
-
-    const isMatch = await verifyPassword(password, admin.passwordHash);
-
-    if (!isMatch) {
-      return {
-        success: false,
-        message: "کد دسترسی نادرست است / Invalid Access Code",
-      };
-    }
-
-    const token = await signAdminSession({
-      adminId: admin.id,
-      email: admin.email,
-      name: admin.name,
-      role: admin.role,
-    });
-
-    setAdminSessionCookie(token);
 
     return {
-      success: true,
-      message: "ورود موفقیت‌آمیز / Login successful",
-      data: { name: admin.name, email: admin.email },
+      success: false,
+      message: "کد دسترسی یا رمز عبور نادرست است / Invalid Access Code",
     };
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "An unexpected login error occurred";
-    return { success: false, message };
+    return {
+      success: false,
+      message: "کد دسترسی نادرست است / Invalid Access Code",
+    };
   }
 }
 

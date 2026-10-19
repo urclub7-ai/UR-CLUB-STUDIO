@@ -123,11 +123,11 @@ export default function AdminLoginPage() {
                   type="password"
                   required
                   autoFocus
-                  maxLength={16}
+                  maxLength={64}
                   value={passcode}
                   onChange={(e) => setPasscode(e.target.value)}
-                  placeholder="••••"
-                  className="w-full text-center tracking-[0.35em] text-lg font-mono font-bold py-3.5 rounded-xl bg-[#08090B] border border-[rgba(255,255,255,0.12)] text-[#F8FAFC] focus:outline-none focus:border-[#00C3FF] focus:shadow-[0_0_15px_rgba(0, 195, 255,0.25)] placeholder:text-[#555860] placeholder:tracking-normal placeholder:font-normal transition-all duration-200"
+                  placeholder="رمز عبور یا Passcode..."
+                  className="w-full text-center text-sm sm:text-base font-mono font-bold py-3.5 px-4 rounded-xl bg-[#08090B] border border-[rgba(255,255,255,0.12)] text-[#F8FAFC] focus:outline-none focus:border-[#00C3FF] focus:shadow-[0_0_15px_rgba(0,195,255,0.25)] placeholder:text-[#555860] placeholder:font-normal transition-all duration-200"
                 />
               </div>
             </div>
