@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   X,
+  Sparkles,
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
@@ -91,21 +92,34 @@ export default function TeamMembersSection({
               <div className="space-y-4">
                 {/* Top Row: Avatar & Name */}
                 <div className="flex items-start gap-4">
-                  <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden border border-[#00D2FF]/30 group-hover:border-[#00D2FF] transition-all shrink-0 bg-[#040B20] shadow-[0_0_15px_rgba(0,210,255,0.15)]">
+                  {/* Clickable Avatar to open modal */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedMember(member)}
+                    title={isFa ? "مشاهده پروفایل و بیوگرافی کامل" : "View full profile and bio"}
+                    className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden border border-[#00D2FF]/30 hover:border-[#00D2FF] group/avatar transition-all shrink-0 bg-[#040B20] shadow-[0_0_15px_rgba(0,210,255,0.15)] hover:shadow-[0_0_25px_rgba(0,210,255,0.4)] cursor-pointer text-left rtl:text-right"
+                  >
                     <Image
                       src={avatarUrl}
                       alt={name}
                       fill
                       sizes="80px"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover transition-transform duration-300 group-hover/avatar:scale-110"
                     />
-                  </div>
+                    <div className="absolute inset-0 bg-[#00D2FF]/0 group-hover/avatar:bg-[#00D2FF]/15 transition-colors" />
+                  </button>
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#00D2FF] transition-colors truncate">
-                        {name}
-                      </h3>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedMember(member)}
+                        className="text-left rtl:text-right cursor-pointer"
+                      >
+                        <h3 className="text-base sm:text-lg font-bold text-white hover:text-[#00D2FF] transition-colors truncate">
+                          {name}
+                        </h3>
+                      </button>
                       {member.nickname && (
                         <span className="px-2 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-[10px] sm:text-[11px] font-mono font-extrabold tracking-wider border border-[#00D2FF]/30 select-none uppercase">
                           {member.nickname}
@@ -172,71 +186,94 @@ export default function TeamMembersSection({
             className="fixed inset-0 z-50 bg-[#040B20]/90 backdrop-blur-xl p-4 sm:p-6 flex items-center justify-center overflow-y-auto"
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 10 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-lg w-full rounded-2xl border border-[#00D2FF]/30 bg-[#081432] p-6 sm:p-8 shadow-2xl overflow-hidden my-8"
+              className="relative max-w-2xl w-full rounded-3xl border border-[#00D2FF]/35 bg-[#060D24] p-6 sm:p-9 shadow-[0_0_60px_rgba(0,210,255,0.2)] overflow-hidden my-8"
             >
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedMember(null)}
-                className="absolute top-4 sm:top-5 left-4 sm:left-5 rtl:left-4 rtl:right-auto ltr:right-4 ltr:left-auto p-2 rounded-full bg-[#040B20] text-[#94A3B8] hover:text-white hover:bg-[#00D2FF]/20 transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-6 left-4 sm:left-6 rtl:left-4 rtl:right-auto ltr:right-4 ltr:left-auto p-2.5 rounded-full bg-white/[0.06] text-[#94A3B8] hover:text-white hover:bg-[#00D2FF]/20 transition-all cursor-pointer border border-white/[0.08]"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="flex items-center gap-4 mb-5">
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#00D2FF] shrink-0 bg-[#040B20] shadow-[0_0_20px_rgba(0,210,255,0.3)]">
+              {/* Top Profile Header with Large High-Res Photo */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 pt-2">
+                {/* Large, Beautiful Portrait Image Frame */}
+                <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border-2 border-[#00D2FF] shrink-0 bg-[#040B20] shadow-[0_0_30px_rgba(0,210,255,0.35)] ring-4 ring-[#00D2FF]/15">
                   <Image
                     src={selectedMember.avatar || "/images/default_avatar.png"}
                     alt={selectedMember.name}
                     fill
-                    sizes="80px"
+                    sizes="200px"
                     className="object-cover"
+                    priority
                   />
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-lg sm:text-xl font-bold text-white">
+
+                {/* Name, Role & Status Info */}
+                <div className="flex-1 text-center sm:text-right rtl:sm:text-right ltr:sm:text-left min-w-0">
+                  <div className="flex items-center justify-center sm:justify-start gap-2.5 flex-wrap">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                       {isFa ? selectedMember.name_fa || selectedMember.name : selectedMember.name}
                     </h3>
                     {selectedMember.nickname && (
-                      <span className="px-2.5 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-xs font-mono font-extrabold tracking-wider border border-[#00D2FF]/30 uppercase">
+                      <span className="px-3 py-1 rounded-lg bg-[#00D2FF]/20 text-[#00D2FF] text-xs sm:text-sm font-mono font-extrabold tracking-wider border border-[#00D2FF]/40 uppercase shadow-[0_0_12px_rgba(0,210,255,0.25)]">
                         {selectedMember.nickname}
                       </span>
                     )}
                   </div>
-                  <div className="text-xs sm:text-sm text-[#00D2FF] font-medium mt-1">
+
+                  <div className="text-sm sm:text-base text-[#00D2FF] font-semibold mt-2 leading-relaxed">
                     {isFa ? selectedMember.role_fa || selectedMember.role : selectedMember.role}
+                  </div>
+
+                  <div className="mt-3.5 flex items-center justify-center sm:justify-start gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-xs font-mono text-emerald-400 font-medium">
+                      {isFa ? "عضو رسمی هسته مهندسی UR CLUB" : "Official UR CLUB Core Specialist"}
+                    </span>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-4 pt-4 border-t border-white/[0.08]">
+              {/* Gradient Divider */}
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-[#00D2FF]/30 to-transparent my-6" />
+
+              {/* Bio & Skills Body */}
+              <div className="space-y-5">
                 <div>
-                  <h4 className="text-xs font-bold text-[#00D2FF] uppercase tracking-wider mb-2">
-                    {isFa ? "شرح کامل تجربیات و فعالیت‌ها" : "Detailed Background & Responsibilities"}
+                  <h4 className="text-xs font-bold text-[#00D2FF] uppercase tracking-wider mb-2.5 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00D2FF]" />
+                    <span>{isFa ? "شرح کامل مسئولیت‌ها و تخصص" : "Overview & Professional Scope"}</span>
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed whitespace-pre-line">
-                    {isFa
-                      ? selectedMember.bio_fa || selectedMember.bio
-                      : selectedMember.bio || selectedMember.bio_fa}
-                  </p>
+                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-4 sm:p-5">
+                    <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed sm:leading-loose whitespace-pre-line font-normal">
+                      {isFa
+                        ? selectedMember.bio_fa || selectedMember.bio
+                        : selectedMember.bio || selectedMember.bio_fa}
+                    </p>
+                  </div>
                 </div>
 
                 {((isFa ? selectedMember.skills_fa || selectedMember.skills : selectedMember.skills) || "").trim() && (
                   <div>
-                    <h4 className="text-xs font-bold text-[#00D2FF] uppercase tracking-wider mb-2">
-                      {isFa ? "حوزه‌های تخصصی و مهارت‌ها" : "Key Disciplines & Core Skills"}
+                    <h4 className="text-xs font-bold text-[#00D2FF] uppercase tracking-wider mb-2.5 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00D2FF]" />
+                      <span>{isFa ? "مهارت‌های فنی و حوزه‌های تخصصی" : "Core Competencies & Stack"}</span>
                     </h4>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                       {(isFa ? selectedMember.skills_fa || selectedMember.skills : selectedMember.skills)!
                         .split(",")
                         .map((s, sIdx) => (
                           <span
                             key={sIdx}
-                            className="px-2.5 py-1 rounded-lg bg-white/[0.05] border border-white/[0.1] text-xs text-[#CBD5E1]"
+                            className="px-3 py-1.5 rounded-lg bg-[#00D2FF]/10 border border-[#00D2FF]/25 text-xs font-medium text-cyan-200 shadow-[0_0_10px_rgba(0,210,255,0.08)]"
                           >
                             {s.trim()}
                           </span>
@@ -245,13 +282,21 @@ export default function TeamMembersSection({
                   </div>
                 )}
 
-                <div className="pt-4 flex justify-end">
+                {/* Action Footer */}
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/[0.08]">
+                  <button
+                    onClick={() => setSelectedMember(null)}
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 font-medium text-xs transition-colors cursor-pointer"
+                  >
+                    {isFa ? "بستن کادر" : "Close"}
+                  </button>
+
                   <Link
                     href="/#contact-section"
                     onClick={() => setSelectedMember(null)}
-                    className="px-5 py-2.5 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] font-bold text-xs flex items-center gap-1.5 transition-all shadow-[0_0_15px_rgba(0,210,255,0.25)] cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(0,210,255,0.3)] cursor-pointer"
                   >
-                    <span>{isFa ? "تماس و ارتباط با تیم" : "Contact the Team"}</span>
+                    <span>{isFa ? "ارتباط و ثبت درخواست همکاری" : "Connect With Specialist"}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
