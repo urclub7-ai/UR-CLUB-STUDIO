@@ -4,9 +4,14 @@ import ExperienceClient from "./ExperienceClient";
 export const dynamic = "force-dynamic";
 
 export default async function AdminExperiencePage() {
-  const experiences = await prisma.experience.findMany({
-    orderBy: { displayOrder: "asc" },
-  });
+  let experiences: any[] = [];
+  try {
+    experiences = await prisma.experience.findMany({
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch (e) {
+    console.warn("Experience DB offline fallback:", e);
+  }
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -22,4 +27,3 @@ export default async function AdminExperiencePage() {
     </div>
   );
 }
-

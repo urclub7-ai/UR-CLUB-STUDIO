@@ -4,9 +4,14 @@ import MessagesClient from "./MessagesClient";
 export const dynamic = "force-dynamic";
 
 export default async function AdminMessagesPage() {
-  const messages = await prisma.contactMessage.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  let messages: any[] = [];
+  try {
+    messages = await prisma.contactMessage.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (e) {
+    console.warn("Messages DB offline fallback:", e);
+  }
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -22,4 +27,3 @@ export default async function AdminMessagesPage() {
     </div>
   );
 }
-

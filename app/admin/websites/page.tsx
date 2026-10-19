@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import { getShowcaseWebsites } from "@/lib/actions/showcase-website-actions";
 import WebsitesClient from "./WebsitesClient";
 
 export const dynamic = "force-dynamic";
@@ -8,9 +8,6 @@ export const metadata = {
 };
 
 export default async function AdminWebsitesPage() {
-  const websites = await prisma.showcaseWebsite.findMany({
-    orderBy: { displayOrder: "asc" },
-  });
-
+  const websites = await getShowcaseWebsites();
   return <WebsitesClient initialWebsites={websites} />;
 }

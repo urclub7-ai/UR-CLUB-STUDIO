@@ -8,12 +8,17 @@ import ProjectsListClient from "./ProjectsListClient";
 export const dynamic = "force-dynamic";
 
 export default async function AdminProjectsPage() {
-  const projects = await prisma.project.findMany({
-    orderBy: { displayOrder: "asc" },
-    include: {
-      images: true,
-    },
-  });
+  let projects: any[] = [];
+  try {
+    projects = await prisma.project.findMany({
+      orderBy: { displayOrder: "asc" },
+      include: {
+        images: true,
+      },
+    });
+  } catch (e) {
+    console.warn("Projects DB offline fallback:", e);
+  }
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -41,4 +46,3 @@ export default async function AdminProjectsPage() {
     </div>
   );
 }
-

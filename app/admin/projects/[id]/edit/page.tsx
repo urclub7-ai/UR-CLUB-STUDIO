@@ -9,14 +9,19 @@ interface PageProps {
 }
 
 export default async function EditProjectPage({ params }: PageProps) {
-  const project = await prisma.project.findUnique({
-    where: { id: params.id },
-    include: {
-      images: {
-        orderBy: { displayOrder: "asc" },
+  let project: any = null;
+  try {
+    project = await prisma.project.findUnique({
+      where: { id: params.id },
+      include: {
+        images: {
+          orderBy: { displayOrder: "asc" },
+        },
       },
-    },
-  });
+    });
+  } catch (e) {
+    console.warn("Project edit DB error:", e);
+  }
 
   if (!project) {
     notFound();
@@ -24,4 +29,3 @@ export default async function EditProjectPage({ params }: PageProps) {
 
   return <ProjectForm initialData={project} isEditing={true} />;
 }
-

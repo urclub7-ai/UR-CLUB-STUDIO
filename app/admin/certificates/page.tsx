@@ -4,9 +4,14 @@ import CertificatesClient from "./CertificatesClient";
 export const dynamic = "force-dynamic";
 
 export default async function AdminCertificatesPage() {
-  const certificates = await prisma.certificate.findMany({
-    orderBy: { displayOrder: "asc" },
-  });
+  let certificates: any[] = [];
+  try {
+    certificates = await prisma.certificate.findMany({
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch (e) {
+    console.warn("Certificates DB offline fallback:", e);
+  }
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -24,4 +29,3 @@ export default async function AdminCertificatesPage() {
     </div>
   );
 }
-

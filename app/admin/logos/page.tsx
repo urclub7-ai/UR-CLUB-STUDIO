@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import { getBrandAssets } from "@/lib/actions/brand-asset-actions";
 import LogosClient from "./LogosClient";
 
 export const dynamic = "force-dynamic";
@@ -8,9 +8,6 @@ export const metadata = {
 };
 
 export default async function AdminLogosPage() {
-  const assets = await prisma.brandAsset.findMany({
-    orderBy: { displayOrder: "asc" },
-  });
-
+  const assets = await getBrandAssets();
   return <LogosClient initialAssets={assets} />;
 }
