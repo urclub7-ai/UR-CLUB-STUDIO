@@ -188,20 +188,20 @@ export default function Navbar({
             })}
           </nav>
 
-          {/* Action Buttons matching User's exact images */}
+          {/* Action Buttons: Language Switcher + سفارش (Both in matching white pill style) */}
           <div className="hidden sm:flex items-center gap-3">
-            {/* Language Switcher matching Image 1: [ English 🌐 ] */}
+            {/* Language Switcher matching Order Button: White pill, text + Globe icon */}
             <button
               onClick={toggleLanguage}
-              className="h-10 px-4 inline-flex items-center justify-center gap-2 rounded-full bg-[#081432]/90 hover:bg-[#00D2FF]/15 text-white border border-[#00D2FF]/35 hover:border-[#00D2FF]/75 text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer select-none shadow-[0_0_15px_rgba(0,210,255,0.15)] hover:shadow-[0_0_20px_rgba(0,210,255,0.35)]"
+              className="h-10 px-4 inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-[#00D2FF] text-[#040B20] text-xs sm:text-sm font-bold transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_25px_rgba(0,210,255,0.7)] cursor-pointer group select-none"
               title={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
               aria-label="Toggle language"
             >
-              <span className="text-white font-semibold text-xs sm:text-sm">{isFa ? "فارسی" : "English"}</span>
-              <Globe className="w-4 h-4 text-[#00D2FF] shrink-0" />
+              <span>{isFa ? "English" : "فارسی"}</span>
+              <Globe className="w-4 h-4 text-[#040B20] shrink-0" />
             </button>
 
-            {/* Order Button matching Image 2: [ سفارش 🛒 ] / [ Order 🛒 ] */}
+            {/* Order Button: White pill, text + Cart icon */}
             <Link
               href="/order"
               className="h-10 px-5 inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-[#00D2FF] text-[#040B20] text-xs sm:text-sm font-bold transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_25px_rgba(0,210,255,0.7)] cursor-pointer group"
@@ -215,12 +215,12 @@ export default function Navbar({
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={toggleLanguage}
-              className="h-8 px-3 rounded-full bg-[#081432]/90 border border-[#00D2FF]/35 text-white text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer shadow-[0_0_10px_rgba(0,210,255,0.15)]"
+              className="h-8 px-3 rounded-full bg-white text-[#040B20] text-[11px] font-bold flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.2)]"
               title={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
               aria-label="Toggle language"
             >
-              <span>{isFa ? "فارسی" : "English"}</span>
-              <Globe className="w-3.5 h-3.5 text-[#00D2FF] shrink-0" />
+              <span>{isFa ? "English" : "فارسی"}</span>
+              <Globe className="w-3.5 h-3.5 text-[#040B20] shrink-0" />
             </button>
 
             <Link
@@ -276,14 +276,14 @@ export default function Navbar({
                   toggleLanguage();
                   setIsOpen(false);
                 }}
-                className="mt-2 w-full py-2.5 px-4 rounded-xl bg-[#081432] hover:bg-[#00D2FF]/10 border border-[#00D2FF]/25 text-white text-xs font-semibold flex items-center justify-between cursor-pointer"
+                className="mt-2 w-full py-2.5 px-4 rounded-xl bg-white hover:bg-[#00D2FF] text-[#040B20] text-xs font-bold flex items-center justify-between cursor-pointer transition-colors shadow-sm"
               >
                 <span className="flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-[#00D2FF]" />
+                  <Globe className="w-4 h-4 text-[#040B20]" />
                   <span>{isFa ? "Switch to English" : "تغییر به زبان فارسی"}</span>
                 </span>
-                <span className="text-xs font-bold text-[#00D2FF] font-mono">
-                  {isFa ? "EN" : "فا"}
+                <span className="text-xs font-bold">
+                  {isFa ? "English" : "فارسی"}
                 </span>
               </button>
             </div>
