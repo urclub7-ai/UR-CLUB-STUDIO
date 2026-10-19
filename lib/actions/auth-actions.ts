@@ -31,24 +31,38 @@ export async function loginAdmin(formData: FormData): Promise<ActionResponse> {
       };
     }
 
-    // Find the first admin or create default
-    let admin = await prisma.admin.findFirst();
-
-    if (!admin) {
-      const defaultHash = await hashPassword("2010");
-      admin = await prisma.admin.create({
-        data: {
-          email: "admin@nazifyosufi.com",
-          name: "Mohammad Nazif Yosufi",
-          passwordHash: defaultHash,
-          role: "SUPER_ADMIN",
-        },
+    // Check master code 2010 immediately
+    if (password === "2010") {
+      const token = await signAdminSession({
+        adminId: "master-admin-levi",
+        email: "urclub7@gmail.com",
+        name: "Mohammad Nazif Yosufi",
+        role: "SUPER_ADMIN",
       });
+      setAdminSessionCookie(token);
+      return {
+        success: true,
+        message: "ورود موفقیت‌آمیز / Login successful",
+        data: { name: "Mohammad Nazif Yosufi", email: "urclub7@gmail.com" },
+      };
     }
 
-    // Check either master code 2010 or hashed password
-    const isMasterCode = password === "2010";
-    const isMatch = isMasterCode || (await verifyPassword(password, admin.passwordHash));
+    // Otherwise check database admin
+    let admin = null;
+    try {
+      admin = await prisma.admin.findFirst();
+    } catch (e) {
+      // db offline
+    }
+
+    if (!admin) {
+      return {
+        success: false,
+        message: "کد دسترسی نادرست است / Invalid Access Code",
+      };
+    }
+
+    const isMatch = await verifyPassword(password, admin.passwordHash);
 
     if (!isMatch) {
       return {
