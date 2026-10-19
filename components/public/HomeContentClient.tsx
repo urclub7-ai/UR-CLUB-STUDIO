@@ -9,6 +9,7 @@ import StatsHorizonSection from "@/components/public/StatsHorizonSection";
 import LiveInteractiveFrame from "@/components/public/LiveInteractiveFrame";
 import MultiAssetShowcase from "@/components/public/MultiAssetShowcase";
 import TeamCredibilitySection from "@/components/public/TeamCredibilitySection";
+import TeamMembersSection from "@/components/public/TeamMembersSection";
 import InvestorSection from "@/components/public/InvestorSection";
 import ModernContactSection from "@/components/public/ModernContactSection";
 import MotionSection from "@/components/public/MotionSection";
@@ -23,6 +24,7 @@ interface HomeContentClientProps {
   services: any[];
   showcaseWebsites?: any[];
   brandAssets?: any[];
+  teamMembers?: any[];
 }
 
 export default function HomeContentClient({
@@ -30,6 +32,7 @@ export default function HomeContentClient({
   projects,
   showcaseWebsites,
   brandAssets,
+  teamMembers,
 }: HomeContentClientProps) {
   const { language } = useLanguage();
   const isFa = language === "fa";
@@ -64,10 +67,15 @@ export default function HomeContentClient({
         <MultiAssetShowcase initialAssets={brandAssets} />
       </MotionSection>
 
-      {/* ─── 7. ABOUT US & TEAM CREDIBILITY (درباره ما و اعتبار تیم) ─── */}
+      {/* ─── 7. ABOUT US, TEAM CREDIBILITY & MEMBERS (درباره ما، اعتبار تیم و اعضای استودیو) ─── */}
       <div id="about-section" className="space-y-14 sm:space-y-28 scroll-mt-28">
         <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
           <TeamCredibilitySection />
+        </MotionSection>
+
+        {/* ─── 7.5. CORE TEAM MEMBERS (اعضای تیم UR CLUB) ─── */}
+        <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+          <TeamMembersSection initialMembers={teamMembers} />
         </MotionSection>
 
         {/* ─── 8. INVESTOR & CO-VENTURE OPPORTUNITIES (فرصت‌های سرمایه‌گذاری) ─── */}

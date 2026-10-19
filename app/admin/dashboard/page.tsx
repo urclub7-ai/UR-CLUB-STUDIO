@@ -8,12 +8,14 @@ import {
   ArrowUpRight,
   Plus,
   Monitor,
+  Users,
 } from "lucide-react";
 import prisma from "@/lib/prisma";
 import { getAdminSession } from "@/lib/auth";
 import StatusBadge from "@/components/admin/StatusBadge";
 import { formatDate } from "@/lib/utils";
 import MotionSection from "@/components/public/MotionSection";
+import { getTeamMembers } from "@/lib/actions/team-actions";
 
 export const dynamic = "force-dynamic";
 
@@ -30,6 +32,7 @@ export default async function AdminDashboardPage() {
     totalWebsites,
     unreadMessagesCount,
     recentMessages,
+    teamMembersList,
   ] = await Promise.all([
     prisma.project.count(),
     prisma.project.count({ where: { published: true } }),
@@ -40,9 +43,18 @@ export default async function AdminDashboardPage() {
       orderBy: { createdAt: "desc" },
       take: 5,
     }),
+    getTeamMembers(),
   ]);
 
   const statsCards = [
+    {
+      title: "Team Members",
+      persianTitle: "اعضای تیم UR CLUB",
+      count: teamMembersList.length,
+      label: "اعضای فعال و ثبت‌شده",
+      href: "/admin/team",
+      icon: Users,
+    },
     {
       title: "Portfolio Projects",
       persianTitle: "پروژه‌ها و نمونه‌کارها",

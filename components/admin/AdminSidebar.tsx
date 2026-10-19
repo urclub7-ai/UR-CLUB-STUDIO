@@ -17,6 +17,7 @@ import {
   ExternalLink,
   Palette,
   Globe,
+  Users,
 } from "lucide-react";
 
 interface AdminSidebarProps {
@@ -25,6 +26,7 @@ interface AdminSidebarProps {
 
 const navItems = [
   { href: "/admin/dashboard", label: "داشبورد (Dashboard)", icon: LayoutDashboard },
+  { href: "/admin/team", label: "اعضای تیم (Team Members)", icon: Users },
   { href: "/admin/projects", label: "مدیریت پروژه‌ها (Projects)", icon: FolderKanban },
   { href: "/admin/logos", label: "لوگوها و پوسترها (Logos & Posters)", icon: Palette },
   { href: "/admin/websites", label: "وب‌سایت‌های آنلاین (Live Frame)", icon: Globe },

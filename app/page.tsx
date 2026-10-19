@@ -5,7 +5,9 @@ import {
   defaultAboutContent,
   defaultShowcaseWebsites,
   defaultBrandAssets,
+  defaultTeamMembers,
 } from "@/lib/fallback-data";
+import { getTeamMembers } from "@/lib/actions/team-actions";
 
 export const revalidate = 60;
 
@@ -18,6 +20,7 @@ export default async function HomePage() {
   let certificates: any[] = [];
   let showcaseWebsites = defaultShowcaseWebsites;
   let brandAssets = defaultBrandAssets;
+  let teamMembers = defaultTeamMembers;
 
   try {
     const [
@@ -29,6 +32,7 @@ export default async function HomePage() {
       dbCertificates,
       dbShowcaseWebsites,
       dbBrandAssets,
+      dbTeamMembers,
     ] = await Promise.all([
       prisma.homeContent.findUnique({ where: { id: "default-home" } }),
       prisma.aboutContent.findUnique({ where: { id: "default-about" } }),
@@ -57,6 +61,7 @@ export default async function HomePage() {
         where: { active: true },
         orderBy: { displayOrder: "asc" },
       }),
+      getTeamMembers(),
     ]);
 
     if (dbHome) homeContent = dbHome;
@@ -67,6 +72,7 @@ export default async function HomePage() {
     if (dbCertificates && dbCertificates.length > 0) certificates = dbCertificates;
     if (dbShowcaseWebsites && dbShowcaseWebsites.length > 0) showcaseWebsites = dbShowcaseWebsites;
     if (dbBrandAssets && dbBrandAssets.length > 0) brandAssets = dbBrandAssets;
+    if (dbTeamMembers && dbTeamMembers.length > 0) teamMembers = dbTeamMembers;
   } catch (error) {
     console.warn("HomePage fallback active (database connecting/offline):", error);
   }
@@ -81,6 +87,7 @@ export default async function HomePage() {
       services={services}
       showcaseWebsites={showcaseWebsites}
       brandAssets={brandAssets}
+      teamMembers={teamMembers}
     />
   );
 }

@@ -288,3 +288,28 @@ model BrandAsset {
   @@index([displayOrder])
 }
 
+model TeamMember {
+  id           String   @id @default(uuid())
+  name         String
+  name_fa      String
+  nickname     String?
+  role         String
+  role_fa      String
+  bio          String?
+  bio_fa       String?
+  location     String   @default("Germany")
+  location_fa  String   @default("آلمان")
+  age          String?
+  avatar       String?
+  skills       String?
+  skills_fa    String?
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([active])
+  @@index([displayOrder])
+}
+
+
