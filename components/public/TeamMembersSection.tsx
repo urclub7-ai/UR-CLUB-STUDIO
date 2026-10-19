@@ -63,8 +63,8 @@ export default function TeamMembersSection({
         </p>
       </div>
 
-      {/* ─── Responsive Team Grid (Entire Card is Clickable) ─── */}
-      <div className={`grid grid-cols-1 sm:grid-cols-2 ${members.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-5 sm:gap-6 items-stretch`}>
+      {/* ─── Responsive Team Layout (Entire Card is Clickable) ─── */}
+      <div className="flex flex-wrap justify-center gap-5 sm:gap-6 items-stretch">
         {members.map((member, idx) => {
           const name = isFa ? member.name_fa || member.name : member.name;
           const role = isFa ? member.role_fa || member.role : member.role;
@@ -90,7 +90,7 @@ export default function TeamMembersSection({
                 setIsPhotoZoomed(false);
               }}
               title={isFa ? "برای مشاهده بیوگرافی و پروفایل کلیک کنید" : "Click to view full bio and profile"}
-              className="group relative rounded-2xl bg-[#081432]/60 hover:bg-[#081432]/95 border border-white/[0.08] hover:border-[#00D2FF]/60 p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_0_35px_rgba(0,210,255,0.25)] cursor-pointer select-none"
+              className={`group relative rounded-2xl bg-[#081432]/60 hover:bg-[#081432]/95 border border-white/[0.08] hover:border-[#00D2FF]/60 p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_0_35px_rgba(0,210,255,0.25)] cursor-pointer select-none w-full sm:w-[calc(50%-12px)] ${members.length === 4 ? "lg:w-[calc(25%-18px)]" : "lg:w-[calc(33.333%-16px)]"}`}
             >
               {/* Subtle top cyan highlight line on hover */}
               <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#00D2FF]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
