@@ -284,15 +284,27 @@ ${categoryDetails}
   };
 
   const getWhatsAppShareUrl = () => {
-    const text = `سلام تیم UrClub، من سفارش جدیدی با شناسه اختصاصی *${projectCode}* در سایت ثبت کردم.\nنوع پروژه: ${
+    const categoryTitle =
       category === "website"
         ? "وب‌سایت"
         : category === "mobile"
         ? "اپلیکیشن موبایل"
         : category === "desktop"
         ? "نرم‌افزار کامپیوتر"
-        : "طراحی گرافیک و پوستر"
-    }\nلطفاً پرونده من را بررسی نمایید.`;
+        : "طراحی گرافیک و پوستر";
+
+    const brand = (brandName || mobileAppName || desktopSoftwareName)
+      ? `\nبرند/محصول: ${brandName || mobileAppName || desktopSoftwareName}`
+      : "";
+
+    const techInfo =
+      category === "website"
+        ? `\nمشخصات: ${websiteType} (${pageCount})`
+        : category === "mobile"
+        ? `\nپلتفرم: ${targetPlatform}`
+        : "";
+
+    const text = `سلام تیم UrClub، من سفارش جدیدی با شناسه اختصاصی *${projectCode}* در سایت ثبت کردم.\nنوع پروژه: ${categoryTitle}${brand}${techInfo}\nلطفاً پرونده من را بررسی نمایید.`;
     return `https://wa.me/491624212685?text=${encodeURIComponent(text)}`;
   };
 
