@@ -35,7 +35,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteName = settings?.siteName || "UR CLUB";
   const title = settings?.title || "توسعه پلتفرم‌های دیجیتال با فناوری‌های آماده آینده";
   const description = settings?.metaDescription || "UR CLUB — استودیو تخصصی طراحی سایت، توسعه نرم‌افزار، کارت ویزیت آنلاین، طراحی لوگو و برندینگ در افغانستان و آلمان.";
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://urclubstudio.com";
+  const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.urclubstudio.com";
+  const baseUrl = rawBaseUrl.replace("https://urclubstudio.com", "https://www.urclubstudio.com");
   const keywordList = settings?.keywords
     ? settings.keywords.split(",").map((k: string) => k.trim()).filter(Boolean)
     : [];
