@@ -54,16 +54,11 @@ export default function TeamMembersSection({
 
   return (
     <div id="team-members" className="relative w-full scroll-mt-28">
-      {/* ─── Clean Header matching HexaCore aesthetic ─── */}
+      {/* ─── Clean Header matching other site sections ─── */}
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00D2FF]/10 border border-[#00D2FF]/25 text-[11px] font-mono font-bold text-[#00D2FF] uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>{isFa ? "اعضای تیم UR CLUB" : "UR CLUB Core Team"}</span>
-        </span>
-
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
           {isFa
-            ? "متخصصان و مهندسان سازنده استودیو"
+            ? "اعضای تیم و مهندسان سازنده استودیو"
             : "The Specialists Behind UR CLUB"}
         </h2>
         <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] leading-relaxed">
@@ -73,7 +68,7 @@ export default function TeamMembersSection({
         </p>
       </div>
 
-      {/* ─── 3-Column Team Grid ─── */}
+      {/* ─── 3-Column Team Grid (Clean & Minimalist) ─── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
         {members.map((member, idx) => {
           const name = isFa ? member.name_fa || member.name : member.name;
@@ -106,7 +101,7 @@ export default function TeamMembersSection({
               <div className="space-y-4">
                 {/* Top Row: Avatar & Name */}
                 <div className="flex items-start gap-4">
-                  <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden border-2 border-[#00D2FF]/30 group-hover:border-[#00D2FF] transition-all shrink-0 bg-[#040B20] shadow-[0_0_15px_rgba(0,210,255,0.15)]">
+                  <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden border border-[#00D2FF]/30 group-hover:border-[#00D2FF] transition-all shrink-0 bg-[#040B20] shadow-[0_0_15px_rgba(0,210,255,0.15)]">
                     <Image
                       src={avatarUrl}
                       alt={name}
@@ -132,15 +127,15 @@ export default function TeamMembersSection({
                       {role}
                     </div>
 
-                    <div className="flex items-center gap-3 text-[11px] text-[#94A3B8] mt-2 flex-wrap">
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-[#00D2FF]" />
-                        <span>{location}</span>
-                      </span>
+                    <div className="flex items-center gap-2 text-[11.5px] text-[#94A3B8] mt-1.5 flex-wrap">
+                      <span>{location}</span>
                       {member.age && (
-                        <span className="font-mono">
-                          {isFa ? `${member.age} ساله` : `${member.age} yrs`}
-                        </span>
+                        <>
+                          <span className="text-white/20">•</span>
+                          <span className="font-mono">
+                            {isFa ? `${member.age} ساله` : `${member.age} yrs`}
+                          </span>
+                        </>
                       )}
                     </div>
                   </div>
@@ -148,14 +143,14 @@ export default function TeamMembersSection({
 
                 {/* Bio paragraph with clean truncation */}
                 {bio && (
-                  <p className="text-xs sm:text-[12.5px] text-[#94A3B8] leading-relaxed line-clamp-4">
+                  <p className="text-xs sm:text-[12.5px] text-[#94A3B8] leading-relaxed line-clamp-3">
                     {bio}
                   </p>
                 )}
 
                 {/* Skills tags */}
                 {skillsList.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 pt-2">
+                  <div className="flex flex-wrap gap-1.5 pt-1">
                     {skillsList.map((skill, sIdx) => (
                       <span
                         key={sIdx}
@@ -168,37 +163,20 @@ export default function TeamMembersSection({
                 )}
               </div>
 
-              {/* Bottom Row Action */}
+              {/* Bottom Row Action - Simple & Clean */}
               <div className="pt-4 mt-5 border-t border-white/[0.06] flex items-center justify-between">
                 <button
                   type="button"
                   onClick={() => setSelectedMember(member)}
-                  className="text-xs font-semibold text-[#00D2FF] hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
+                  className="text-xs font-semibold text-[#00D2FF] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <span>{isFa ? "مشاهده بیوگرافی کامل" : "Full Profile & Bio"}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
 
-                {member.id === "member-2" ? (
-                  <Link
-                    href="/#contact-section"
-                    className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs flex items-center gap-1 transition-colors cursor-pointer"
-                    title={isFa ? "ارتباط مستقیم با پشتیبانی" : "Direct Contact Channel"}
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    <span className="text-[11px]">{isFa ? "پشتیبانی" : "Support"}</span>
-                  </Link>
-                ) : member.id === "member-3" ? (
-                  <span className="inline-flex items-center gap-1 text-[11px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/25">
-                    <ShieldCheck className="w-3 h-3" />
-                    <span>{isFa ? "ضمانت در آلمان" : "Germany Verified"}</span>
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1 text-[11px] text-[#00D2FF] bg-[#00D2FF]/10 px-2 py-0.5 rounded border border-[#00D2FF]/25">
-                    <Code2 className="w-3 h-3" />
-                    <span>{isFa ? "رهبر تیم" : "Team Lead"}</span>
-                  </span>
-                )}
+                <span className="text-[10px] font-mono tracking-widest text-[#94A3B8]/40 uppercase select-none">
+                  UR CLUB
+                </span>
               </div>
             </motion.div>
           );
