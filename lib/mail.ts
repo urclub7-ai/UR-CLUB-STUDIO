@@ -25,8 +25,8 @@ export async function sendEmailNotification(options: {
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Origin": "https://urclubstudio.com",
-            "Referer": "https://urclubstudio.com/",
+            "Origin": process.env.NEXT_PUBLIC_SITE_URL || "https://urclub.vercel.app",
+            "Referer": (process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/` : "https://urclub.vercel.app/"),
           },
           body: JSON.stringify({
             _subject: options.subject,

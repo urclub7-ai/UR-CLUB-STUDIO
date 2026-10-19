@@ -208,6 +208,37 @@ ${categoryDetails}
 
     const brief = generateBrief();
 
+    // Client-side direct cloud dispatch to ensure guaranteed email delivery
+    try {
+      fetch("https://formsubmit.co/ajax/urclub7@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `[سفارش جدید UrClub: ${projectCode}] ${brandName || "پروژه وبسایت"}`,
+          "شناسه اختصاصی پروژه": projectCode,
+          "نوع پروژه":
+            category === "website"
+              ? "وب‌سایت"
+              : category === "mobile"
+              ? "اپلیکیشن موبایل"
+              : category === "desktop"
+              ? "نرم‌افزار دسکتاپ"
+              : "طراحی گرافیک و پوستر",
+          "نام کارفرما": clientName || "ثبت مستقیم در سایت",
+          "شماره تماس / واتساپ": clientPhone || "ثبت نشده",
+          "ایمیل کارفرما": clientEmail || "ثبت نشده",
+          "نام برند / محصول": brandName || mobileAppName || desktopSoftwareName || `Project-${projectCode}`,
+          "مشخصات کامل بریف": brief,
+          _replyto: clientEmail || "urclub7@gmail.com",
+          _captcha: "false",
+          _template: "table",
+        }),
+      }).catch(() => {});
+    } catch {}
+
     try {
       const res = await submitProjectInquiry({
         projectCode,
