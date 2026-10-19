@@ -723,14 +723,21 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("site_language");
+      }
+
       const params = new URLSearchParams(window.location.search);
       const urlLang = params.get("lang") as Language | null;
-      const savedLang = localStorage.getItem("site_language") as Language | null;
+      const sessionLang = typeof window !== "undefined"
+        ? (sessionStorage.getItem("site_language") as Language | null)
+        : null;
+
       const targetLang: Language = (urlLang === "en" || urlLang === "fa")
         ? urlLang
-        : (savedLang === "en" || savedLang === "fa")
-          ? savedLang
-          : "en";
+        : (sessionLang === "en" || sessionLang === "fa")
+          ? sessionLang
+          : "en"; // ALWAYS English by default!
 
       setLanguageState(targetLang);
       document.documentElement.setAttribute("lang", targetLang);
@@ -743,7 +750,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     try {
-      localStorage.setItem("site_language", lang);
+      sessionStorage.setItem("site_language", lang);
       document.documentElement.setAttribute("lang", lang);
       document.documentElement.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
     } catch {}

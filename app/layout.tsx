@@ -131,10 +131,11 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
+                localStorage.removeItem("site_language");
                 var params = new URLSearchParams(window.location.search);
                 var urlLang = params.get("lang");
-                var savedLang = localStorage.getItem("site_language");
-                var lang = (urlLang === "en" || urlLang === "fa") ? urlLang : (savedLang === "en" || savedLang === "fa") ? savedLang : "en";
+                var sessionLang = sessionStorage.getItem("site_language");
+                var lang = (urlLang === "fa" || urlLang === "en") ? urlLang : (sessionLang === "fa" || sessionLang === "en") ? sessionLang : "en";
                 document.documentElement.setAttribute("lang", lang);
                 document.documentElement.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
               } catch (e) {}
