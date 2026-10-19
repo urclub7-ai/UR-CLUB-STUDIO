@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   X,
-  Sparkles,
+  ZoomIn,
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
@@ -41,6 +41,7 @@ export default function TeamMembersSection({
   const isFa = language === "fa";
 
   const [selectedMember, setSelectedMember] = useState<TeamMemberItem | null>(null);
+  const [isPhotoZoomed, setIsPhotoZoomed] = useState(false);
 
   const members = (initialMembers.length > 0 ? initialMembers : []).filter(
     (m) => m.active !== false
@@ -62,7 +63,7 @@ export default function TeamMembersSection({
         </p>
       </div>
 
-      {/* ─── 3-Column Team Grid (Clean & Minimalist) ─── */}
+      {/* ─── 3-Column Team Grid (Entire Card is Clickable) ─── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
         {members.map((member, idx) => {
           const name = isFa ? member.name_fa || member.name : member.name;
@@ -84,7 +85,12 @@ export default function TeamMembersSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.3 }}
-              className="group relative rounded-2xl bg-[#081432]/60 hover:bg-[#081432]/95 border border-white/[0.08] hover:border-[#00D2FF]/40 p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_0_35px_rgba(0,210,255,0.18)]"
+              onClick={() => {
+                setSelectedMember(member);
+                setIsPhotoZoomed(false);
+              }}
+              title={isFa ? "برای مشاهده بیوگرافی و پروفایل کلیک کنید" : "Click to view full bio and profile"}
+              className="group relative rounded-2xl bg-[#081432]/60 hover:bg-[#081432]/95 border border-white/[0.08] hover:border-[#00D2FF]/60 p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_0_35px_rgba(0,210,255,0.25)] cursor-pointer select-none"
             >
               {/* Subtle top cyan highlight line on hover */}
               <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#00D2FF]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -92,36 +98,24 @@ export default function TeamMembersSection({
               <div className="space-y-4">
                 {/* Top Row: Avatar & Name */}
                 <div className="flex items-start gap-4">
-                  {/* Clickable Avatar to open modal */}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedMember(member)}
-                    title={isFa ? "مشاهده پروفایل و بیوگرافی کامل" : "View full profile and bio"}
-                    className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden border border-[#00D2FF]/30 hover:border-[#00D2FF] group/avatar transition-all shrink-0 bg-[#040B20] shadow-[0_0_15px_rgba(0,210,255,0.15)] hover:shadow-[0_0_25px_rgba(0,210,255,0.4)] cursor-pointer text-left rtl:text-right"
-                  >
+                  <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden border border-[#00D2FF]/30 group-hover:border-[#00D2FF] transition-all shrink-0 bg-[#040B20] shadow-[0_0_15px_rgba(0,210,255,0.15)] group-hover:shadow-[0_0_25px_rgba(0,210,255,0.4)]">
                     <Image
                       src={avatarUrl}
                       alt={name}
                       fill
                       sizes="80px"
-                      className="object-cover transition-transform duration-300 group-hover/avatar:scale-110"
+                      className="object-cover transition-transform duration-300 group-hover:scale-108"
                     />
-                    <div className="absolute inset-0 bg-[#00D2FF]/0 group-hover/avatar:bg-[#00D2FF]/15 transition-colors" />
-                  </button>
+                    <div className="absolute inset-0 bg-[#00D2FF]/0 group-hover:bg-[#00D2FF]/10 transition-colors" />
+                  </div>
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedMember(member)}
-                        className="text-left rtl:text-right cursor-pointer"
-                      >
-                        <h3 className="text-base sm:text-lg font-bold text-white hover:text-[#00D2FF] transition-colors truncate">
-                          {name}
-                        </h3>
-                      </button>
+                      <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#00D2FF] transition-colors truncate">
+                        {name}
+                      </h3>
                       {member.nickname && (
-                        <span className="px-2 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-[10px] sm:text-[11px] font-mono font-extrabold tracking-wider border border-[#00D2FF]/30 select-none uppercase">
+                        <span className="px-2 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-[10px] sm:text-[11px] font-mono font-extrabold tracking-wider border border-[#00D2FF]/30 uppercase">
                           {member.nickname}
                         </span>
                       )}
@@ -157,16 +151,12 @@ export default function TeamMembersSection({
 
               {/* Bottom Row Action - Simple & Clean */}
               <div className="pt-4 mt-5 border-t border-white/[0.06] flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => setSelectedMember(member)}
-                  className="text-xs font-semibold text-[#00D2FF] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
-                >
+                <div className="text-xs font-semibold text-[#00D2FF] group-hover:text-white flex items-center gap-1.5 transition-colors">
                   <span>{isFa ? "مشاهده بیوگرافی کامل" : "Full Profile & Bio"}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </button>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
 
-                <span className="text-[10px] font-mono tracking-widest text-[#94A3B8]/40 uppercase select-none">
+                <span className="text-[10px] font-mono tracking-widest text-[#94A3B8]/40 uppercase">
                   UR CLUB
                 </span>
               </div>
@@ -175,14 +165,17 @@ export default function TeamMembersSection({
         })}
       </div>
 
-      {/* ─── Detail Modal (Full Bio & Info) ─── */}
+      {/* ─── Detail Modal (Full Bio & Large Profile Image) ─── */}
       <AnimatePresence>
         {selectedMember && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedMember(null)}
+            onClick={() => {
+              setSelectedMember(null);
+              setIsPhotoZoomed(false);
+            }}
             className="fixed inset-0 z-50 bg-[#040B20]/90 backdrop-blur-xl p-4 sm:p-6 flex items-center justify-center overflow-y-auto"
           >
             <motion.div
@@ -195,8 +188,11 @@ export default function TeamMembersSection({
             >
               {/* Close Button */}
               <button
-                onClick={() => setSelectedMember(null)}
-                className="absolute top-4 sm:top-6 left-4 sm:left-6 rtl:left-4 rtl:right-auto ltr:right-4 ltr:left-auto p-2.5 rounded-full bg-white/[0.06] text-[#94A3B8] hover:text-white hover:bg-[#00D2FF]/20 transition-all cursor-pointer border border-white/[0.08]"
+                onClick={() => {
+                  setSelectedMember(null);
+                  setIsPhotoZoomed(false);
+                }}
+                className="absolute top-4 sm:top-6 left-4 sm:left-6 rtl:left-4 rtl:right-auto ltr:right-4 ltr:left-auto p-2.5 rounded-full bg-white/[0.06] text-[#94A3B8] hover:text-white hover:bg-[#00D2FF]/20 transition-all cursor-pointer border border-white/[0.08] z-10"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
@@ -204,16 +200,25 @@ export default function TeamMembersSection({
 
               {/* Top Profile Header with Large High-Res Photo */}
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-7 pt-2">
-                {/* Large, Beautiful Portrait Image Frame */}
-                <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border-2 border-[#00D2FF] shrink-0 bg-[#040B20] shadow-[0_0_30px_rgba(0,210,255,0.35)] ring-4 ring-[#00D2FF]/15">
+                {/* Large, Beautiful Portrait Image Frame (Clickable to zoom) */}
+                <div
+                  onClick={() => setIsPhotoZoomed(true)}
+                  title={isFa ? "کلیک برای مشاهده اندازه بزرگ تصویر" : "Click to view full photo"}
+                  className="group/avatar relative w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border-2 border-[#00D2FF] shrink-0 bg-[#040B20] shadow-[0_0_30px_rgba(0,210,255,0.35)] ring-4 ring-[#00D2FF]/15 cursor-pointer"
+                >
                   <Image
                     src={selectedMember.avatar || "/images/default_avatar.png"}
                     alt={selectedMember.name}
                     fill
-                    sizes="200px"
-                    className="object-cover"
+                    sizes="220px"
+                    className="object-cover transition-transform duration-300 group-hover/avatar:scale-105"
                     priority
                   />
+                  <div className="absolute inset-0 bg-[#040B20]/0 group-hover/avatar:bg-[#040B20]/40 transition-colors flex items-center justify-center opacity-0 group-hover/avatar:opacity-100">
+                    <div className="p-2 rounded-full bg-[#00D2FF] text-[#040B20] shadow-lg">
+                      <ZoomIn className="w-5 h-5" />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Name, Role & Status Info */}
@@ -302,6 +307,52 @@ export default function TeamMembersSection({
                 </div>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── Fullscreen Photo Zoom Lightbox ─── */}
+      <AnimatePresence>
+        {isPhotoZoomed && selectedMember && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsPhotoZoomed(false)}
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl p-4 flex flex-col items-center justify-center cursor-zoom-out"
+          >
+            <button
+              onClick={() => setIsPhotoZoomed(false)}
+              className="absolute top-5 right-5 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer"
+              aria-label="Close photo"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="relative max-w-lg w-full aspect-square rounded-3xl overflow-hidden border-2 border-[#00D2FF]/50 shadow-[0_0_50px_rgba(0,210,255,0.4)]"
+            >
+              <Image
+                src={selectedMember.avatar || "/images/default_avatar.png"}
+                alt={selectedMember.name}
+                fill
+                sizes="500px"
+                className="object-cover"
+                priority
+              />
+            </motion.div>
+
+            <div className="mt-4 text-center">
+              <h3 className="text-lg font-bold text-white">
+                {isFa ? selectedMember.name_fa || selectedMember.name : selectedMember.name}
+              </h3>
+              <p className="text-xs text-[#00D2FF] mt-0.5">
+                {isFa ? selectedMember.role_fa || selectedMember.role : selectedMember.role}
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
