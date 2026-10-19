@@ -5,14 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MapPin,
-  Sparkles,
   ArrowUpRight,
-  ShieldCheck,
-  MessageCircle,
-  Code2,
-  Briefcase,
-  ChevronDown,
   X,
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
@@ -63,8 +56,8 @@ export default function TeamMembersSection({
         </h2>
         <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] leading-relaxed">
           {isFa
-            ? "تیم مستقر در آلمان؛ دسترسی مستقیم به معماران سیستم، روابط مشتریان و تعهدات اجرایی حضوری در سراسر اروپا."
-            : "Based in Germany; direct access to system architects, client operations, and in-person contract guarantees."}
+            ? "دسترسی مستقیم به معماران سیستم، ارتباط با مشتریان و تعهدات اجرایی و قراردادی استودیو."
+            : "Direct access to system architects, client communications, and executive contract commitments."}
         </p>
       </div>
 
@@ -74,9 +67,6 @@ export default function TeamMembersSection({
           const name = isFa ? member.name_fa || member.name : member.name;
           const role = isFa ? member.role_fa || member.role : member.role;
           const bio = isFa ? member.bio_fa || member.bio : member.bio;
-          const location = isFa
-            ? member.location_fa || member.location || "آلمان"
-            : member.location || "Germany";
           const skillsList = (isFa ? member.skills_fa || member.skills : member.skills)
             ? (isFa ? member.skills_fa || member.skills : member.skills)!
                 .split(",")
@@ -117,7 +107,7 @@ export default function TeamMembersSection({
                         {name}
                       </h3>
                       {member.nickname && (
-                        <span className="px-2 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-[10px] sm:text-[11px] font-mono font-bold border border-[#00D2FF]/30 select-none">
+                        <span className="px-2 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-[10px] sm:text-[11px] font-mono font-extrabold tracking-wider border border-[#00D2FF]/30 select-none uppercase">
                           {member.nickname}
                         </span>
                       )}
@@ -125,18 +115,6 @@ export default function TeamMembersSection({
 
                     <div className="text-xs sm:text-[13px] text-[#00D2FF] font-medium mt-1 leading-snug">
                       {role}
-                    </div>
-
-                    <div className="flex items-center gap-2 text-[11.5px] text-[#94A3B8] mt-1.5 flex-wrap">
-                      <span>{location}</span>
-                      {member.age && (
-                        <>
-                          <span className="text-white/20">•</span>
-                          <span className="font-mono">
-                            {isFa ? `${member.age} ساله` : `${member.age} yrs`}
-                          </span>
-                        </>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -224,24 +202,13 @@ export default function TeamMembersSection({
                       {isFa ? selectedMember.name_fa || selectedMember.name : selectedMember.name}
                     </h3>
                     {selectedMember.nickname && (
-                      <span className="px-2 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-xs font-mono font-bold border border-[#00D2FF]/30">
+                      <span className="px-2.5 py-0.5 rounded-md bg-[#00D2FF]/15 text-[#00D2FF] text-xs font-mono font-extrabold tracking-wider border border-[#00D2FF]/30 uppercase">
                         {selectedMember.nickname}
                       </span>
                     )}
                   </div>
                   <div className="text-xs sm:text-sm text-[#00D2FF] font-medium mt-1">
                     {isFa ? selectedMember.role_fa || selectedMember.role : selectedMember.role}
-                  </div>
-                  <div className="flex items-center gap-3 text-xs text-[#94A3B8] mt-1.5">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-[#00D2FF]" />
-                      <span>{isFa ? selectedMember.location_fa || "آلمان" : selectedMember.location || "Germany"}</span>
-                    </span>
-                    {selectedMember.age && (
-                      <span className="font-mono">
-                        {isFa ? `${selectedMember.age} ساله` : `${selectedMember.age} yrs old`}
-                      </span>
-                    )}
                   </div>
                 </div>
               </div>

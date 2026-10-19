@@ -297,8 +297,8 @@ model TeamMember {
   role_fa      String
   bio          String?
   bio_fa       String?
-  location     String   @default("Germany")
-  location_fa  String   @default("آلمان")
+  location     String?  @default("Germany")
+  location_fa  String?  @default("آلمان")
   age          String?
   avatar       String?
   skills       String?

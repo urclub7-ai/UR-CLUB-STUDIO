@@ -59,8 +59,8 @@ export async function createTeamMember(formData: FormData) {
     const nickname = (formData.get("nickname") as string)?.trim() || null;
     const role = (formData.get("role") as string)?.trim() || "";
     const role_fa = (formData.get("role_fa") as string)?.trim() || "";
-    const location = (formData.get("location") as string)?.trim() || "Germany";
-    const location_fa = (formData.get("location_fa") as string)?.trim() || "آلمان";
+    const location = (formData.get("location") as string)?.trim() || null;
+    const location_fa = (formData.get("location_fa") as string)?.trim() || null;
     const age = (formData.get("age") as string)?.trim() || null;
     const avatar = (formData.get("avatar") as string)?.trim() || "/images/default_avatar.png";
     const bio = (formData.get("bio") as string)?.trim() || "";
@@ -100,8 +100,8 @@ export async function createTeamMember(formData: FormData) {
           nickname: newMember.nickname,
           role: newMember.role,
           role_fa: newMember.role_fa,
-          location: newMember.location,
-          location_fa: newMember.location_fa,
+          location: newMember.location ?? undefined,
+          location_fa: newMember.location_fa ?? undefined,
           age: newMember.age,
           avatar: newMember.avatar,
           bio: newMember.bio,

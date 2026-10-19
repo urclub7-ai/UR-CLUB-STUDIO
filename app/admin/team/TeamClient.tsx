@@ -84,8 +84,8 @@ export default function TeamClient({ initialMembers }: TeamClientProps) {
     setNickname("");
     setRoleFa("");
     setRoleEn("");
-    setLocationFa("آلمان");
-    setLocationEn("Germany");
+    setLocationFa("");
+    setLocationEn("");
     setAge("");
     setAvatar("/images/default_avatar.png");
     setBioFa("");
@@ -105,8 +105,8 @@ export default function TeamClient({ initialMembers }: TeamClientProps) {
     setNickname(item.nickname || "");
     setRoleFa(item.role_fa || item.role || "");
     setRoleEn(item.role || "");
-    setLocationFa(item.location_fa || "آلمان");
-    setLocationEn(item.location || "Germany");
+    setLocationFa(item.location_fa || "");
+    setLocationEn(item.location || "");
     setAge(item.age || "");
     setAvatar(item.avatar || "/images/default_avatar.png");
     setBioFa(item.bio_fa || "");
@@ -316,13 +316,17 @@ export default function TeamClient({ initialMembers }: TeamClientProps) {
                   <div className="text-xs text-[#00D2FF] font-medium mt-0.5 truncate">
                     {member.role_fa || member.role}
                   </div>
-                  <div className="flex items-center gap-2 text-[11px] text-[#94A3B8] mt-1.5">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-[#00D2FF]" />
-                      <span>{member.location_fa || "آلمان"}</span>
-                    </span>
-                    {member.age && <span>• {member.age} ساله</span>}
-                  </div>
+                  {(member.location_fa || member.age) ? (
+                    <div className="flex items-center gap-2 text-[11px] text-[#94A3B8] mt-1.5">
+                      {member.location_fa && (
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-[#00D2FF]" />
+                          <span>{member.location_fa}</span>
+                        </span>
+                      )}
+                      {member.age && <span>{member.location_fa ? "• " : ""}{member.age} ساله</span>}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
