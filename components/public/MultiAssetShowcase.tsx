@@ -115,10 +115,10 @@ export default function MultiAssetShowcase({
     <div className="relative w-full">
       {/* Clean Centered Header Matching Previous Sections */}
       <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
-        <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white">
+        <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
           {isFa ? "طراحی لوگوها و پوسترهای تبلیغاتی" : "Logos & Promotional Posters"}
         </h2>
-        <p className="mt-2.5 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
+        <p className="mt-2.5 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
             ? "نمونه‌های اختصاصی هویت بصری، نشان‌واره‌ها و پوسترهای تجاری"
             : "Custom visual identities, brand emblems, and promotional posters"}
@@ -127,13 +127,13 @@ export default function MultiAssetShowcase({
 
       {/* Filter Switcher matching other control bars */}
       <div className="mb-8 flex items-center justify-center">
-        <div className="flex items-center gap-1 bg-[#081432]/80 p-1.5 rounded-xl border border-white/[0.08]">
+        <div className="flex items-center gap-1 bg-white dark:bg-[#081432]/80 p-1.5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-none">
           <button
             onClick={() => setActiveFilter("all")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
               activeFilter === "all"
-                ? "bg-[#00D2FF] text-[#040B20] font-bold shadow-sm"
-                : "text-[#94A3B8] hover:text-white"
+                ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             {isFa ? "همه طرح‌ها" : "All"}
@@ -142,8 +142,8 @@ export default function MultiAssetShowcase({
             onClick={() => setActiveFilter("logo")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
               activeFilter === "logo"
-                ? "bg-[#00D2FF] text-[#040B20] font-bold shadow-sm"
-                : "text-[#94A3B8] hover:text-white"
+                ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             {isFa ? "لوگوها" : "Logos"}
@@ -152,8 +152,8 @@ export default function MultiAssetShowcase({
             onClick={() => setActiveFilter("poster")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
               activeFilter === "poster"
-                ? "bg-[#00D2FF] text-[#040B20] font-bold shadow-sm"
-                : "text-[#94A3B8] hover:text-white"
+                ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             {isFa ? "پوسترها" : "Posters"}
@@ -169,13 +169,13 @@ export default function MultiAssetShowcase({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05, duration: 0.3 }}
-            className="p-3 sm:p-6 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/30 transition-all duration-300 flex flex-col justify-between text-right group overflow-hidden"
+            className="p-3 sm:p-6 rounded-xl sm:rounded-2xl bg-white dark:bg-[#081432]/60 border border-slate-200/80 dark:border-white/[0.08] hover:border-sky-500/40 dark:hover:border-[#00D2FF]/30 shadow-sm dark:shadow-none transition-all duration-300 flex flex-col justify-between text-right group overflow-hidden"
           >
             <div>
               {/* Image Container with Subtle Zoom */}
               <div
                 onClick={() => setSelectedImage(item)}
-                className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-[#040B20] border border-white/[0.05] cursor-pointer flex items-center justify-center p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
+                className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-slate-50 dark:bg-[#040B20] border border-slate-200/80 dark:border-white/[0.05] cursor-pointer flex items-center justify-center p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
               >
                 <Image
                   src={item.image}
@@ -184,8 +184,8 @@ export default function MultiAssetShowcase({
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 360px"
                   className="object-contain p-1.5 sm:p-2"
                 />
-                <div className="absolute inset-0 bg-[#040B20]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="p-1.5 sm:p-2 rounded-full bg-[#00D2FF] text-[#040B20] shadow-md">
+                <div className="absolute inset-0 bg-slate-900/30 dark:bg-[#040B20]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="p-1.5 sm:p-2 rounded-full bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] shadow-md">
                     <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
@@ -193,28 +193,28 @@ export default function MultiAssetShowcase({
 
               {/* Short & Clean Text Details */}
               <div className="mt-2.5 sm:mt-4 space-y-0.5 sm:space-y-1">
-                <span className="text-[9px] sm:text-[10px] font-semibold text-[#00D2FF] uppercase tracking-wide block truncate">
+                <span className="text-[9px] sm:text-[10px] font-semibold text-sky-600 dark:text-[#00D2FF] uppercase tracking-wide block truncate">
                   {isFa ? item.category_fa : item.category}
                 </span>
-                <h3 className="text-xs sm:text-lg font-bold text-white group-hover:text-[#00D2FF] transition-colors truncate">
+                <h3 className="text-xs sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-[#00D2FF] transition-colors truncate">
                   {isFa ? item.title_fa : item.title}
                 </h3>
-                <p className="hidden sm:block text-xs text-[#94A3B8] leading-relaxed">
+                <p className="hidden sm:block text-xs text-slate-600 dark:text-[#94A3B8] leading-relaxed">
                   {isFa ? item.description_fa : item.description}
                 </p>
               </div>
             </div>
 
             {/* Bottom Row: View Link & Subtle Watermark */}
-            <div className="mt-2.5 sm:mt-4 pt-2 sm:pt-3 border-t border-white/[0.06] flex items-center justify-between">
+            <div className="mt-2.5 sm:mt-4 pt-2 sm:pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between">
               <button
                 onClick={() => setSelectedImage(item)}
-                className="text-[11px] sm:text-xs text-[#00D2FF] hover:text-white font-medium flex items-center gap-1 transition-colors cursor-pointer"
+                className="text-[11px] sm:text-xs text-sky-600 dark:text-[#00D2FF] hover:text-slate-900 dark:hover:text-white font-medium flex items-center gap-1 transition-colors cursor-pointer"
               >
                 <span>{isFa ? "مشاهده" : "View"}</span>
                 <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               </button>
-              <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-[#94A3B8]/40 uppercase select-none">
+              <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-slate-400 dark:text-[#94A3B8]/40 uppercase select-none">
                 UrClub
               </span>
             </div>

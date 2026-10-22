@@ -66,10 +66,10 @@ export default function ExpertiseGrid() {
     <div className="relative w-full">
       {/* Centered Clean Header */}
       <div className="flex flex-col items-center text-center mb-5 sm:mb-12">
-        <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           {isFa ? "شایستگی‌ها و توانمندی‌های مهندسی ما" : "Our Engineering Competencies & Capabilities"}
         </h2>
-        <p className="mt-2 text-xs sm:text-base text-[#94A3B8] max-w-xl leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
             ? "ترکیب مهندسی نرم‌افزار، استانداردهای روز جهانی و راهکارهای کارآمد برای موفقیت پروژه‌ها"
             : "Combining software engineering, global modern standards, and efficient solutions for project success"}
@@ -83,19 +83,19 @@ export default function ExpertiseGrid() {
           return (
             <div
               key={idx}
-              className="p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] hover:border-[#00D2FF]/25 transition-all duration-200 flex flex-col justify-start text-start"
+              className="p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-white dark:bg-[#081432]/60 border border-slate-200/80 dark:border-white/[0.08] hover:border-sky-500/40 dark:hover:border-[#00D2FF]/25 shadow-sm dark:shadow-none transition-all duration-200 flex flex-col justify-start text-start"
             >
               <div className="mb-2 sm:mb-3.5">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#00D2FF]/10 border border-[#00D2FF]/20 flex items-center justify-center text-[#00D2FF]">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-sky-50 dark:bg-[#00D2FF]/10 border border-sky-200 dark:border-[#00D2FF]/20 flex items-center justify-center text-sky-600 dark:text-[#00D2FF]">
                   <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
               </div>
 
-              <h3 className="text-sm sm:text-base md:text-lg font-bold text-white mb-1 sm:mb-2 leading-snug">
+              <h3 className="text-sm sm:text-base md:text-lg font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 leading-snug">
                 {isFa ? item.title : item.title_en}
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#94A3B8] sm:text-[#CBD5E1] leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-[#CBD5E1] leading-relaxed font-normal">
                 {isFa ? item.desc : item.desc_en}
               </p>
             </div>
@@ -105,14 +105,14 @@ export default function ExpertiseGrid() {
 
       {/* Subtle Consultation Callout */}
       <div className="mt-5 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-center">
-        <span className="text-xs text-[#94A3B8]">
+        <span className="text-xs text-slate-600 dark:text-[#94A3B8]">
           {isFa
             ? "به دنبال راه‌حل اختصاصی برای پروژه یا سرمایه‌گذاری خود استید؟"
             : "Looking for a custom solution for your project or investment?"}
         </span>
         <Link
           href="/#contact-section"
-          className="h-9 px-5 rounded-full bg-white hover:bg-[#00D2FF] text-[#040B20] text-xs font-bold transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.15)] inline-flex items-center gap-1.5"
+          className="h-9 px-5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-[#040B20] hover:bg-sky-600 dark:hover:bg-[#00D2FF] text-xs font-bold transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(255,255,255,0.15)] inline-flex items-center gap-1.5"
         >
           <Handshake className="w-3.5 h-3.5" />
           <span>{isFa ? "مشاوره رایگان با تیم" : "Free Consultation with the Team"}</span>

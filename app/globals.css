@@ -269,12 +269,24 @@ html.light .bg-\[\#040B20\]\/98 {
   background-color: rgba(255, 255, 255, 0.92) !important;
 }
 
+/* Subdued Inputs and Boxes */
+html.light .bg-\[\#040B20\]\/80,
+html.light .bg-\[\#040B20\]\/70,
+html.light .bg-\[\#040B20\]\/60,
+html.light .bg-\[\#040B20\]\/50,
+html.light .bg-\[\#040B20\]\/40 {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
 /* Cards & Content Surfaces */
 html.light .bg-\[\#081432\],
+html.light .bg-\[\#081432\]\/90,
 html.light .bg-\[\#081432\]\/85,
 html.light .bg-\[\#081432\]\/80,
 html.light .bg-\[\#081432\]\/75,
 html.light .bg-\[\#081432\]\/60,
+html.light .bg-\[\#081432\]\/50,
 html.light .bg-\[\#081432\]\/40 {
   background-color: #FFFFFF !important;
   box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px 0 rgba(15, 23, 42, 0.03) !important;
@@ -393,16 +405,32 @@ html.light textarea::placeholder {
 /* Preserving text color on dark buttons in light mode */
 html.light button.bg-slate-900,
 html.light button.bg-sky-600,
+html.light button.bg-sky-500,
+html.light button.bg-emerald-500,
+html.light button.bg-emerald-600,
+html.light button.bg-\[\#0088cc\],
 html.light button.bg-\[\#0284C7\],
 html.light a.bg-slate-900,
 html.light a.bg-sky-600,
+html.light a.bg-sky-500,
+html.light a.bg-emerald-500,
+html.light a.bg-emerald-600,
+html.light a.bg-\[\#0088cc\],
 html.light a.bg-\[\#0284C7\] {
   color: #FFFFFF !important;
 }
-html.light button.bg-slate-900 span,
-html.light button.bg-sky-600 span,
-html.light a.bg-slate-900 span,
-html.light a.bg-sky-600 span {
+html.light button.bg-slate-900 *,
+html.light button.bg-sky-600 *,
+html.light button.bg-sky-500 *,
+html.light button.bg-emerald-500 *,
+html.light button.bg-emerald-600 *,
+html.light button.bg-\[\#0088cc\] *,
+html.light a.bg-slate-900 *,
+html.light a.bg-sky-600 *,
+html.light a.bg-sky-500 *,
+html.light a.bg-emerald-500 *,
+html.light a.bg-emerald-600 *,
+html.light a.bg-\[\#0088cc\] * {
   color: #FFFFFF !important;
 }
 

@@ -314,24 +314,24 @@ ${categoryDetails}
   };
 
   return (
-    <div className="w-full text-white">
+    <div className="w-full text-slate-900 dark:text-white">
       {/* ─── Header ─── */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-        <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
           {isFa ? "پیکربندی و ثبت سفارش اختصاصی" : "Project Configurator & Order"}
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-[#94A3B8] leading-relaxed max-w-2xl mx-auto">
+        <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-[#94A3B8] leading-relaxed max-w-2xl mx-auto">
           {isFa
             ? "نوع پروژه و مشخصات فنی مورد نیاز خود را در چند گام ساده انتخاب کنید. سیستم به صورت خودکار شناسه اختصاصی ۶ حرفی برای ساخت پوشه پروژه شما صادر می‌کند."
             : "Select your project type, domain, database, and technical specifications. A unique 6-character Project ID will be instantly generated for your dedicated repository."}
         </p>
 
         {/* ─── Live Project ID Tag ─── */}
-        <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#081432]/80 border border-[#00D2FF]/30 shadow-[0_0_20px_rgba(0,210,255,0.15)]">
-          <span className="text-xs text-[#94A3B8]">
+        <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white dark:bg-[#081432]/80 border border-slate-200 dark:border-[#00D2FF]/30 shadow-sm dark:shadow-[0_0_20px_rgba(0,210,255,0.15)]">
+          <span className="text-xs text-slate-500 dark:text-[#94A3B8]">
             {isFa ? "شناسه اختصاصی پوشه پروژه:" : "Dedicated Project ID:"}
           </span>
-          <span className="text-sm font-mono font-extrabold text-[#00D2FF] tracking-widest bg-[#00D2FF]/10 px-2.5 py-0.5 rounded border border-[#00D2FF]/40">
+          <span className="text-sm font-mono font-extrabold text-sky-600 dark:text-[#00D2FF] tracking-widest bg-sky-50 dark:bg-[#00D2FF]/10 px-2.5 py-0.5 rounded border border-sky-200 dark:border-[#00D2FF]/40">
             {projectCode || "------"}
           </span>
         </div>
@@ -353,10 +353,10 @@ ${categoryDetails}
                 onClick={() => setCurrentStep(s.num)}
                 className={`py-2 sm:py-3.5 px-1 sm:px-4 rounded-xl transition-all flex items-center justify-center border text-[10.5px] sm:text-sm cursor-pointer select-none ${
                   currentStep === s.num
-                    ? "bg-[#00D2FF]/15 border-[#00D2FF] text-[#00D2FF] font-bold shadow-[0_0_15px_rgba(0,210,255,0.25)]"
+                    ? "bg-sky-500 text-white dark:bg-[#00D2FF]/15 border-sky-500 dark:border-[#00D2FF] dark:text-[#00D2FF] font-bold shadow-md dark:shadow-[0_0_15px_rgba(0,210,255,0.25)]"
                     : currentStep > s.num
-                    ? "bg-[#081432]/60 border-white/[0.1] text-emerald-400 font-medium"
-                    : "bg-[#081432]/40 border-white/[0.05] text-[#64748B]"
+                    ? "bg-emerald-50 dark:bg-[#081432]/60 border-emerald-200 dark:border-white/[0.1] text-emerald-700 dark:text-emerald-400 font-medium"
+                    : "bg-slate-100 dark:bg-[#081432]/40 border-slate-200 dark:border-white/[0.05] text-slate-500 dark:text-[#64748B]"
                 }`}
               >
                 <span className="truncate max-w-full">{s.title}</span>

@@ -126,7 +126,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" dir="ltr" className={`dark scroll-smooth transition-colors duration-200 ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
+    <html lang="fa" dir="rtl" className={`scroll-smooth transition-colors duration-200 ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preload" href="/images/team_logo_transparent.png" as="image" />
         <script
@@ -137,12 +137,13 @@ export default async function RootLayout({
                 var params = new URLSearchParams(window.location.search);
                 var urlLang = params.get("lang");
                 var sessionLang = sessionStorage.getItem("site_language");
-                var lang = (urlLang === "fa" || urlLang === "en") ? urlLang : (sessionLang === "fa" || sessionLang === "en") ? sessionLang : "en";
+                var lang = (urlLang === "fa" || urlLang === "en") ? urlLang : (sessionLang === "fa" || sessionLang === "en") ? sessionLang : "fa";
                 document.documentElement.setAttribute("lang", lang);
                 document.documentElement.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
 
                 var savedTheme = localStorage.getItem("site_theme");
-                var theme = (savedTheme === "light" || savedTheme === "dark") ? savedTheme : "dark";
+                var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+                var theme = (savedTheme === "light" || savedTheme === "dark") ? savedTheme : (prefersDark ? "dark" : "light");
                 document.documentElement.classList.remove("dark", "light");
                 document.documentElement.classList.add(theme);
                 document.documentElement.setAttribute("data-theme", theme);

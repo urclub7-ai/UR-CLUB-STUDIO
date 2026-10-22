@@ -92,10 +92,10 @@ export default function ModernContactSection() {
     <div id="contact-section" className="relative w-full scroll-mt-28">
       {/* ─── Clean Header ─── */}
       <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
-        <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           {isFa ? "آماده‌اید پروژه بعدی خود را آغاز کنید؟" : "Ready to Build Your Next Project?"}
         </h2>
-        <p className="mt-2 text-xs sm:text-base text-[#94A3B8] leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] leading-relaxed">
           {isFa
             ? "برای مشاوره فنی، برآورد هزینه و زمان یا آغاز همکاری، مستقیماً از راه‌های زیر با ما در ارتباط باشید."
             : "Reach out for technical advisory, project timeline estimation, or new venture discussions."}
@@ -105,16 +105,16 @@ export default function ModernContactSection() {
       {/* ─── Modern 2-Column Split Layout ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 sm:gap-6 max-w-5xl mx-auto items-stretch">
         {/* Left / Right Card: Direct Fast Channels (2 Columns width) */}
-        <div className="lg:col-span-2 p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] flex flex-col justify-between space-y-4 sm:space-y-6">
+        <div className="lg:col-span-2 p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-white dark:bg-[#081432]/60 border border-slate-200/80 dark:border-white/[0.08] shadow-sm flex flex-col justify-between space-y-4 sm:space-y-6">
           <div className="space-y-4 sm:space-y-5">
             <div>
-              <span className="text-xs font-mono font-bold text-[#00D2FF] tracking-wider uppercase">
+              <span className="text-xs font-mono font-bold text-sky-600 dark:text-[#00D2FF] tracking-wider uppercase">
                 {isFa ? "ارتباط مستقیم و فوری" : "Direct Channels"}
               </span>
-              <h3 className="text-base sm:text-lg font-bold text-white mt-1">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-1">
                 {isFa ? "گفتگو بدون واسطه با تیم" : "Direct Communication"}
               </h3>
-              <p className="text-xs text-[#94A3B8] mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-[#94A3B8] mt-1.5 leading-relaxed">
                 {isFa
                   ? "پاسخگویی سریع در کمتر از ۲ ساعت از طریق واتساپ یا ایمیل رسمی."
                   : "Rapid response under 2 hours via WhatsApp or official email."}
@@ -126,35 +126,35 @@ export default function ModernContactSection() {
               href="https://wa.me/491624212685?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AA%DB%8C%D9%85%20UrClub%D8%8C%20%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D9%BE%D8%B1%D9%88%DA%98%D9%87%20%D8%AF%D8%A7%D8%B1%D9%85."
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3.5 sm:p-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all flex items-center justify-between group cursor-pointer"
+              className="p-3.5 sm:p-4 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100/70 dark:hover:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 transition-all flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
                   <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                     {isFa ? "چت فوری در واتساپ" : "WhatsApp Chat"}
                   </div>
-                  <div className="text-[11px] font-mono text-[#94A3B8]" dir="ltr">
+                  <div className="text-[11px] font-mono text-slate-500 dark:text-[#94A3B8]" dir="ltr">
                     +49 162 4212685
                   </div>
                 </div>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-emerald-600 dark:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
 
             {/* Official Email */}
-            <div className="p-3.5 sm:p-4 rounded-xl bg-[#040B20]/60 border border-white/[0.06] flex items-center justify-between">
+            <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-[#040B20]/60 border border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#00D2FF]/10 text-[#00D2FF] flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-sky-50 dark:bg-[#00D2FF]/10 text-sky-600 dark:text-[#00D2FF] flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-white">
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">
                     {isFa ? "ایمیل رسمی UrClub" : "Official Email"}
                   </div>
-                  <div className="text-[11px] font-mono text-[#94A3B8]" dir="ltr">
+                  <div className="text-[11px] font-mono text-slate-500 dark:text-[#94A3B8]" dir="ltr">
                     urclub7@gmail.com
                   </div>
                 </div>
@@ -162,19 +162,19 @@ export default function ModernContactSection() {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="p-2 rounded-lg bg-white/[0.05] hover:bg-[#00D2FF]/20 text-[#94A3B8] hover:text-[#00D2FF] transition-colors cursor-pointer"
+                className="p-2 rounded-lg bg-slate-100 dark:bg-white/[0.05] hover:bg-sky-100 dark:hover:bg-[#00D2FF]/20 text-slate-500 dark:text-[#94A3B8] hover:text-sky-600 dark:hover:text-[#00D2FF] transition-colors cursor-pointer"
                 title={isFa ? "کپی ایمیل" : "Copy email"}
               >
-                {copiedEmail ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                {copiedEmail ? <Check className="w-4 h-4 text-emerald-500 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
           </div>
 
           {/* Project Order CTA Button */}
-          <div className="pt-3.5 sm:pt-4 border-t border-white/[0.06]">
+          <div className="pt-3.5 sm:pt-4 border-t border-slate-100 dark:border-white/[0.06]">
             <Link
               href="/order"
-              className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-[#00D2FF]/10 hover:bg-[#00D2FF] text-[#00D2FF] hover:text-[#040B20] border border-[#00D2FF]/30 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(0,210,255,0.15)] cursor-pointer group"
+              className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-sky-50 dark:bg-[#00D2FF]/10 hover:bg-sky-500 dark:hover:bg-[#00D2FF] text-sky-600 dark:text-[#00D2FF] hover:text-white dark:hover:text-[#040B20] border border-sky-200 dark:border-[#00D2FF]/30 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.15)] cursor-pointer group"
             >
               <Sparkles className="w-4 h-4" />
               <span>{isFa ? "پیکربندی هوشمند و سفارش پروژه" : "Custom Project Configurator"}</span>
@@ -184,12 +184,12 @@ export default function ModernContactSection() {
         </div>
 
         {/* Right / Left Form: Quick, Sleek Inquiry (3 Columns width) */}
-        <div className="lg:col-span-3 p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-[#081432]/60 border border-white/[0.08] flex flex-col justify-between">
+        <div className="lg:col-span-3 p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-white dark:bg-[#081432]/60 border border-slate-200/80 dark:border-white/[0.08] shadow-sm flex flex-col justify-between">
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-white mb-1">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-1">
               {isFa ? "ارسال پیام و استعلام سریع" : "Quick Message & Inquiry"}
             </h3>
-            <p className="text-xs text-[#94A3B8] mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-xs text-slate-600 dark:text-[#94A3B8] mb-4 sm:mb-6 leading-relaxed">
               {isFa
                 ? "نام و راه ارتباطی خود را بنویسید تا پیام مستقیماً به تیم UrClub ارسال شود."
                 : "Leave your contact info and brief notes. We will get back to you shortly."}
@@ -197,13 +197,13 @@ export default function ModernContactSection() {
 
             {submitted ? (
               <div className="py-10 text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500 flex items-center justify-center text-emerald-400 mx-auto">
+                <div className="w-12 h-12 rounded-full bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-500 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mx-auto">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h4 className="text-base font-bold text-white">
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">
                   {isFa ? "پیام شما با موفقیت دریافت شد" : "Message Received Successfully"}
                 </h4>
-                <p className="text-xs text-[#94A3B8] max-w-sm mx-auto leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-[#94A3B8] max-w-sm mx-auto leading-relaxed">
                   {isFa
                     ? "پیام شما به ایمیل urclub7@gmail.com ارسال شد و کارشناسان ما به زودی با شما تماس خواهند گرفت."
                     : "Your inquiry has been dispatched to urclub7@gmail.com. We will respond within hours."}
@@ -214,7 +214,7 @@ export default function ModernContactSection() {
                     setSubmitted(false);
                     setFormData({ name: "", contactInfo: "", message: "" });
                   }}
-                  className="mt-2 text-xs font-bold text-[#00D2FF] hover:underline cursor-pointer"
+                  className="mt-2 text-xs font-bold text-sky-600 dark:text-[#00D2FF] hover:underline cursor-pointer"
                 >
                   {isFa ? "ارسال پیام دیگر" : "Send Another Message"}
                 </button>
@@ -223,7 +223,7 @@ export default function ModernContactSection() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-[#CBD5E1] mb-1.5">
                       {isFa ? "نام و نام خانوادگی" : "Your Name"}
                     </label>
                     <input
@@ -231,13 +231,13 @@ export default function ModernContactSection() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder={isFa ? "مثلاً: احمد رضایی" : "e.g. John Doe"}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-xs sm:text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60 transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#040B20]/80 border border-slate-200 dark:border-white/[0.08] text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder-[#64748B] focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]/60 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5">
-                      {isFa ? "ایمیل یا شماره واتساپ" : "Email or WhatsApp"} <span className="text-[#00D2FF]">*</span>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-[#CBD5E1] mb-1.5">
+                      {isFa ? "ایمیل یا شماره واتساپ" : "Email or WhatsApp"} <span className="text-sky-600 dark:text-[#00D2FF]">*</span>
                     </label>
                     <input
                       type="text"
@@ -245,15 +245,15 @@ export default function ModernContactSection() {
                       value={formData.contactInfo}
                       onChange={(e) => setFormData({ ...formData, contactInfo: e.target.value })}
                       placeholder={isFa ? "ایمیل یا شماره تماس..." : "email or phone..."}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-xs sm:text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60 transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#040B20]/80 border border-slate-200 dark:border-white/[0.08] text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder-[#64748B] focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]/60 transition-colors"
                       dir="ltr"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5">
-                    {isFa ? "متن پیام یا شرح مختصر پروژه" : "Message / Project Brief"} <span className="text-[#00D2FF]">*</span>
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-[#CBD5E1] mb-1.5">
+                    {isFa ? "متن پیام یا شرح مختصر پروژه" : "Message / Project Brief"} <span className="text-sky-600 dark:text-[#00D2FF]">*</span>
                   </label>
                   <textarea
                     rows={4}
@@ -261,18 +261,18 @@ export default function ModernContactSection() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder={isFa ? "خلاصه‌ای از ایده، سوال یا نیازمندی‌های خود را بنویسید..." : "Briefly describe your requirements or inquiry..."}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-xs sm:text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60 transition-colors resize-none"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#040B20]/80 border border-slate-200 dark:border-white/[0.08] text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder-[#64748B] focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]/60 transition-colors resize-none"
                   />
                 </div>
 
                 {errorMessage && (
-                  <p className="text-xs text-rose-400 text-center">{errorMessage}</p>
+                  <p className="text-xs text-rose-500 dark:text-rose-400 text-center">{errorMessage}</p>
                 )}
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] disabled:opacity-50 text-[#040B20] font-bold text-xs sm:text-sm transition-all shadow-[0_0_20px_rgba(0,210,255,0.25)] hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-sky-500 dark:bg-[#00D2FF] hover:bg-sky-600 dark:hover:bg-[#38bdf8] disabled:opacity-50 text-white dark:text-[#040B20] font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg dark:shadow-[0_0_20px_rgba(0,210,255,0.25)] dark:hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>

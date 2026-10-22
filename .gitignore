@@ -47,3 +47,6 @@ __pycache__/
 *.pem
 .vscode/
 .idea/
+
+# Sub projects
+rb-shop/

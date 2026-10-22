@@ -711,15 +711,15 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType>({
-  language: "en",
+  language: "fa",
   setLanguage: () => {},
   toggleLanguage: () => {},
-  dir: "ltr",
-  t: translations.en,
+  dir: "rtl",
+  t: translations.fa,
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en");
+  const [language, setLanguageState] = useState<Language>("fa");
 
   useEffect(() => {
     try {
@@ -737,7 +737,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         ? urlLang
         : (sessionLang === "en" || sessionLang === "fa")
           ? sessionLang
-          : "en"; // ALWAYS English by default!
+          : "fa"; // Persian by default!
 
       setLanguageState(targetLang);
       document.documentElement.setAttribute("lang", targetLang);
