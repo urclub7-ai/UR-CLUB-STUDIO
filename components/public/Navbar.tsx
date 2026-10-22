@@ -236,7 +236,7 @@ export default function Navbar({
               className={`h-10 px-4 inline-flex items-center justify-center gap-2 rounded-full transition-all duration-300 cursor-pointer group select-none text-xs sm:text-sm font-bold ${
                 isDark
                   ? "bg-white hover:bg-[#00D2FF] text-[#040B20] shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_25px_rgba(0,210,255,0.7)]"
-                  : "bg-slate-900 hover:bg-sky-600 text-white shadow-sm"
+                  : "bg-sky-600 hover:bg-sky-700 text-white shadow-sm"
               }`}
               title={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
               aria-label="Toggle language"
@@ -281,7 +281,7 @@ export default function Navbar({
               className={`h-8 px-2.5 rounded-full text-[11px] font-bold flex items-center gap-1 cursor-pointer ${
                 isDark
                   ? "bg-white text-[#040B20] shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-                  : "bg-slate-900 text-white shadow-sm"
+                  : "bg-sky-600 text-white shadow-sm"
               }`}
               title={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
               aria-label="Toggle language"
@@ -384,7 +384,7 @@ export default function Navbar({
                 className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-between cursor-pointer transition-colors shadow-sm ${
                   isDark
                     ? "bg-white hover:bg-[#00D2FF] text-[#040B20]"
-                    : "bg-slate-900 hover:bg-sky-600 text-white"
+                    : "bg-sky-600 hover:bg-sky-700 text-white"
                 }`}
               >
                 <span className="flex items-center gap-2">

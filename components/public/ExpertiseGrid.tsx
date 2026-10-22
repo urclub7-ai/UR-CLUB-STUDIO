@@ -112,7 +112,7 @@ export default function ExpertiseGrid() {
         </span>
         <Link
           href="/#contact-section"
-          className="h-9 px-5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-[#040B20] hover:bg-sky-600 dark:hover:bg-[#00D2FF] text-xs font-bold transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(255,255,255,0.15)] inline-flex items-center gap-1.5"
+          className="h-9 px-5 rounded-full bg-sky-600 hover:bg-sky-700 dark:bg-white text-white dark:text-[#040B20] dark:hover:bg-[#00D2FF] text-xs font-bold transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(255,255,255,0.15)] inline-flex items-center gap-1.5"
         >
           <Handshake className="w-3.5 h-3.5" />
           <span>{isFa ? "مشاوره رایگان با تیم" : "Free Consultation with the Team"}</span>
