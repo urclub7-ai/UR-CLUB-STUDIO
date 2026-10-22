@@ -38,7 +38,7 @@ export default function HomeContentClient({
   const isFa = language === "fa";
 
   return (
-    <div className="space-y-8 sm:space-y-28 bg-[#040B20] text-white">
+    <div className="space-y-8 sm:space-y-28 bg-background text-foreground transition-colors duration-200">
       {/* ─── 1. HERO SECTION (Dribbble HexaCore Centered Aesthetic) ─── */}
       <Hero />
 

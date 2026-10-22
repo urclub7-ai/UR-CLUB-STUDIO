@@ -4,6 +4,7 @@ import "./globals.css";
 import prisma from "@/lib/prisma";
 import PublicLayoutWrapper from "@/components/public/PublicLayoutWrapper";
 import { LanguageProvider } from "@/lib/i18n";
+import { ThemeProvider } from "@/lib/theme";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -125,7 +126,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" dir="ltr" className={`dark scroll-smooth bg-[#040B20] ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
+    <html lang="en" dir="ltr" className={`dark scroll-smooth transition-colors duration-200 ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preload" href="/images/team_logo_transparent.png" as="image" />
         <script
@@ -139,28 +140,36 @@ export default async function RootLayout({
                 var lang = (urlLang === "fa" || urlLang === "en") ? urlLang : (sessionLang === "fa" || sessionLang === "en") ? sessionLang : "en";
                 document.documentElement.setAttribute("lang", lang);
                 document.documentElement.setAttribute("dir", lang === "fa" ? "rtl" : "ltr");
+
+                var savedTheme = localStorage.getItem("site_theme");
+                var theme = (savedTheme === "light" || savedTheme === "dark") ? savedTheme : "dark";
+                document.documentElement.classList.remove("dark", "light");
+                document.documentElement.classList.add(theme);
+                document.documentElement.setAttribute("data-theme", theme);
               } catch (e) {}
             `,
           }}
         />
       </head>
       <body
-        className="min-h-screen flex flex-col bg-[#040B20] text-[#F8FAFC] antialiased selection:bg-[#00D2FF] selection:text-[#040B20]"
+        className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-[#00D2FF] selection:text-[#040B20] transition-colors duration-200"
         suppressHydrationWarning
       >
-        <LanguageProvider>
-          <PublicLayoutWrapper
-            designerName={settings?.designerName || "Nazif Yosufi"}
-            availabilityStatus={home?.availabilityStatus ?? true}
-            tagline={settings?.tagline || home?.heroSubtitle}
-            email={settings?.email || "contact@nazifyosufi.com"}
-            location={settings?.location || "Germany"}
-            copyrightText={settings?.copyrightText || "© 2026 Nazif Yosufi. All rights reserved."}
-            socialLinks={settings?.socialLinks || []}
-          >
-            {children}
-          </PublicLayoutWrapper>
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <PublicLayoutWrapper
+              designerName={settings?.designerName || "Nazif Yosufi"}
+              availabilityStatus={home?.availabilityStatus ?? true}
+              tagline={settings?.tagline || home?.heroSubtitle}
+              email={settings?.email || "contact@nazifyosufi.com"}
+              location={settings?.location || "Germany"}
+              copyrightText={settings?.copyrightText || "© 2026 Nazif Yosufi. All rights reserved."}
+              socialLinks={settings?.socialLinks || []}
+            >
+              {children}
+            </PublicLayoutWrapper>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
