@@ -3,7 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import Hero from "@/components/public/Hero";
-import BentoGridSection from "@/components/public/BentoGridSection";
+import ExpertiseGrid from "@/components/public/ExpertiseGrid";
+import WhyChooseUsSection from "@/components/public/WhyChooseUsSection";
 import StatsHorizonSection from "@/components/public/StatsHorizonSection";
 import LiveInteractiveFrame from "@/components/public/LiveInteractiveFrame";
 import MultiAssetShowcase from "@/components/public/MultiAssetShowcase";
@@ -38,22 +39,27 @@ export default function HomeContentClient({
 
   return (
     <div className="space-y-8 sm:space-y-28 bg-background text-foreground transition-colors duration-200">
-      {/* ─── 1. HERO SECTION (Bespoke Human-Crafted Focal Layout) ─── */}
+      {/* ─── 1. HERO SECTION (Dribbble HexaCore Centered Aesthetic) ─── */}
       <Hero />
 
-      {/* ─── 2. ARCHITECTURAL CAPABILITIES & BENCHMARKS (Asymmetrical Bento Grid) ─── */}
+      {/* ─── 2. OUR EXPERTISE (6-Card Grid matching Dribbble HexaCore) ─── */}
       <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <BentoGridSection />
+        <ExpertiseGrid />
       </MotionSection>
 
-      {/* ─── 3. STATS HORIZON (Telemetry & Metrics Arc) ─── */}
+      {/* ─── 3. WHY COMPANIES CHOOSE URCLUB (5 Visual Cards matching Dribbble) ─── */}
+      <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <WhyChooseUsSection />
+      </MotionSection>
+
+      {/* ─── 4. STATS HORIZON (Glowing Curved Cyan Arc matching Dribbble) ─── */}
       <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <StatsHorizonSection />
       </MotionSection>
 
-      {/* ─── 4. PRODUCTION PLATFORMS SHOWCASE & VERIFICATION (Zero Black Box) ─── */}
+      {/* ─── 5. PREVIOUS PROJECTS IN LIVE INTERACTIVE FRAME (پروژه‌های قبلی در کادر آنلاین) ─── */}
       <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <LiveInteractiveFrame />
+        <LiveInteractiveFrame initialProjects={showcaseWebsites} />
       </MotionSection>
 
       {/* ─── 6. LOGOS & BRAND IDENTITY SHOWCASE (لوگوها و هویت بصری) ─── */}
