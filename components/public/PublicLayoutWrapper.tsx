@@ -29,8 +29,9 @@ export default function PublicLayoutWrapper({
 }: PublicLayoutWrapperProps) {
   const pathname = usePathname();
   const isAdminRoute = pathname.startsWith("/admin");
+  const isZeroAiRoute = pathname.startsWith("/zeroai");
 
-  if (isAdminRoute) {
+  if (isAdminRoute || isZeroAiRoute) {
     return <>{children}</>;
   }
 

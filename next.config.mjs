@@ -37,6 +37,44 @@ const nextConfig = {
       bodySizeLimit: "10mb",
     },
   },
+  async headers() {
+    return [
+      {
+        source: "/zeroai/manifest.plist",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "text/xml; charset=utf-8",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, must-revalidate",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+        ],
+      },
+      {
+        source: "/zeroai/ZeroAI.ipa",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "application/octet-stream",
+          },
+          {
+            key: "Content-Disposition",
+            value: "attachment; filename=\"ZeroAI.ipa\"",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
