@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     title: "Zero AI — On-Device Intelligence for iPhone",
     description:
       "Exclusive direct OTA download portal for Zero AI. Pure offline execution and hardware-locked private intelligence.",
-    url: "https://urclub.vercel.app/zeroai",
+    url: "https://www.urclubstudio.com/zeroai",
     siteName: "UR CLUB STUDIO",
     images: [
       {
-        url: "https://urclub.vercel.app/zeroai/icon-512.png",
+        url: "https://www.urclubstudio.com/zeroai/icon.png",
         width: 512,
         height: 512,
         alt: "Zero AI Logo",
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/zeroai/icon-57.png",
-    apple: "/zeroai/icon-512.png",
+    icon: "/zeroai/icon.png",
+    apple: "/zeroai/icon.png",
   },
 };
 

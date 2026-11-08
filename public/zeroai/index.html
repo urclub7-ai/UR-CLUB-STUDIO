@@ -7,8 +7,8 @@
   <meta name="description" content="Zero AI on-device neural intelligence agent for iOS. Direct OTA enterprise installation, zero cloud LLM latency, 100% private and hardware-locked security.">
   <meta name="theme-color" content="#090A0F">
   
-  <link rel="icon" type="image/png" href="/zeroai/icon-57.png">
-  <link rel="apple-touch-icon" href="/zeroai/icon-512.png">
+  <link rel="icon" type="image/png" href="/zeroai/icon.png">
+  <link rel="apple-touch-icon" href="/zeroai/icon.png">
 
   <style>
     *, *::before, *::after {
@@ -454,11 +454,11 @@
 
       <div class="cta-container">
         <!-- Direct Apple OTA Install -->
-        <a class="btn-install" href="itms-services://?action=download-manifest&url=https://urclub.vercel.app/zeroai/manifest.plist">
+        <a class="btn-install" href="itms-services://?action=download-manifest&url=https://www.urclubstudio.com/zeroai/manifest.plist">
           <div class="btn-install-inner">
             <span class="btn-install-emoji">📲</span>
             <div>
-              <div class="btn-text-main">Install Direct on iPhone</div>
+              <div class="btn-text-main">📲 نصب مستقیم روی iPhone</div>
               <div class="btn-text-sub">Apple Wireless OTA • Build 1.0.0</div>
             </div>
           </div>
@@ -466,9 +466,9 @@
 
         <!-- Fallback IPA & Copy Link -->
         <div class="btn-secondary-row">
-          <a class="btn-ipa" href="/zeroai/ZeroAI.ipa" download="ZeroAI.ipa">
+          <a class="btn-ipa" href="https://www.urclubstudio.com/zeroai/ZeroAI.ipa" download="ZeroAI.ipa">
             <span>📥</span>
-            <span>Download Raw IPA File</span>
+            <span>📥 دانلود مستقیم فایل IPA</span>
           </a>
           <button class="btn-copy" id="copyBtn" onclick="copyManifest()" title="Copy OTA Link">
             📋
@@ -480,7 +480,7 @@
       <div class="guide-card">
         <div class="guide-header">
           <div>
-            <div class="guide-title">3-Step Quick iPhone Setup</div>
+            <div class="guide-title">راهنمای ۳ مرحله‌ای نصب (3-Step Setup Guide)</div>
             <div class="guide-sub">Apple Enterprise &amp; Ad-Hoc Onboarding Procedure</div>
           </div>
         </div>
@@ -488,34 +488,34 @@
         <div class="step-item">
           <div class="step-head">
             <div class="step-num">01</div>
-            <div>Tap "Install Direct" in Safari and confirm prompt</div>
+            <div>مرحله ۱: لمس دکمه «نصب مستقیم» در مرورگر Safari</div>
           </div>
           <div class="step-desc">
-            Open this page in Safari and tap the glowing button above. When iOS displays <em>"urclub.vercel.app would like to install 'Zero AI'"</em>, tap <strong>Install</strong>.
+            این صفحه را در مرورگر Safari باز کنید و دکمه <strong>«📲 نصب مستقیم روی iPhone»</strong> را بزنید. وقتی پیام <em>"www.urclubstudio.com would like to install 'Zero AI'"</em> نمایش داده شد، گزینه <strong>Install</strong> را انتخاب نمایید.
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-head">
             <div class="step-num" style="color: #c888ff; background: rgba(142,45,226,0.2);">02</div>
-            <div>Trust the Profile in iOS Settings</div>
+            <div>مرحله ۲: تأیید پروفایل در تنظیمات آیفون (Trust Profile)</div>
           </div>
           <div class="step-desc">
-            Go to:
+            به مسیر زیر در تنظیمات آیفون بروید:
             <br>
             <code>Settings &gt; General &gt; VPN &amp; Device Management</code>
             <br>
-            Select <strong>UR CLUB STUDIO</strong> and tap <strong>Trust</strong>.
+            پروفایل <strong>UR CLUB STUDIO</strong> را انتخاب کرده و گزینه <strong>Trust</strong> را لمس کنید.
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-head">
             <div class="step-num" style="color: #FFFFFF; background: rgba(255,255,255,0.15);">03</div>
-            <div>Launch Zero AI &amp; Enter License Key</div>
+            <div>مرحله ۳: اجرای Zero AI و وارد کردن کلید لایسنس (Activate Key)</div>
           </div>
           <div class="step-desc">
-            Open Zero AI from your home screen and enter your active device License Key to unlock full offline neural computing.
+            برنامه Zero AI را از هوم اسکرین باز کنید و لایسنس سخت‌افزاری خود را برای باز شدن تمامی قابلیت‌های هوش مصنوعی کاملاً آفلاین وارد نمایید.
           </div>
         </div>
       </div>
@@ -533,7 +533,7 @@
 
   <script>
     function copyManifest() {
-      const url = "itms-services://?action=download-manifest&url=https://urclub.vercel.app/zeroai/manifest.plist";
+      const url = "itms-services://?action=download-manifest&url=https://www.urclubstudio.com/zeroai/manifest.plist";
       navigator.clipboard.writeText(url).then(function() {
         const btn = document.getElementById("copyBtn");
         btn.textContent = "✅";

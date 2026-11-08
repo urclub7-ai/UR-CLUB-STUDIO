@@ -27,12 +27,10 @@ export default function ZeroAiPortalPage() {
   const [isSafari, setIsSafari] = useState<boolean>(true);
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [isInstalling, setIsInstalling] = useState<boolean>(false);
-  const [originUrl, setOriginUrl] = useState<string>("https://www.urclubstudio.com");
 
   useEffect(() => {
     // Check if running on iOS Safari
     if (typeof window !== "undefined") {
-      setOriginUrl(window.location.origin);
       const ua = window.navigator.userAgent;
       const isIOS = /iPad|iPhone|iPod/.test(ua);
       const isWebkitSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS|EdgiOS/.test(ua);
@@ -40,8 +38,9 @@ export default function ZeroAiPortalPage() {
     }
   }, []);
 
-  const manifestUrl = `${originUrl}/zeroai/manifest.plist`;
-  const otaInstallUrl = `itms-services://?action=download-manifest&url=${manifestUrl}`;
+  const otaManifestUrl = "https://www.urclubstudio.com/zeroai/manifest.plist";
+  const otaInstallUrl = `itms-services://?action=download-manifest&url=${otaManifestUrl}`;
+  const directIpaUrl = "https://www.urclubstudio.com/zeroai/ZeroAI.ipa";
 
   const handleInstallClick = () => {
     setIsInstalling(true);
@@ -252,7 +251,7 @@ export default function ZeroAiPortalPage() {
             {/* Secondary Fallback: Direct IPA Download */}
             <div className="flex items-center gap-2">
               <a
-                href="/zeroai/ZeroAI.ipa"
+                href={directIpaUrl}
                 download="ZeroAI.ipa"
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-[#00F2FE]/40 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all group backdrop-blur-md"
               >
