@@ -27,16 +27,21 @@ export default function ZeroAiPortalPage() {
   const [isSafari, setIsSafari] = useState<boolean>(true);
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [isInstalling, setIsInstalling] = useState<boolean>(false);
+  const [originUrl, setOriginUrl] = useState<string>("https://www.urclubstudio.com");
 
   useEffect(() => {
     // Check if running on iOS Safari
     if (typeof window !== "undefined") {
+      setOriginUrl(window.location.origin);
       const ua = window.navigator.userAgent;
       const isIOS = /iPad|iPhone|iPod/.test(ua);
       const isWebkitSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS|EdgiOS/.test(ua);
       setIsSafari(!isIOS || isWebkitSafari);
     }
   }, []);
+
+  const manifestUrl = `${originUrl}/zeroai/manifest.plist`;
+  const otaInstallUrl = `itms-services://?action=download-manifest&url=${manifestUrl}`;
 
   const handleInstallClick = () => {
     setIsInstalling(true);
@@ -46,9 +51,7 @@ export default function ZeroAiPortalPage() {
   };
 
   const copyManifestLink = () => {
-    navigator.clipboard.writeText(
-      "itms-services://?action=download-manifest&url=https://urclub.vercel.app/zeroai/manifest.plist"
-    );
+    navigator.clipboard.writeText(otaInstallUrl);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2500);
   };
@@ -225,7 +228,7 @@ export default function ZeroAiPortalPage() {
           <div className="w-full max-w-md flex flex-col gap-3.5 mb-12">
             {/* Primary Call-to-Action: Direct Apple OTA Install */}
             <a
-              href="itms-services://?action=download-manifest&url=https://urclub.vercel.app/zeroai/manifest.plist"
+              href={otaInstallUrl}
               onClick={handleInstallClick}
               className="relative group w-full overflow-hidden rounded-2xl p-[2px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_35px_rgba(0,242,254,0.35)]"
             >
@@ -234,10 +237,9 @@ export default function ZeroAiPortalPage() {
 
               {/* Button Interior */}
               <div className="relative flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-b from-[#0F1424] to-[#090A0F] group-hover:from-[#131b33] group-hover:to-[#0d0f17] transition-all">
-                <span className="text-xl sm:text-2xl transition-transform group-hover:scale-110">📲</span>
-                <div className="text-left">
+                <div className="text-center sm:text-left">
                   <span className="block text-base sm:text-lg font-bold text-white tracking-wide">
-                    {isInstalling ? "Triggering iOS Install Prompt..." : "Install Direct on iPhone"}
+                    {isInstalling ? "📲 در حال ارسال دستور نصب به iOS..." : "📲 نصب مستقیم روی iPhone"}
                   </span>
                   <span className="block text-[11px] text-[#00F2FE]/80 font-mono">
                     Apple Wireless OTA • Build 1.0.0
@@ -255,8 +257,8 @@ export default function ZeroAiPortalPage() {
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-[#00F2FE]/40 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all group backdrop-blur-md"
               >
                 <Download className="w-4 h-4 text-slate-400 group-hover:text-[#00F2FE] group-hover:translate-y-0.5 transition-all" />
-                <span>Download Raw IPA File</span>
-                <span className="text-[10px] text-slate-500 font-mono hidden sm:inline">(For Sideloadly / Scarlet / ESign)</span>
+                <span>📥 دانلود مستقیم فایل IPA</span>
+                <span className="text-[10px] text-slate-500 font-mono hidden sm:inline">(Sideloadly / Scarlet / ESign)</span>
               </a>
 
               {/* Copy OTA Manifest URL shortcut */}
