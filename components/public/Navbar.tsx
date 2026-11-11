@@ -54,45 +54,72 @@ export default function Navbar({
   useEffect(() => {
     if (pathname !== "/") return;
 
-    // Check hash on mount / reload
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setScrolled(scrollY > 20);
+
+      // 1. Definite Home/Hero state: when within top 200px
+      if (scrollY < 200) {
+        setActiveSection("hero-section");
+        if (typeof window !== "undefined" && window.location.hash) {
+          window.history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+        return;
+      }
+
+      // 2. Measure section positions relative to viewport
+      const getSectionTop = (id: string) => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        return el.getBoundingClientRect().top;
+      };
+
+      const projectsTop = getSectionTop("projects-section");
+      const aboutTop = getSectionTop("about-section");
+      const contactTop = getSectionTop("contact-section");
+
+      const docHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+
+      // Check if user has genuinely reached the bottom of page (and has scrolled significantly)
+      const isAtBottom =
+        scrollY > 800 && window.innerHeight + scrollY >= docHeight - 90;
+
+      // Evaluation from bottom to top with generous 350px offset below header
+      if (isAtBottom || (contactTop !== null && contactTop <= 350)) {
+        setActiveSection("contact-section");
+      } else if (aboutTop !== null && aboutTop <= 350) {
+        setActiveSection("about-section");
+      } else if (projectsTop !== null && projectsTop <= 350) {
+        setActiveSection("projects-section");
+      } else {
+        setActiveSection("hero-section");
+      }
+    };
+
+    // Check hash on mount/reload with safety
     if (typeof window !== "undefined" && window.location.hash) {
       const hash = window.location.hash.replace("#", "");
       if (["hero-section", "projects-section", "about-section", "contact-section"].includes(hash)) {
-        setActiveSection(hash);
+        if (window.scrollY > 200) {
+          setActiveSection(hash);
+        } else {
+          setActiveSection("hero-section");
+          // Clear stale hash if user is actually at the top
+          window.history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
       }
     }
 
     let ticking = false;
-    const handleScroll = () => {
+    const throttledScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          setScrolled(scrollY > 15);
-
-          const getTop = (id: string) => {
-            const el = document.getElementById(id);
-            if (!el) return null;
-            return el.getBoundingClientRect().top + scrollY;
-          };
-
-          const projectsTop = getTop("projects-section");
-          const aboutTop = getTop("about-section");
-          const contactTop = getTop("contact-section");
-
-          const scrollPos = scrollY + 280; // trigger offset for comfortable section recognition
-          const isAtBottom =
-            window.innerHeight + scrollY >= document.documentElement.scrollHeight - 90;
-
-          if (isAtBottom || (contactTop && scrollPos >= contactTop)) {
-            setActiveSection("contact-section");
-          } else if (aboutTop && scrollPos >= aboutTop) {
-            setActiveSection("about-section");
-          } else if (projectsTop && scrollPos >= projectsTop) {
-            setActiveSection("projects-section");
-          } else {
-            setActiveSection("hero-section");
-          }
-
+          handleScroll();
           ticking = false;
         });
         ticking = true;
@@ -100,14 +127,22 @@ export default function Navbar({
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", throttledScroll, { passive: true });
     window.addEventListener("hashchange", handleScroll);
+    window.addEventListener("resize", throttledScroll);
+
+    // Re-check after layout shifts (e.g. language or theme toggle, fonts loading)
+    const t1 = setTimeout(handleScroll, 80);
+    const t2 = setTimeout(handleScroll, 300);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", throttledScroll);
       window.removeEventListener("hashchange", handleScroll);
+      window.removeEventListener("resize", throttledScroll);
+      clearTimeout(t1);
+      clearTimeout(t2);
     };
-  }, [pathname]);
+  }, [pathname, language]);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -119,12 +154,12 @@ export default function Navbar({
 
       if (link.id === "hero-section") {
         window.scrollTo({ top: 0, behavior: "smooth" });
-        window.history.pushState(null, "", "/");
+        window.history.replaceState(null, "", window.location.pathname + window.location.search);
       } else {
         const el = document.getElementById(link.id);
         if (el) {
           el.scrollIntoView({ behavior: "smooth" });
-          window.history.pushState(null, "", `#${link.id}`);
+          window.history.replaceState(null, "", `#${link.id}`);
         }
       }
       setIsOpen(false);

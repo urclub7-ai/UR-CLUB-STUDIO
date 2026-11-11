@@ -97,12 +97,12 @@ export default function LiveInteractiveFrame({
       {/* Clean Centered Header matching other sections */}
       <div className="flex flex-col items-center text-center mb-4 sm:mb-8">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
-          {isFa ? "مشاهده و اسکرول در وبسایت‌های قبلی" : "Explore & Scroll Previous Websites Live"}
+          {isFa ? "پروژه‌های قبلی در کادر زنده" : "Previous Projects in Live Frame"}
         </h2>
         <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
-            ? "امکان اسکرول و بررسی زنده پروژه‌ها به صورت تعاملی در داخل کادر"
-            : "Interactive capability to scroll and inspect live projects directly inside the frame"}
+            ? "سایت‌های ساخته‌شده را زنده در داخل ای کادر امتحان کنید."
+            : "Test and browse live launched websites directly inside this frame."}
         </p>
       </div>
 

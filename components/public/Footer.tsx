@@ -40,9 +40,10 @@ export default function Footer({
 
   const footerLinks = [
     { href: "/", label: isFa ? "صفحه اصلی" : "Home" },
-    { href: "/#projects-section", label: isFa ? "پروژه‌های قبلی" : "Showcase & Projects" },
-    { href: "/#about-section", label: isFa ? "درباره ما" : "About Us" },
-    { href: "/#contact-section", label: isFa ? "تماس با ما" : "Contact Us" },
+    { href: "/#projects-section", label: isFa ? "پروژه‌های قبلی" : "Projects" },
+    { href: "/#about-section", label: isFa ? "درباره ما" : "About" },
+    { href: "/order", label: isFa ? "سفارش پروژه" : "Order Project" },
+    { href: "/#contact-section", label: isFa ? "تماس با ما" : "Contact" },
   ];
 
   const displaySocials = socialLinks.length > 0 ? socialLinks : [

@@ -17,29 +17,29 @@ export default function WhyChooseUsSection() {
     {
       title: "ارتباط مستقیم با تیم فنی",
       title_en: "Direct Communication with Technical Team",
-      desc: "گفتگوی مستقیم با خود برنامه‌نویسان و مهندسان پروژه، بدون واسطه و با پاسخگویی سریع.",
-      desc_en: "Direct dialogue with the software engineers and developers themselves, without intermediaries and with rapid response.",
+      desc: "ارتباط مستقیم با خود برنامه‌نویسان، بدون واسطه و فوری.",
+      desc_en: "Direct dialogue with engineers without intermediaries.",
       icon: Users2,
     },
     {
       title: "همراهی گام‌به‌گام تا راه‌اندازی",
       title_en: "Step-by-Step Guidance to Launch",
-      desc: "از ایده اولیه و طراحی تا پیاده‌سازی نهایی و پشتیبانی، در تمام مسیر همراه شما هستیم.",
-      desc_en: "From initial concept and design to final implementation and ongoing support, we stand with you throughout the journey.",
+      desc: "از طرح اولیه تا راه‌اندازی و پشتیبانی تخنیکی.",
+      desc_en: "From initial concept to deployment and technical support.",
       icon: Workflow,
     },
     {
       title: "سرعت بالا و اجرای تمیز",
       title_en: "High Velocity & Clean Execution",
-      desc: "کدنویسی بهینه‌سازی‌شده برای بارگذاری فوق‌سریع صفحات و عملکرد روان در تمام دستگاه‌ها.",
-      desc_en: "Optimized code architecture engineered for ultra-fast page loads and fluid performance across all devices.",
+      desc: "کدنویسی عصری برای باز شدن سریع سایت در مبایل و کمپیوتر.",
+      desc_en: "Optimized code for instant loading across mobile and desktop.",
       icon: Zap,
     },
     {
       title: "شفافیت کامل و مالکیت کدها",
       title_en: "Total Transparency & Full IP Ownership",
-      desc: "گزارش‌دهی منظم از مراحل کار و تحویل صددرصد کامل فایل‌ها و کدهای منبع به شما.",
-      desc_en: "Structured milestone reporting throughout development and 100% complete handover of source files and code repositories to you.",
+      desc: "گزارش منظم کار و تسلیم‌دهی مکمل تمام فایل‌ها و سورس‌کد.",
+      desc_en: "Regular milestone reporting and 100% source code ownership.",
       icon: ShieldCheck,
     },
   ];
@@ -49,12 +49,12 @@ export default function WhyChooseUsSection() {
       {/* Clean Centered Header */}
       <div className="flex flex-col items-center text-center mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
-          {isFa ? "چرا شرکا و سرمایه‌گذاران UR CLUB را انتخاب می‌کنند؟" : "Why Partners and Investors Choose UR CLUB"}
+          {isFa ? "چرا UR CLUB را انتخاب می‌کنند؟" : "Why Choose UR CLUB?"}
         </h2>
         <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
-            ? "سرعت بالا، شفافیت کامل و کیفیت مطمئن در اجرای پروژه‌ها"
-            : "High velocity, complete transparency, and reliable execution quality"}
+            ? "سرعت بالا، شفافیت کاری و کیفیت مطمئن."
+            : "High velocity, full transparency, and reliable execution."}
         </p>
       </div>
 

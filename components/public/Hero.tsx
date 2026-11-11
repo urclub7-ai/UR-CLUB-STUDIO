@@ -61,8 +61,8 @@ export default function Hero({}: HeroProps) {
         {/* Subtitle */}
         <p className="mt-4 sm:mt-6 text-xs sm:text-base md:text-lg text-slate-600 dark:text-[#CBD5E1] max-w-2xl leading-relaxed font-normal">
           {isFa
-            ? "از تدوین استراتیژی تا مهندسی کد و جذب سرمایه‌گذاری؛ UR CLUB همکار تخصصی شما در پیاده‌سازی و مقیاس‌دهی محصولات مدرن وب."
-            : "From strategy formulation to code engineering and capital acquisition; UR CLUB is your specialized partner in building and scaling modern web products."}
+            ? "طراحی، مهندسی نرم‌افزار و توسعه پلتفرم‌های عصری وب."
+            : "Design, software engineering, and modern web platform development."}
         </p>
 
         {/* Centered Dual Action Buttons */}
@@ -73,7 +73,7 @@ export default function Hero({}: HeroProps) {
             className="h-11 sm:h-12 px-5 sm:px-7 rounded-full bg-sky-600 hover:bg-sky-700 text-white dark:bg-[#00D2FF] dark:hover:bg-[#38bdf8] dark:text-[#040B20] text-xs sm:text-sm font-bold transition-all duration-300 shadow-md dark:shadow-[0_0_25px_rgba(0,210,255,0.4)] inline-flex items-center gap-2 group cursor-pointer"
           >
             <MonitorPlay className="w-4 h-4 text-white dark:text-[#040B20]" />
-            <span>{isFa ? "مشاهده کادر آنلاین و پروژه‌ها" : "View Live Frame & Projects"}</span>
+            <span>{isFa ? "دیدن پروژه‌ها" : "View Projects"}</span>
             <ArrowLeft className={`w-4 h-4 text-white dark:text-[#040B20] transition-transform duration-200 ${isFa ? "group-hover:-translate-x-1" : "group-hover:translate-x-1 rotate-180"}`} />
           </Link>
 
@@ -82,7 +82,7 @@ export default function Hero({}: HeroProps) {
             href="/order"
             className="h-11 sm:h-12 px-5 sm:px-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 dark:bg-white/[0.08] dark:hover:bg-white dark:text-white dark:hover:text-[#040B20] dark:border-white/15 text-xs sm:text-sm font-bold transition-all duration-300 inline-flex items-center gap-2 cursor-pointer shadow-sm dark:shadow-none"
           >
-            <span>{isFa ? "شروع سفارش اختصاصی" : "Start Custom Order"}</span>
+            <span>{isFa ? "ثبت سفارش" : "Order Project"}</span>
           </Link>
         </div>
 

@@ -13,32 +13,32 @@ export default function TeamCredibilitySection() {
       num_en: "01",
       title: "معماری سیستم و توسعه وب",
       title_en: "Full-Stack & Systems Architecture",
-      desc: "طراحی و پیاده‌سازی پلتفرم‌های ابری مقیاس‌پذیر، فروشگاه‌ها و وب‌سایت‌های مدرن با کدهای تمیز و امنیت بالا.",
-      desc_en: "Scalable cloud architecture, web platforms, and high-performance APIs engineered for long-term reliability.",
+      desc: "ساخت پلتفرم‌ها و وبسایت‌ها با کدهای پاک و امنیت بالا.",
+      desc_en: "High-performance websites and platforms built with clean code.",
     },
     {
       num: "۰۲",
       num_en: "02",
       title: "طراحی رابط کاربری و هویت برند",
       title_en: "UI/UX & Brand Identity",
-      desc: "خلق هویت بصری یکپارچه، طراحی لوگوهای برداری اختصاصی و تجربه کاربری روان، مدرن و هماهنگ.",
-      desc_en: "Cohesive visual identity systems, vector brand marks, and intuitive digital interfaces tailored for users.",
+      desc: "دیزاین لوگوهای وکتور و رابط کاربری آسان و زیبا.",
+      desc_en: "Vector marks and intuitive, elegant interfaces.",
     },
     {
       num: "۰۳",
       num_en: "03",
       title: "هوش مصنوعی و اتوماسیون",
       title_en: "AI Solutions & Automation",
-      desc: "بهره‌گیری هوشمندانه از ابزارهای نسل جدید هوش مصنوعی برای افزایش سرعت اجرای پروژه‌ها و بررسی دقیق کیفیت.",
-      desc_en: "Leveraging modern AI tooling to accelerate delivery timelines and maintain rigorous code quality.",
+      desc: "استفاده از هوش مصنوعی برای سرعت کار و کنترول کیفیت.",
+      desc_en: "Harnessing AI to boost delivery velocity and code quality.",
     },
     {
       num: "۰۴",
       num_en: "04",
       title: "امنیت، سرعت و استاندارد اروپا",
       title_en: "Cloud Security & European Standards",
-      desc: "استقرار پایدار بر بستر ابری، بارگذاری زیر ۱ ثانیه و رعایت کامل استانداردهای بین‌المللی حفظ داده‌ها.",
-      desc_en: "Zero-latency edge deployment, sub-second load times, and full compliance with strict privacy standards.",
+      desc: "لودینگ زیر ۱ ثانیه و نگهداری مصئون اطلاعات.",
+      desc_en: "Sub-second load times and compliant data protection.",
     },
   ];
 
@@ -48,13 +48,13 @@ export default function TeamCredibilitySection() {
       <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           {isFa
-            ? "تیم متعهد به استانداردهای بین‌المللی و اجرای تمیز"
-            : "Engineered for Clean Execution & High Trust"}
+            ? "معیارهای کاری ما"
+            : "Our Core Standards"}
         </h2>
         <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] leading-relaxed">
           {isFa
-            ? "ترکیب تخصص در توسعه نرم‌افزار، هویت بصری و فناوری‌های روز برای خلق پروژه‌های پایدار و ارزشمند"
-            : "Combining deep software engineering and brand craft to build scalable, high-yield digital platforms."}
+            ? "توسعه نرم‌افزار، دیزاین حرفه‌ای و سرعت بالا."
+            : "Software engineering, refined design, and high execution speed."}
         </p>
       </div>
 

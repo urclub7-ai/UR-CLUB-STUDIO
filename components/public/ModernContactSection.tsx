@@ -93,12 +93,12 @@ export default function ModernContactSection() {
       {/* ─── Clean Header ─── */}
       <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          {isFa ? "آماده‌اید پروژه بعدی خود را آغاز کنید؟" : "Ready to Build Your Next Project?"}
+          {isFa ? "در تماس شوید" : "Get in Touch"}
         </h2>
         <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] leading-relaxed">
           {isFa
-            ? "برای مشاوره فنی، برآورد هزینه و زمان یا آغاز همکاری، مستقیماً از راه‌های زیر با ما در ارتباط باشید."
-            : "Reach out for technical advisory, project timeline estimation, or new venture discussions."}
+            ? "برای مشوره تخنیکی یا برآورد هزینه پروژه با ما در ارتباط شوید."
+            : "Contact us for technical advisory, project scopes, or timeline estimates."}
         </p>
       </div>
 
@@ -116,8 +116,8 @@ export default function ModernContactSection() {
               </h3>
               <p className="text-xs text-slate-600 dark:text-[#94A3B8] mt-1.5 leading-relaxed">
                 {isFa
-                  ? "پاسخگویی سریع در کمتر از ۲ ساعت از طریق واتساپ یا ایمیل رسمی."
-                  : "Rapid response under 2 hours via WhatsApp or official email."}
+                  ? "پاسخگویی سریع در واتساپ یا ایمیل."
+                  : "Fast response via WhatsApp or official email."}
               </p>
             </div>
 

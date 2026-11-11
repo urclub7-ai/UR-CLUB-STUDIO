@@ -116,12 +116,12 @@ export default function MultiAssetShowcase({
       {/* Clean Centered Header Matching Previous Sections */}
       <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
-          {isFa ? "طراحی لوگوها و پوسترهای تبلیغاتی" : "Logos & Promotional Posters"}
+          {isFa ? "لوگوها و هویت بصری" : "Logos & Visual Identities"}
         </h2>
         <p className="mt-2.5 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
-            ? "نمونه‌های اختصاصی هویت بصری، نشان‌واره‌ها و پوسترهای تجاری"
-            : "Custom visual identities, brand emblems, and promotional posters"}
+            ? "نمونه‌های لوگو، نشان‌های تجاری و پوسترهای تبلیغاتی."
+            : "Curated vector marks, brand systems, and promotional posters."}
         </p>
       </div>
 

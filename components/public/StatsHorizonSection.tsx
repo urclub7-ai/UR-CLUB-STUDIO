@@ -11,23 +11,23 @@ export default function StatsHorizonSection() {
     {
       value: isFa ? "۱۵+" : "15+",
       title: "پروژه‌های موفق و فعال",
-      title_en: "Successful & Active Projects",
-      desc: "پیاده‌سازی و استقرار کامل سیستم‌ها با پایداری فنی مداوم",
-      desc_en: "Complete deployment and maintenance of platforms with continuous technical stability",
+      title_en: "Active & Launched Projects",
+      desc: "راه‌اندازی کامل با پایداری مداوم",
+      desc_en: "Full deployment with continuous reliability",
     },
     {
       value: isFa ? "۱۰۰٪" : "100%",
       title: "انطباق با استانداردهای مهندسی",
       title_en: "Engineering Standards Compliance",
-      desc: "کدنویسی تمیز، امنیت بالا و زیرساخت مقیاس‌پذیر",
-      desc_en: "Clean code, robust security protocols, and scalable infrastructure",
+      desc: "کد پاک، امنیت بالا و استانداردهای عصری",
+      desc_en: "Clean code, robust security, and modern standards",
     },
     {
       value: "4.98",
       title: "رضایت شرکا و سرمایه‌گذاران",
       title_en: "Partner & Investor Satisfaction",
-      desc: "شاخص اعتماد و رضایت همکاران تجاری از کیفیت خدمات",
-      desc_en: "Index of trust and client satisfaction regarding service excellence",
+      desc: "اعتماد شرکا و کیفیت خدمات",
+      desc_en: "High partner trust and exceptional service quality",
     },
   ];
 
@@ -36,12 +36,12 @@ export default function StatsHorizonSection() {
       {/* Clean Centered Header matching other sections */}
       <div className="flex flex-col items-center text-center mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
-          {isFa ? "برای اطمینان، عملکرد و آمار ما را ببینید" : "Examine Our Verified Performance & Metrics"}
+          {isFa ? "آمار و عملکرد ما" : "Our Track Record & Performance"}
         </h2>
         <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
-            ? "شاخص‌های شفاف و ثبت‌شده از رضایت شرکا، کیفیت اجرا و پایداری پروژه‌ها"
-            : "Transparent, recorded indicators of partner satisfaction, execution quality, and platform stability"}
+            ? "شاخص‌های واقعی از رضایت همکاران و پایداری سیستم‌ها."
+            : "Verified metrics reflecting client trust and system stability."}
         </p>
       </div>
 

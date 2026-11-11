@@ -21,43 +21,43 @@ export default function ExpertiseGrid() {
     {
       title: "راه‌حل‌های ابری و وب‌سایت‌های مدرن",
       title_en: "Cloud Solutions & Modern Websites",
-      desc: "طراحی و استقرار پلتفرم‌های مقیاس‌پذیر، فروشگاه‌های آنلاین و زیرساخت‌های پایدار با سرعت بارگذاری فوق‌سریع.",
-      desc_en: "Designing and deploying scalable platforms, online stores, and resilient infrastructures with ultra-fast loading speeds.",
+      desc: "ساخت وبسایت‌ها، دکان‌های آنلاین و پلتفرم‌های ابری با سرعت بالا.",
+      desc_en: "High-performance websites, online stores, and scalable cloud systems.",
       icon: Cloud,
     },
     {
       title: "مشاوره هوش مصنوعی و اتوماسیون",
       title_en: "AI Consulting & Automation",
-      desc: "بهره‌گیری از ابزارهای پیشرفته هوش مصنوعی جهت تسریع زمان تحویل پروژه‌ها و بهینه‌سازی فرآیندهای فنی.",
-      desc_en: "Leveraging cutting-edge AI tools to accelerate project delivery timelines and optimize technical workflows.",
+      desc: "استفاده از هوش مصنوعی برای تسریع کارها و اتوماسیون پروسه‌ها.",
+      desc_en: "Leveraging AI for workflow automation and accelerated delivery.",
       icon: Cpu,
     },
     {
       title: "امنیت داده و استانداردهای جهانی",
       title_en: "Data Security & Global Standards",
-      desc: "انطباق کامل با پروتکل‌های سخت‌گیرانه حفظ حریم خصوصی (GDPR)، کدنویسی تمیز و حفاظت جامع از اطلاعات.",
-      desc_en: "Full compliance with strict privacy protocols (GDPR), clean code architecture, and comprehensive data protection.",
+      desc: "رعایت استانداردهای امنیتی اروپا، حفظ حریم خصوصی و حفاظت داتا.",
+      desc_en: "Full GDPR compliance, rigorous privacy protocols, and data protection.",
       icon: ShieldCheck,
     },
     {
       title: "کادرهای تعاملی و پرتال‌های هوشمند",
       title_en: "Interactive Frames & Smart Portals",
-      desc: "طراحی سیستم‌های تعاملی پیشرفته جهت مرور زنده وب‌سایت‌ها در صفحه، سیستم‌های سفارش آنلاین و پلتفرم‌های وب.",
-      desc_en: "Designing advanced interactive systems for live in-page website previews, online ordering workflows, and web portals.",
+      desc: "سیستم‌های تعاملی برای تست زنده سایت‌ها و ثبت آنلاین سفارشات.",
+      desc_en: "In-frame live website previews and seamless online ordering systems.",
       icon: Layout,
     },
     {
       title: "استراتیژی دیجیتال و مدل‌های سرمایه‌گذاری",
       title_en: "Digital Strategy & Investment Models",
-      desc: "ایجاد مدل‌های شفاف شراکت برای سرمایه‌گذاران و همکاران تجاری با رویکرد بازگشت سرمایه منطقی و پایدار.",
-      desc_en: "Establishing transparent partnership models for investors and business partners with rational, sustainable ROI.",
+      desc: "مدل‌های شفاف همکاری تجاری با مفاد پایدار برای سرمایه‌گذاران.",
+      desc_en: "Transparent partnership frameworks with sustainable investor returns.",
       icon: TrendingUp,
     },
     {
       title: "مدرن‌سازی زیرساخت و معماری نرم‌افزار",
       title_en: "Infrastructure Modernization & Software Architecture",
-      desc: "بازنویسی سیستم‌های قدیمی با فناوری‌های مدرن، بهینه‌سازی عملکرد کد و کسب حداکثر کارایی فنی.",
-      desc_en: "Refactoring legacy systems with modern technologies, optimizing code performance, and achieving peak technical efficiency.",
+      desc: "مدرن‌سازی سیستم‌ها و بلند بردن سرعت و کارایی کدهای نرم‌افزار.",
+      desc_en: "Refactoring legacy code for peak speed, reliability, and scale.",
       icon: Code2,
     },
   ];
@@ -67,12 +67,12 @@ export default function ExpertiseGrid() {
       {/* Centered Clean Header */}
       <div className="flex flex-col items-center text-center mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          {isFa ? "شایستگی‌ها و توانمندی‌های مهندسی ما" : "Our Engineering Competencies & Capabilities"}
+          {isFa ? "تخصص‌ها و توانمندی‌های ما" : "Our Capabilities & Services"}
         </h2>
         <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl leading-relaxed">
           {isFa
-            ? "ترکیب مهندسی نرم‌افزار، استانداردهای روز جهانی و راهکارهای کارآمد برای موفقیت پروژه‌ها"
-            : "Combining software engineering, global modern standards, and efficient solutions for project success"}
+            ? "مهندسی نرم‌افزار، کد پاک و اجرای معیاری پروژه‌ها."
+            : "Software engineering, clean code, and standard project execution."}
         </p>
       </div>
 

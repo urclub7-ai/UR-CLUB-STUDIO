@@ -53,13 +53,13 @@ export default function TeamMembersSection({
       <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           {isFa
-            ? "اعضای تیم و مهندسان سازنده استودیو"
-            : "The Specialists Behind UR CLUB"}
+            ? "اعضای تیم استودیو"
+            : "Studio Team Members"}
         </h2>
         <p className="mt-2.5 text-xs sm:text-base text-slate-600 dark:text-[#94A3B8] leading-relaxed">
           {isFa
-            ? "دسترسی مستقیم به معماران سیستم، ارتباط با مشتریان و تعهدات اجرایی و قراردادی استودیو."
-            : "Direct access to system architects, client communications, and executive contract commitments."}
+            ? "ارتباط مستقیم با تیم تخنیکی و مدیریت استودیو."
+            : "Direct access to our technical architects and executive management."}
         </p>
       </div>
 
