@@ -139,26 +139,26 @@ export default function InvestorSection() {
           return (
             <div
               key={m.id}
-              className="group relative p-4 sm:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between transition-all duration-300 overflow-hidden bg-white dark:bg-[#081432]/60 border border-slate-200/80 dark:border-white/[0.08] hover:border-sky-400 dark:hover:border-[#00D2FF]/40 hover:bg-slate-50/70 dark:hover:bg-[#081432]/90 shadow-sm hover:shadow-lg dark:hover:shadow-[0_0_30px_rgba(0,210,255,0.15)]"
+              className="group relative p-4 sm:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between transition-all duration-300 overflow-hidden bg-white dark:bg-[#13110E]/60 border border-slate-200/80 dark:border-white/[0.08] hover:border-sky-400 dark:hover:border-[#D4AF37]/40 hover:bg-slate-50/70 dark:hover:bg-[#13110E]/90 shadow-sm hover:shadow-lg dark:hover:shadow-[0_0_30px_rgba(0,210,255,0.15)]"
             >
               {/* Top glow line - only visible on hover */}
-              <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#00D2FF]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="space-y-3.5 sm:space-y-4">
                 {/* Header Row: Badge */}
                 <div>
-                  <span className="inline-block text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-sky-50 dark:bg-[#00D2FF]/10 text-sky-600 dark:text-[#00D2FF] border border-sky-200 dark:border-[#00D2FF]/25">
+                  <span className="inline-block text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-sky-50 dark:bg-[#D4AF37]/10 text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37] border border-sky-200 dark:border-[#D4AF37]/25">
                     {isFa ? m.badge : m.badge_en}
                   </span>
                 </div>
 
                 {/* Title & Description */}
                 <div>
-                  <h3 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-[#00D2FF] transition-colors leading-snug">
+                  <h3 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#8B6914] dark:text-[#E5C396] dark:group-hover:text-[#D4AF37] transition-colors leading-snug">
                     {isFa ? m.title : m.title_en}
                   </h3>
                   {!isFa && (
-                    <div className="text-[11px] sm:text-xs font-mono text-sky-600 dark:text-[#00D2FF]/80 mt-1">
+                    <div className="text-[11px] sm:text-xs font-mono text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37]/80 mt-1">
                       {m.subtitle}
                     </div>
                   )}
@@ -171,7 +171,7 @@ export default function InvestorSection() {
                 <div className="pt-4 border-t border-slate-100 dark:border-white/[0.06] space-y-2">
                   {(isFa ? m.bullets : m.bullets_en).map((b, bIdx) => (
                     <div key={bIdx} className="flex items-center gap-2 text-xs text-slate-600 dark:text-[#CBD5E1]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-[#00D2FF] shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] dark:bg-[#D4AF37] shrink-0" />
                       <span>{b}</span>
                     </div>
                   ))}
@@ -189,7 +189,7 @@ export default function InvestorSection() {
                     }));
                     setIsModalOpen(true);
                   }}
-                  className="w-full py-3 px-4 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer bg-sky-50 dark:bg-[#00D2FF]/10 hover:bg-sky-500 dark:hover:bg-[#00D2FF] text-sky-600 dark:text-[#00D2FF] hover:text-white dark:hover:text-[#040B20] border border-sky-200 dark:border-[#00D2FF]/30 hover:shadow-md dark:hover:shadow-[0_0_20px_rgba(0,210,255,0.35)]"
+                  className="w-full py-3 px-4 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer bg-stone-50 dark:bg-[#D4AF37]/10 hover:bg-[#D4AF37] dark:hover:bg-[#D4AF37] text-[#8B6914] dark:text-[#E5C396] hover:text-[#090807] dark:hover:text-[#090807] border border-stone-200 dark:border-[#D4AF37]/30 hover:shadow-md dark:hover:shadow-[0_0_20px_rgba(212,175,55,0.35)]"
                 >
                   <span>{isFa ? "انتخاب این مدل و ثبت درخواست" : "Select Model & Apply"}</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -207,7 +207,7 @@ export default function InvestorSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/60 dark:bg-[#040B20]/90 backdrop-blur-xl p-4 sm:p-6 flex items-center justify-center overflow-y-auto"
+            className="fixed inset-0 z-50 bg-black/60 dark:bg-[#090807]/90 backdrop-blur-xl p-4 sm:p-6 flex items-center justify-center overflow-y-auto"
             onClick={() => setIsModalOpen(false)}
           >
             <motion.div
@@ -215,12 +215,12 @@ export default function InvestorSection() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-xl w-full rounded-2xl border border-slate-200 dark:border-[#00D2FF]/30 bg-white dark:bg-[#081432] p-6 sm:p-8 shadow-2xl overflow-hidden my-8"
+              className="relative max-w-xl w-full rounded-2xl border border-slate-200 dark:border-[#D4AF37]/30 bg-white dark:bg-[#13110E] p-6 sm:p-8 shadow-2xl overflow-hidden my-8"
             >
               {/* Close Button (Left-aligned in RTL to prevent text overlap) */}
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 sm:top-5 left-4 sm:left-5 rtl:left-4 rtl:sm:left-5 rtl:right-auto ltr:right-4 ltr:sm:right-5 ltr:left-auto z-20 p-2 rounded-full bg-slate-100 dark:bg-[#040B20] text-slate-500 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-[#00D2FF]/20 transition-colors cursor-pointer border border-slate-200 dark:border-white/10"
+                className="absolute top-4 sm:top-5 left-4 sm:left-5 rtl:left-4 rtl:sm:left-5 rtl:right-auto ltr:right-4 ltr:sm:right-5 ltr:left-auto z-20 p-2 rounded-full bg-slate-100 dark:bg-[#090807] text-slate-500 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-[#D4AF37]/20 transition-colors cursor-pointer border border-slate-200 dark:border-white/10"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4" />
@@ -228,7 +228,7 @@ export default function InvestorSection() {
 
               {isSubmitted ? (
                 <div className="text-center py-8 space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-sky-50 dark:bg-[#00D2FF]/20 border border-sky-500 dark:border-[#00D2FF] text-sky-500 dark:text-[#00D2FF] mx-auto flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-sky-50 dark:bg-[#D4AF37]/20 border border-[#D4AF37] dark:border-[#D4AF37] text-sky-500 dark:text-[#D4AF37] mx-auto flex items-center justify-center">
                     <CheckCircle2 className="w-7 h-7" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -244,7 +244,7 @@ export default function InvestorSection() {
                       setIsSubmitted(false);
                       setIsModalOpen(false);
                     }}
-                    className="mt-4 px-6 py-2.5 rounded-xl bg-sky-500 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold text-xs hover:bg-sky-600 dark:hover:bg-[#38bdf8] transition-all cursor-pointer shadow-md"
+                    className="mt-4 px-6 py-2.5 rounded-xl bg-[#D4AF37] dark:bg-[#D4AF37] text-white dark:text-[#090807] font-bold text-xs hover:bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:hover:bg-[#38bdf8] transition-all cursor-pointer shadow-md"
                   >
                     {isFa ? "بستن پنجره" : "Close Window"}
                   </button>
@@ -273,7 +273,7 @@ export default function InvestorSection() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder={isFa ? "مثال: علی احمدی یا شرکت سرمایه‌گذاری صبا" : "e.g. John Doe / Venture Partners"}
-                        className="w-full h-10 px-3.5 rounded-xl bg-slate-50 dark:bg-[#040B20] border border-slate-200 dark:border-[#00D2FF]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]"
+                        className="w-full h-10 px-3.5 rounded-xl bg-slate-50 dark:bg-[#090807] border border-slate-200 dark:border-[#D4AF37]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-[#D4AF37] dark:focus:border-[#D4AF37]"
                       />
                     </div>
 
@@ -288,7 +288,7 @@ export default function InvestorSection() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="investor@example.com"
-                          className="w-full h-10 px-3.5 rounded-xl bg-slate-50 dark:bg-[#040B20] border border-slate-200 dark:border-[#00D2FF]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]"
+                          className="w-full h-10 px-3.5 rounded-xl bg-slate-50 dark:bg-[#090807] border border-slate-200 dark:border-[#D4AF37]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-[#D4AF37] dark:focus:border-[#D4AF37]"
                         />
                       </div>
                       <div>
@@ -300,7 +300,7 @@ export default function InvestorSection() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="+49 ... / +93 ..."
-                          className="w-full h-10 px-3.5 rounded-xl bg-slate-50 dark:bg-[#040B20] border border-slate-200 dark:border-[#00D2FF]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]"
+                          className="w-full h-10 px-3.5 rounded-xl bg-slate-50 dark:bg-[#090807] border border-slate-200 dark:border-[#D4AF37]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-[#D4AF37] dark:focus:border-[#D4AF37]"
                         />
                       </div>
                     </div>
@@ -313,7 +313,7 @@ export default function InvestorSection() {
                         <select
                           value={formData.budget}
                           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                          className="w-full h-10 px-3 rounded-xl bg-slate-50 dark:bg-[#040B20] border border-slate-200 dark:border-[#00D2FF]/25 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]"
+                          className="w-full h-10 px-3 rounded-xl bg-slate-50 dark:bg-[#090807] border border-slate-200 dark:border-[#D4AF37]/25 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#D4AF37] dark:focus:border-[#D4AF37]"
                         >
                           <option value="€2,000 – €5,000">€2,000 – €5,000</option>
                           <option value="€5,000 – €15,000">€5,000 – €15,000</option>
@@ -330,7 +330,7 @@ export default function InvestorSection() {
                         <select
                           value={formData.model}
                           onChange={(e) => setFormData({ ...formData, model: e.target.value })}
-                          className="w-full h-10 px-3 rounded-xl bg-slate-50 dark:bg-[#040B20] border border-slate-200 dark:border-[#00D2FF]/25 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF]"
+                          className="w-full h-10 px-3 rounded-xl bg-slate-50 dark:bg-[#090807] border border-slate-200 dark:border-[#D4AF37]/25 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#D4AF37] dark:focus:border-[#D4AF37]"
                         >
                           <option value="سرمایه‌گذاری روی محصولات آماده">
                             {isFa ? "سرمایه‌گذاری روی محصولات آماده" : "Scale-Up Product Funding"}
@@ -357,7 +357,7 @@ export default function InvestorSection() {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder={isFa ? "در مورد زمینه علاقه‌مندی یا سوالات خود بنویسید..." : "Tell us about your target sector or specific questions..."}
-                        className="w-full p-3 rounded-xl bg-slate-50 dark:bg-[#040B20] border border-slate-200 dark:border-[#00D2FF]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-sky-500 dark:focus:border-[#00D2FF] resize-none"
+                        className="w-full p-3 rounded-xl bg-slate-50 dark:bg-[#090807] border border-slate-200 dark:border-[#D4AF37]/25 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-[#D4AF37] dark:focus:border-[#D4AF37] resize-none"
                       />
                     </div>
                   </div>
@@ -366,7 +366,7 @@ export default function InvestorSection() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full h-11 rounded-xl bg-sky-500 dark:bg-[#00D2FF] hover:bg-sky-600 dark:hover:bg-[#38bdf8] text-white dark:text-[#040B20] font-bold text-xs transition-all shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                      className="w-full h-11 rounded-xl bg-[#D4AF37] dark:bg-[#D4AF37] hover:bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:hover:bg-[#38bdf8] text-white dark:text-[#090807] font-bold text-xs transition-all shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                     >
                       <Send className="w-3.5 h-3.5" />
                       <span>{isSubmitting ? (isFa ? "در حال ارسال..." : "Sending...") : (isFa ? "ارسال درخواست سرمایه‌گذاری" : "Submit Investment Request")}</span>

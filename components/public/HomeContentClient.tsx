@@ -13,6 +13,7 @@ import TeamMembersSection from "@/components/public/TeamMembersSection";
 import InvestorSection from "@/components/public/InvestorSection";
 import ModernContactSection from "@/components/public/ModernContactSection";
 import MotionSection from "@/components/public/MotionSection";
+import { YazdanOrderCartIcon } from "@/components/ui/YazdanIcons";
 import { useLanguage } from "@/lib/i18n";
 
 interface HomeContentClientProps {
@@ -84,33 +85,34 @@ export default function HomeContentClient({
         </MotionSection>
       </div>
 
-      {/* ─── 8.5. ORDER & PROJECT CONFIGURATOR (ساده، مرتب و بدون آیکون) ─── */}
+      {/* ─── 8.5. ORDER & PROJECT CONFIGURATOR (ساده و لوکس با تم یزدان) ─── */}
       <MotionSection className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-10 rounded-2xl bg-white dark:bg-[#081432]/60 border border-slate-200/80 dark:border-white/[0.08] hover:border-sky-400 dark:hover:border-[#00D2FF]/25 shadow-sm hover:shadow-md transition-all duration-300 text-center space-y-3 sm:space-y-4">
-          <span className="text-[11px] sm:text-xs font-semibold text-sky-600 dark:text-[#00D2FF] tracking-wide block">
+        <div className="p-6 sm:p-10 rounded-2xl bg-white dark:bg-[#13110E]/80 border border-stone-200/90 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/50 shadow-sm hover:shadow-md transition-all duration-300 text-center space-y-3 sm:space-y-4">
+          <span className="text-[11px] sm:text-xs font-semibold text-[#8B6914] dark:text-[#E5C396] tracking-wide block font-mono uppercase">
             {isFa
-              ? "سفارش آسان و مستقیم"
+              ? "سفارش مستقیم و آسان"
               : "Fast & Direct Ordering"}
           </span>
 
-          <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+          <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-black dark:text-white tracking-tight">
             {isFa
               ? "پروژه خود را آغاز کنید"
               : "Ready to Build Your Custom Project?"}
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-[#94A3B8] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-black dark:text-white max-w-2xl mx-auto leading-relaxed">
             {isFa
-              ? "نوع پروژه (سایت، اپلیکیشن یا طرح) را انتخاب نموده و مشخصات ره ارسال کنید."
+              ? "نوع پروژه (سایت، اپلیکیشن یا دیزاین) را انتخاب نموده و مشخصات ره ارسال کنید."
               : "Select your project type (website, app, or design) and submit your specifications."}
           </p>
 
           <div className="pt-2 flex justify-center">
             <Link
               href="/order"
-              className="px-7 sm:px-9 py-2.5 sm:py-3 rounded-xl bg-sky-500 dark:bg-[#00D2FF] hover:bg-sky-600 dark:hover:bg-[#38bdf8] text-white dark:text-[#040B20] font-bold text-xs sm:text-sm transition-all shadow-md dark:shadow-[0_0_15px_rgba(0,210,255,0.25)] hover:shadow-lg dark:hover:shadow-[0_0_25px_rgba(0,210,255,0.45)] inline-flex items-center justify-center cursor-pointer"
+              className="px-7 sm:px-9 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] font-bold text-xs sm:text-sm transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:brightness-110 inline-flex items-center justify-center gap-2 cursor-pointer"
             >
-              {isFa ? "ثبت سفارش آنلاین" : "Start Order Online"}
+              <YazdanOrderCartIcon className="w-4 h-4 text-[#090807]" />
+              <span>{isFa ? "ثبت سفارش آنلاین" : "Start Order Online"}</span>
             </Link>
           </div>
         </div>

@@ -44,8 +44,8 @@ export default function PortfolioGrid({
                 onClick={() => setActiveCategory(cat)}
                 className={`relative mono-tag text-xs px-4 py-2 rounded-xl border transition-all select-none cursor-pointer ${
                   isActive
-                    ? "text-[#040B20] font-bold border-[#00D2FF] bg-[#00D2FF] shadow-[0_0_12px_rgba(0,210,255,0.4)]"
-                    : "bg-[#081432] text-[#CBD5E1] border-[#00D2FF]/20 hover:text-white hover:border-[#00D2FF]/50"
+                    ? "text-[#090807] font-bold border-[#D4AF37] bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                    : "bg-white dark:bg-[#13110E] text-stone-800 dark:text-[#CBD5E1] border-stone-200 dark:border-[#D4AF37]/20 hover:text-black dark:hover:text-white hover:border-[#D4AF37]/50"
                 }`}
               >
                 <span className="relative z-10">{displayLabel}</span>

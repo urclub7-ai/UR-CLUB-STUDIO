@@ -127,12 +127,12 @@ export default function MultiAssetShowcase({
 
       {/* Filter Switcher matching other control bars */}
       <div className="mb-8 flex items-center justify-center">
-        <div className="flex items-center gap-1 bg-white dark:bg-[#081432]/80 p-1.5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-none">
+        <div className="flex items-center gap-1 bg-white dark:bg-[#13110E]/80 p-1.5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-none">
           <button
             onClick={() => setActiveFilter("all")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
               activeFilter === "all"
-                ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                ? "bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:bg-[#D4AF37] text-white dark:text-[#090807] font-bold shadow-sm"
                 : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
             }`}
           >
@@ -142,7 +142,7 @@ export default function MultiAssetShowcase({
             onClick={() => setActiveFilter("logo")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
               activeFilter === "logo"
-                ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                ? "bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:bg-[#D4AF37] text-white dark:text-[#090807] font-bold shadow-sm"
                 : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
             }`}
           >
@@ -152,7 +152,7 @@ export default function MultiAssetShowcase({
             onClick={() => setActiveFilter("poster")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
               activeFilter === "poster"
-                ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                ? "bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:bg-[#D4AF37] text-white dark:text-[#090807] font-bold shadow-sm"
                 : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
             }`}
           >
@@ -169,13 +169,13 @@ export default function MultiAssetShowcase({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05, duration: 0.3 }}
-            className="p-3 sm:p-6 rounded-xl sm:rounded-2xl bg-white dark:bg-[#081432]/60 border border-slate-200/80 dark:border-white/[0.08] hover:border-sky-500/40 dark:hover:border-[#00D2FF]/30 shadow-sm dark:shadow-none transition-all duration-300 flex flex-col justify-between text-right group overflow-hidden"
+            className="p-3 sm:p-6 rounded-xl sm:rounded-2xl bg-white dark:bg-[#13110E]/60 border border-slate-200/80 dark:border-white/[0.08] hover:border-sky-500/40 dark:hover:border-[#D4AF37]/30 shadow-sm dark:shadow-none transition-all duration-300 flex flex-col justify-between text-right group overflow-hidden"
           >
             <div>
               {/* Image Container with Subtle Zoom */}
               <div
                 onClick={() => setSelectedImage(item)}
-                className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-slate-50 dark:bg-[#040B20] border border-slate-200/80 dark:border-white/[0.05] cursor-pointer flex items-center justify-center p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
+                className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-slate-50 dark:bg-[#090807] border border-slate-200/80 dark:border-white/[0.05] cursor-pointer flex items-center justify-center p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
               >
                 <Image
                   src={item.image}
@@ -184,8 +184,8 @@ export default function MultiAssetShowcase({
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 360px"
                   className="object-contain p-1.5 sm:p-2"
                 />
-                <div className="absolute inset-0 bg-slate-900/30 dark:bg-[#040B20]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="p-1.5 sm:p-2 rounded-full bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] shadow-md">
+                <div className="absolute inset-0 bg-slate-900/30 dark:bg-[#090807]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="p-1.5 sm:p-2 rounded-full bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:bg-[#D4AF37] text-white dark:text-[#090807] shadow-md">
                     <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                 </div>
@@ -193,10 +193,10 @@ export default function MultiAssetShowcase({
 
               {/* Short & Clean Text Details */}
               <div className="mt-2.5 sm:mt-4 space-y-0.5 sm:space-y-1">
-                <span className="text-[9px] sm:text-[10px] font-semibold text-sky-600 dark:text-[#00D2FF] uppercase tracking-wide block truncate">
+                <span className="text-[9px] sm:text-[10px] font-semibold text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37] uppercase tracking-wide block truncate">
                   {isFa ? item.category_fa : item.category}
                 </span>
-                <h3 className="text-xs sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-[#00D2FF] transition-colors truncate">
+                <h3 className="text-xs sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#8B6914] dark:text-[#E5C396] dark:group-hover:text-[#D4AF37] transition-colors truncate">
                   {isFa ? item.title_fa : item.title}
                 </h3>
                 <p className="hidden sm:block text-xs text-slate-600 dark:text-[#94A3B8] leading-relaxed">
@@ -209,13 +209,13 @@ export default function MultiAssetShowcase({
             <div className="mt-2.5 sm:mt-4 pt-2 sm:pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between">
               <button
                 onClick={() => setSelectedImage(item)}
-                className="text-[11px] sm:text-xs text-sky-600 dark:text-[#00D2FF] hover:text-slate-900 dark:hover:text-white font-medium flex items-center gap-1 transition-colors cursor-pointer"
+                className="text-[11px] sm:text-xs text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37] hover:text-slate-900 dark:hover:text-white font-medium flex items-center gap-1 transition-colors cursor-pointer"
               >
                 <span>{isFa ? "مشاهده" : "View"}</span>
                 <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               </button>
               <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-slate-400 dark:text-[#94A3B8]/40 uppercase select-none">
-                UrClub
+                YAZDAN
               </span>
             </div>
           </motion.div>
@@ -229,7 +229,7 @@ export default function MultiAssetShowcase({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#040B20]/95 backdrop-blur-xl p-4 sm:p-8 flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-[#090807]/95 backdrop-blur-xl p-4 sm:p-8 flex items-center justify-center"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
@@ -237,18 +237,18 @@ export default function MultiAssetShowcase({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-3xl w-full max-h-[90vh] rounded-2xl border border-white/[0.12] bg-[#081432] overflow-hidden shadow-2xl flex flex-col md:flex-row"
+              className="relative max-w-3xl w-full max-h-[90vh] rounded-2xl border border-white/[0.12] bg-[#13110E] overflow-hidden shadow-2xl flex flex-col md:flex-row"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 left-4 rtl:left-4 rtl:right-auto ltr:right-4 ltr:left-auto z-20 p-2 rounded-full bg-[#040B20]/80 text-[#CBD5E1] hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                className="absolute top-4 left-4 rtl:left-4 rtl:right-auto ltr:right-4 ltr:left-auto z-20 p-2 rounded-full bg-[#090807]/80 text-[#CBD5E1] hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Image Preview Box */}
-              <div className="relative md:w-3/5 bg-[#040B20] p-6 flex items-center justify-center min-h-[300px]">
+              <div className="relative md:w-3/5 bg-[#090807] p-6 flex items-center justify-center min-h-[300px]">
                 <div className="relative w-full h-[320px] sm:h-[440px]">
                   <Image
                     src={selectedImage.image}
@@ -260,9 +260,9 @@ export default function MultiAssetShowcase({
               </div>
 
               {/* Specs Box */}
-              <div className="md:w-2/5 p-6 sm:p-7 flex flex-col justify-between bg-[#081432] border-t md:border-t-0 md:border-l rtl:md:border-l-0 rtl:md:border-r border-white/[0.08]">
+              <div className="md:w-2/5 p-6 sm:p-7 flex flex-col justify-between bg-[#13110E] border-t md:border-t-0 md:border-l rtl:md:border-l-0 rtl:md:border-r border-white/[0.08]">
                 <div className="space-y-2.5">
-                  <span className="text-xs font-semibold text-[#00D2FF] uppercase">
+                  <span className="text-xs font-semibold text-[#D4AF37] uppercase">
                     {isFa ? selectedImage.category_fa : selectedImage.category}
                   </span>
 
@@ -279,7 +279,7 @@ export default function MultiAssetShowcase({
                   <a
                     href={selectedImage.image}
                     download
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md"
+                    className="w-full py-2.5 px-4 rounded-xl bg-[#D4AF37] hover:bg-[#38bdf8] text-[#090807] font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>{isFa ? "دانلود تصویر با کیفیت اصلی" : "Download Original"}</span>
@@ -287,7 +287,7 @@ export default function MultiAssetShowcase({
 
                   {/* Faint watermark at the bottom of modal */}
                   <div className="text-center text-[10px] font-mono tracking-widest text-slate-500/40 uppercase">
-                    UrClub &bull; Official Graphic Asset
+                    YAZDAN &bull; Official Graphic Asset
                   </div>
                 </div>
               </div>

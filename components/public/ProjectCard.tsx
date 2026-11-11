@@ -92,12 +92,12 @@ export default function ProjectCard({
     >
       <Link
         href={`/portfolio/${slug}`}
-        className="block overflow-hidden rounded-2xl border border-[#00D2FF]/20 bg-[#081432] group-hover:border-[#00D2FF]/60 group-hover:shadow-[0_16px_36px_rgba(0,210,255,0.2)] transition-all duration-300 focus-visible:outline-none select-none"
+        className="block overflow-hidden rounded-2xl border border-[#D4AF37]/20 bg-[#13110E] group-hover:border-[#D4AF37]/60 group-hover:shadow-[0_16px_36px_rgba(0,210,255,0.2)] transition-all duration-300 focus-visible:outline-none select-none"
       >
         <div
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-[#040B20]"
+          className="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-[#090807]"
         >
           <motion.div
             style={prefersReducedMotion ? {} : { x: smoothX, y: smoothY, scale: 1.02 }}
@@ -163,14 +163,14 @@ export default function ProjectCard({
 
       {/* Project Meta Information */}
       <div className="pt-4 flex flex-col gap-1.5">
-        <div className="flex items-center justify-between text-xs text-[#94A3B8]">
+        <div className="flex items-center justify-between text-xs text-black/80 dark:text-white/80">
           <span className="mono-tag font-medium">
             {displayClient}
           </span>
           <span className="font-mono text-[11px]">{projectYear}</span>
         </div>
 
-        <h3 className="text-lg sm:text-[19px] font-semibold tracking-tight text-[#F8FAFC] group-hover:text-white transition-colors duration-200">
+        <h3 className="text-lg sm:text-[19px] font-semibold tracking-tight text-black dark:text-white group-hover:text-[#8B6914] dark:group-hover:text-[#F5DEB3] transition-colors duration-200">
           <Link
             href={`/portfolio/${slug}`}
             className="hover:underline underline-offset-4"
@@ -179,7 +179,7 @@ export default function ProjectCard({
           </Link>
         </h3>
 
-        <p className="text-[13.5px] text-[#CBD5E1] line-clamp-2 leading-[1.75] font-normal transition-colors duration-200">
+        <p className="text-[13.5px] text-black dark:text-white line-clamp-2 leading-[1.75] font-normal transition-colors duration-200">
           {displayDesc}
         </p>
       </div>

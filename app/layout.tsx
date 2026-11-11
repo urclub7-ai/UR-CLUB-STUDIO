@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Vazirmatn } from "next/font/google";
+import { Inter, Vazirmatn, Cinzel } from "next/font/google";
 import "./globals.css";
 import prisma from "@/lib/prisma";
 import PublicLayoutWrapper from "@/components/public/PublicLayoutWrapper";
@@ -15,6 +15,13 @@ const inter = Inter({
 const vazir = Vazirmatn({
   subsets: ["arabic"],
   variable: "--font-vazir",
+  display: "swap",
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  weight: ["600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -126,9 +133,32 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="fa" dir="rtl" className={`scroll-smooth transition-colors duration-200 ${inter.variable} ${vazir.variable}`} suppressHydrationWarning>
+    <html lang="fa" dir="rtl" className={`scroll-smooth transition-colors duration-200 ${inter.variable} ${vazir.variable} ${cinzel.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="preload" href="/images/yazdan_intro_dark_poster.jpg" as="image" />
+        <link rel="preload" href="/images/yazdan_intro_light_poster.jpg" as="image" />
         <link rel="preload" href="/images/team_logo_transparent.png" as="image" />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              [data-preloader="true"] {
+                position: fixed;
+                inset: 0;
+                z-index: 99999999;
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #090807;
+              }
+              html.light [data-preloader="true"],
+              [data-theme="light"] [data-preloader="true"] {
+                background-color: #E8E7E5;
+              }
+            `,
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -25,7 +25,7 @@ export interface ShowcaseProject {
 const DEFAULT_PROJECTS: ShowcaseProject[] = [
   {
     id: "urclub",
-    name_fa: "کارت ویزیت انترنتی صفحه (LEVI)",
+    name_fa: "کارت ویزیت هوشمند وب (LEVI)",
     name_en: "LEVI Smart Web Business Card",
     url: "https://urclub.vercel.app/",
   },
@@ -92,7 +92,7 @@ export default function LiveInteractiveFrame({
   return (
     <div id="projects-section" className="relative w-full scroll-mt-28">
       {/* Outer Subtle Ambient Glow */}
-      <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-[#00D2FF]/5 blur-[100px] pointer-events-none rounded-full" />
+      <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-[#D4AF37]/5 blur-[100px] pointer-events-none rounded-full" />
 
       {/* Clean Centered Header matching other sections */}
       <div className="flex flex-col items-center text-center mb-4 sm:mb-8">
@@ -118,11 +118,11 @@ export default function LiveInteractiveFrame({
                 onClick={() => handleSelectProject(proj)}
                 className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer select-none ${
                   isSelected
-                    ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-md dark:shadow-[0_0_15px_rgba(0,210,255,0.4)]"
-                    : "bg-white dark:bg-[#081432]/80 text-slate-700 dark:text-[#CBD5E1] border border-slate-200/90 dark:border-white/[0.08] hover:border-sky-500/40 dark:hover:border-[#00D2FF]/40 hover:text-slate-900 dark:hover:text-white shadow-sm dark:shadow-none"
+                    ? "bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:bg-[#D4AF37] text-white dark:text-[#090807] font-bold shadow-md dark:shadow-[0_0_15px_rgba(0,210,255,0.4)]"
+                    : "bg-white dark:bg-[#13110E]/80 text-slate-700 dark:text-[#CBD5E1] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/40 hover:text-slate-900 dark:hover:text-white shadow-sm dark:shadow-none"
                 }`}
               >
-                <Globe className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isSelected ? "text-white dark:text-[#040B20]" : "text-sky-600 dark:text-[#00D2FF]"}`} />
+                <Globe className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isSelected ? "text-white dark:text-[#090807]" : "text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37]"}`} />
                 <span>{isFa ? proj.name_fa : (proj.name_en || proj.name_fa)}</span>
               </button>
             );
@@ -132,13 +132,13 @@ export default function LiveInteractiveFrame({
         {/* Controls: Device Switcher + Actions */}
         <div className="flex items-center gap-2">
           {/* Viewport Device Controls: Desktop and Mobile ONLY */}
-          <div className="flex items-center gap-1 bg-white dark:bg-[#081432]/80 p-1.5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-none">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#13110E]/80 p-1.5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-none">
             <button
               onClick={() => setDeviceView("desktop")}
               title={isFa ? "نمای کامپیوتر (دسکتاپ)" : "Desktop View"}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 deviceView === "desktop"
-                  ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                  ? "bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:bg-[#D4AF37] text-white dark:text-[#090807] font-bold shadow-sm"
                   : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
               }`}
             >
@@ -150,7 +150,7 @@ export default function LiveInteractiveFrame({
               title={isFa ? "نمای موبایل" : "Mobile View"}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 deviceView === "mobile"
-                  ? "bg-sky-600 dark:bg-[#00D2FF] text-white dark:text-[#040B20] font-bold shadow-sm"
+                  ? "bg-gradient-to-r from-[#E5C396] via-[#D4AF37] to-[#C5A880] text-[#090807] dark:bg-[#D4AF37] text-white dark:text-[#090807] font-bold shadow-sm"
                   : "text-slate-600 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white"
               }`}
             >
@@ -160,20 +160,20 @@ export default function LiveInteractiveFrame({
           </div>
 
           {/* Action Tools: Refresh & Open in New Tab */}
-          <div className="flex items-center gap-1 bg-white dark:bg-[#081432]/80 p-1.5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-none">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#13110E]/80 p-1.5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-none">
             <button
               onClick={handleRefresh}
               title={isFa ? "تازه‌سازی کادر" : "Refresh Frame"}
-              className="p-1.5 rounded-lg text-slate-600 dark:text-[#94A3B8] hover:text-sky-600 dark:hover:text-[#00D2FF] hover:bg-sky-50 dark:hover:bg-[#00D2FF]/10 transition-colors"
+              className="p-1.5 rounded-lg text-slate-600 dark:text-[#94A3B8] hover:text-[#8B6914] dark:text-[#E5C396] dark:hover:text-[#D4AF37] hover:bg-sky-50 dark:hover:bg-[#D4AF37]/10 transition-colors"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin text-sky-600 dark:text-[#00D2FF]" : ""}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37]" : ""}`} />
             </button>
             <a
               href={selectedProject.url}
               target="_blank"
               rel="noopener noreferrer"
               title={isFa ? "باز کردن در صفحه جداگانه" : "Open in new window"}
-              className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#00D2FF] hover:bg-[#00D2FF]/10 transition-colors"
+              className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
@@ -186,16 +186,16 @@ export default function LiveInteractiveFrame({
         /* Desktop Browser Window Mockup */
         <div
           className={`relative rounded-2xl overflow-hidden border border-slate-200/90 dark:border-white/[0.1] bg-white dark:bg-[#06102a] shadow-lg dark:shadow-[0_20px_60px_rgba(4,11,32,0.95),0_0_35px_rgba(0,210,255,0.1)] transition-all duration-300 flex flex-col ${
-            isFullscreen ? "fixed inset-4 z-50 rounded-2xl border-sky-500/60 dark:border-[#00D2FF]/60" : "w-full"
+            isFullscreen ? "fixed inset-4 z-50 rounded-2xl border-[#D4AF37]/60 dark:border-[#D4AF37]/60" : "w-full"
           }`}
         >
           {/* Browser Top Window Chrome */}
-          <div className="h-11 bg-slate-100 dark:bg-[#081432] border-b border-slate-200 dark:border-white/[0.08] px-4 flex items-center justify-between select-none">
+          <div className="h-11 bg-slate-100 dark:bg-[#13110E] border-b border-slate-200 dark:border-white/[0.08] px-4 flex items-center justify-between select-none">
             {/* Cyber Dots */}
             <div className="flex items-center gap-2 shrink-0">
-              <span className="w-2.5 h-2.5 rounded-full bg-sky-500 dark:bg-[#00D2FF]/50 border border-sky-600 dark:border-[#00D2FF]/80 inline-block shadow-sm dark:shadow-[0_0_6px_#00D2FF]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#00D2FF]/30 border border-slate-400 dark:border-[#00D2FF]/50 inline-block" />
-              <span className="w-2.5 h-2.5 rounded-full bg-slate-200 dark:bg-[#00D2FF]/20 border border-slate-300 dark:border-[#00D2FF]/30 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] dark:bg-[#D4AF37]/50 border border-sky-600 dark:border-[#D4AF37]/80 inline-block shadow-sm dark:shadow-[0_0_6px_#D4AF37]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-[#D4AF37]/30 border border-slate-400 dark:border-[#D4AF37]/50 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-200 dark:bg-[#D4AF37]/20 border border-slate-300 dark:border-[#D4AF37]/30 inline-block" />
             </div>
 
             {/* Clean indicator: active project title */}
@@ -208,9 +208,9 @@ export default function LiveInteractiveFrame({
               <button
                 onClick={() => setIsFullscreen(!isFullscreen)}
                 title={isFullscreen ? (isFa ? "خروج از تمام‌صفحه" : "Exit Fullscreen") : (isFa ? "بزرگ‌نمایی کادر" : "Maximize Frame")}
-                className="p-1.5 rounded-lg text-slate-600 dark:text-[#94A3B8] hover:text-sky-600 dark:hover:text-[#00D2FF] hover:bg-sky-50 dark:hover:bg-[#00D2FF]/10 transition-colors"
+                className="p-1.5 rounded-lg text-slate-600 dark:text-[#94A3B8] hover:text-[#8B6914] dark:text-[#E5C396] dark:hover:text-[#D4AF37] hover:bg-sky-50 dark:hover:bg-[#D4AF37]/10 transition-colors"
               >
-                {isFullscreen ? <Minimize2 className="w-3.5 h-3.5 text-sky-600 dark:text-[#00D2FF]" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                {isFullscreen ? <Minimize2 className="w-3.5 h-3.5 text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37]" /> : <Maximize2 className="w-3.5 h-3.5" />}
               </button>
             </div>
           </div>
@@ -220,7 +220,7 @@ export default function LiveInteractiveFrame({
             {/* Loading Placeholder */}
             {!isIframeLoaded && (
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-50 dark:bg-[#06102a] text-center p-4 select-none">
-                <div className="w-9 h-9 rounded-full border-2 border-sky-200 dark:border-[#00D2FF]/20 border-t-sky-600 dark:border-t-[#00D2FF] animate-spin mb-3 shadow-sm dark:shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
+                <div className="w-9 h-9 rounded-full border-2 border-stone-200 dark:border-[#D4AF37]/20 border-t-sky-600 dark:border-t-[#D4AF37] animate-spin mb-3 shadow-sm dark:shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
                 <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-white tracking-wide">
                   {isFa ? `در حال بارگذاری پروژه: ${selectedProject.name_fa}` : `Loading project: ${selectedProject.name_en || selectedProject.name_fa}`}
                 </span>
@@ -232,9 +232,9 @@ export default function LiveInteractiveFrame({
 
             {/* Mobile Interaction Shield (Touch screen protection so page scroll is 100% smooth) */}
             {!isMobileInteractive ? (
-              <div className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-white/80 dark:bg-[#040B20]/80 backdrop-blur-[2px] p-4 text-center">
-                <div className="p-4 rounded-2xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-[0_10px_30px_rgba(0,0,0,0.85)] max-w-xs space-y-3">
-                  <div className="w-10 h-10 rounded-full bg-[#00D2FF]/15 border border-[#00D2FF]/30 mx-auto flex items-center justify-center text-[#00D2FF]">
+              <div className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-white/80 dark:bg-[#090807]/80 backdrop-blur-[2px] p-4 text-center">
+                <div className="p-4 rounded-2xl bg-[#13110E]/95 border border-[#D4AF37]/40 shadow-[0_10px_30px_rgba(0,0,0,0.85)] max-w-xs space-y-3">
+                  <div className="w-10 h-10 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 mx-auto flex items-center justify-center text-[#D4AF37]">
                     <MousePointerClick className="w-5 h-5 animate-pulse" />
                   </div>
                   <div>
@@ -250,7 +250,7 @@ export default function LiveInteractiveFrame({
                   <div className="flex flex-col gap-2 pt-1">
                     <button
                       onClick={() => setIsMobileInteractive(true)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-[#00D2FF] text-[#040B20] text-xs font-bold shadow-[0_0_15px_rgba(0,210,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-transform"
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#D4AF37] text-[#090807] text-xs font-bold shadow-[0_0_15px_rgba(0,210,255,0.4)] flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-transform"
                     >
                       <MousePointerClick className="w-3.5 h-3.5" />
                       <span>{isFa ? "لمس برای تعامل و تست زنده" : "Tap for Live Interaction & Testing"}</span>
@@ -269,9 +269,9 @@ export default function LiveInteractiveFrame({
               </div>
             ) : (
               /* Active Interaction Bar on Mobile */
-              <div className="sm:hidden absolute top-2 right-2 left-2 z-30 flex items-center justify-between p-2 rounded-xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl backdrop-blur-md">
-                <div className="flex items-center gap-1.5 text-[11px] text-[#00D2FF] font-medium pr-1">
-                  <span className="w-2 h-2 rounded-full bg-[#00D2FF] animate-ping" />
+              <div className="sm:hidden absolute top-2 right-2 left-2 z-30 flex items-center justify-between p-2 rounded-xl bg-[#13110E]/95 border border-[#D4AF37]/40 shadow-xl backdrop-blur-md">
+                <div className="flex items-center gap-1.5 text-[11px] text-[#D4AF37] font-medium pr-1">
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-ping" />
                   <span>{isFa ? "تعامل با کادر فعال است" : "Frame interaction active"}</span>
                 </div>
                 <button
@@ -302,8 +302,8 @@ export default function LiveInteractiveFrame({
 
             {/* Subtle Interactive Instruction Pill (Desktop only) */}
             <div className="hidden sm:block absolute bottom-3 right-3 z-20 pointer-events-none">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#040B20]/90 backdrop-blur-md border border-[#00D2FF]/40 text-[11px] text-[#00D2FF] font-medium shadow-lg">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00D2FF]" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#090807]/90 backdrop-blur-md border border-[#D4AF37]/40 text-[11px] text-[#D4AF37] font-medium shadow-lg">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
                 <span>{isFa ? "قابلیت اسکرول و کلیک کامل در داخل کادر" : "Full scroll and click capability inside the frame"}</span>
               </div>
             </div>
@@ -335,7 +335,7 @@ export default function LiveInteractiveFrame({
               {/* Loading Placeholder */}
               {!isIframeLoaded && (
                 <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#06102a] text-center p-4 select-none">
-                  <div className="w-8 h-8 rounded-full border-2 border-[#00D2FF]/20 border-t-[#00D2FF] animate-spin mb-3 shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
+                  <div className="w-8 h-8 rounded-full border-2 border-[#D4AF37]/20 border-t-[#D4AF37] animate-spin mb-3 shadow-[0_0_15px_rgba(0,210,255,0.4)]" />
                   <span className="text-xs font-semibold text-white tracking-wide">
                     {isFa ? "در حال بارگذاری پروژه" : "Loading project..."}
                   </span>
@@ -344,9 +344,9 @@ export default function LiveInteractiveFrame({
 
               {/* Mobile Interaction Shield */}
               {!isMobileInteractive ? (
-                <div className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#040B20]/80 backdrop-blur-[2px] p-4 text-center">
-                  <div className="p-3.5 rounded-2xl bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl max-w-[260px] space-y-2.5">
-                    <MousePointerClick className="w-5 h-5 text-[#00D2FF] mx-auto animate-pulse" />
+                <div className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#090807]/80 backdrop-blur-[2px] p-4 text-center">
+                  <div className="p-3.5 rounded-2xl bg-[#13110E]/95 border border-[#D4AF37]/40 shadow-xl max-w-[260px] space-y-2.5">
+                    <MousePointerClick className="w-5 h-5 text-[#D4AF37] mx-auto animate-pulse" />
                     <h4 className="text-xs font-bold text-white">
                       {isFa ? selectedProject.name_fa : (selectedProject.name_en || selectedProject.name_fa)}
                     </h4>
@@ -355,15 +355,15 @@ export default function LiveInteractiveFrame({
                     </p>
                     <button
                       onClick={() => setIsMobileInteractive(true)}
-                      className="w-full py-2 px-3 rounded-xl bg-[#00D2FF] text-[#040B20] text-xs font-bold shadow-md cursor-pointer"
+                      className="w-full py-2 px-3 rounded-xl bg-[#D4AF37] text-[#090807] text-xs font-bold shadow-md cursor-pointer"
                     >
                       {isFa ? "لمس برای تعامل زنده" : "Tap for Live Interaction"}
                     </button>
                   </div>
                 </div>
               ) : (
-                <div className="sm:hidden absolute top-12 right-2 left-2 z-30 flex items-center justify-between p-1.5 rounded-lg bg-[#081432]/95 border border-[#00D2FF]/40 shadow-xl">
-                  <span className="text-[10px] text-[#00D2FF] font-medium pr-1">
+                <div className="sm:hidden absolute top-12 right-2 left-2 z-30 flex items-center justify-between p-1.5 rounded-lg bg-[#13110E]/95 border border-[#D4AF37]/40 shadow-xl">
+                  <span className="text-[10px] text-[#D4AF37] font-medium pr-1">
                     {isFa ? "حالت تعاملی فعال" : "Interactive mode active"}
                   </span>
                   <button

@@ -62,7 +62,7 @@ export default function ProjectInquiryForm() {
   const [selectedTld, setSelectedTld] = useState(".com");
   const [hostingDatabase, setHostingDatabase] = useState<"free_vercel_supabase" | "own_server" | "no_database">("free_vercel_supabase");
   const [themeStyle, setThemeStyle] = useState(isFa ? "دارک سایبرپانک نئونی" : "Dark Cyberpunk Neon");
-  const [primaryColor, setPrimaryColor] = useState("#00D2FF");
+  const [primaryColor, setPrimaryColor] = useState("#D4AF37");
   const [secondaryColor, setSecondaryColor] = useState("#A855F7");
   const [websiteFeatures, setWebsiteFeatures] = useState<string[]>([
     "درگاه پرداخت آنلاین",
@@ -134,14 +134,14 @@ export default function ProjectInquiryForm() {
 • تعداد صفحات تقریبی: ${pageCount}
 • وضعیت دامنه: ${
         domainChoice === "free_vercel_urclub"
-          ? "استفاده از دامنه و ساب‌دومین رایگان Vercel / UrClub"
+          ? "استفاده از دامنه و ساب‌دومین رایگان Vercel / YAZDAN"
           : domainChoice === "custom_owned"
           ? `دامنه شخصی: ${customDomainName || "مشخص نشده"}`
           : `ثبت دامنه جدید با پسوند: ${selectedTld}`
       }
 • زیرساخت هاست و دیتابیس: ${
         hostingDatabase === "free_vercel_supabase"
-          ? "هاست ابری Vercel + دیتابیس رایگان Supabase (پیشنهادی UrClub)"
+          ? "هاست ابری Vercel + دیتابیس رایگان Supabase (پیشنهادی YAZDAN)"
           : hostingDatabase === "own_server"
           ? "سرور و هاستینگ شخصی مشتری"
           : "بدون نیاز به دیتابیس (استاتیک)"
@@ -172,11 +172,11 @@ ${desktopFeatures.map((f) => `  ✓ ${f}`).join("\n")}`;
 • نوع سفارش: ${graphicType}
 • ابعاد و نسبت: ${aspectRatio}
 • فرمت فایل تحویلی: ${deliveryFormat}
-• توضیحات ایده و پالت: ${graphicDesignNotes || "طراحی مدرن بر اساس هویت UrClub"}`;
+• توضیحات ایده و پالت: ${graphicDesignNotes || "طراحی مدرن بر اساس هویت YAZDAN"}`;
     }
 
     return `═════════════════════════════════════════════
-💎 سفارش اختصاصی UR CLUB [شناسه پرونده: ${projectCode}]
+💎 سفارش اختصاصی YAZDAN [شناسه پرونده: ${projectCode}]
 ═════════════════════════════════════════════
 📁 شناسه پوشه و پیگیری: ${projectCode}
 📂 دسته‌بندی پروژه: ${
@@ -217,7 +217,7 @@ ${categoryDetails}
           "Accept": "application/json",
         },
         body: JSON.stringify({
-          _subject: `[سفارش جدید UrClub: ${projectCode}] ${brandName || "پروژه وبسایت"}`,
+          _subject: `[سفارش جدید YAZDAN: ${projectCode}] ${brandName || "پروژه وبسایت"}`,
           "شناسه اختصاصی پروژه": projectCode,
           "نوع پروژه":
             category === "website"
@@ -304,12 +304,12 @@ ${categoryDetails}
         ? `\nپلتفرم: ${targetPlatform}`
         : "";
 
-    const text = `سلام تیم UrClub، من سفارش جدیدی با شناسه اختصاصی *${projectCode}* در سایت ثبت کردم.\nنوع پروژه: ${categoryTitle}${brand}${techInfo}\nلطفاً پرونده من را بررسی نمایید.`;
+    const text = `سلام تیم YAZDAN، من سفارش جدیدی با شناسه اختصاصی *${projectCode}* در سایت ثبت کردم.\nنوع پروژه: ${categoryTitle}${brand}${techInfo}\nلطفاً پرونده من را بررسی نمایید.`;
     return `https://wa.me/491624212685?text=${encodeURIComponent(text)}`;
   };
 
   const getTelegramShareUrl = () => {
-    const text = `سلام UrClub! سفارش جدید با شناسه اختصاصی ${projectCode} ثبت شد.`;
+    const text = `سلام YAZDAN! سفارش جدید با شناسه اختصاصی ${projectCode} ثبت شد.`;
     return `https://t.me/share/url?url=${encodeURIComponent("https://urclub.dev")}&text=${encodeURIComponent(text)}`;
   };
 
@@ -327,11 +327,11 @@ ${categoryDetails}
         </p>
 
         {/* ─── Live Project ID Tag ─── */}
-        <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white dark:bg-[#081432]/80 border border-slate-200 dark:border-[#00D2FF]/30 shadow-sm dark:shadow-[0_0_20px_rgba(0,210,255,0.15)]">
+        <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white dark:bg-[#13110E]/80 border border-slate-200 dark:border-[#D4AF37]/30 shadow-sm dark:shadow-[0_0_20px_rgba(0,210,255,0.15)]">
           <span className="text-xs text-slate-500 dark:text-[#94A3B8]">
             {isFa ? "شناسه اختصاصی پوشه پروژه:" : "Dedicated Project ID:"}
           </span>
-          <span className="text-sm font-mono font-extrabold text-sky-600 dark:text-[#00D2FF] tracking-widest bg-sky-50 dark:bg-[#00D2FF]/10 px-2.5 py-0.5 rounded border border-sky-200 dark:border-[#00D2FF]/40">
+          <span className="text-sm font-mono font-extrabold text-[#8B6914] dark:text-[#E5C396] dark:text-[#D4AF37] tracking-widest bg-sky-50 dark:bg-[#D4AF37]/10 px-2.5 py-0.5 rounded border border-sky-200 dark:border-[#D4AF37]/40">
             {projectCode || "------"}
           </span>
         </div>
@@ -353,10 +353,10 @@ ${categoryDetails}
                 onClick={() => setCurrentStep(s.num)}
                 className={`py-2 sm:py-3.5 px-1 sm:px-4 rounded-xl transition-all flex items-center justify-center border text-[10.5px] sm:text-sm cursor-pointer select-none ${
                   currentStep === s.num
-                    ? "bg-sky-500 text-white dark:bg-[#00D2FF]/15 border-sky-500 dark:border-[#00D2FF] dark:text-[#00D2FF] font-bold shadow-md dark:shadow-[0_0_15px_rgba(0,210,255,0.25)]"
+                    ? "bg-[#D4AF37] text-white dark:bg-[#D4AF37]/15 border-sky-500 dark:border-[#D4AF37] dark:text-[#D4AF37] font-bold shadow-md dark:shadow-[0_0_15px_rgba(0,210,255,0.25)]"
                     : currentStep > s.num
-                    ? "bg-emerald-50 dark:bg-[#081432]/60 border-emerald-200 dark:border-white/[0.1] text-emerald-700 dark:text-emerald-400 font-medium"
-                    : "bg-slate-100 dark:bg-[#081432]/40 border-slate-200 dark:border-white/[0.05] text-slate-500 dark:text-[#64748B]"
+                    ? "bg-emerald-50 dark:bg-[#13110E]/60 border-emerald-200 dark:border-white/[0.1] text-emerald-700 dark:text-emerald-400 font-medium"
+                    : "bg-slate-100 dark:bg-[#13110E]/40 border-slate-200 dark:border-white/[0.05] text-slate-500 dark:text-[#64748B]"
                 }`}
               >
                 <span className="truncate max-w-full">{s.title}</span>
@@ -372,9 +372,9 @@ ${categoryDetails}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl bg-[#081432]/75 border border-[#00D2FF]/40 text-center space-y-6 shadow-[0_0_50px_rgba(0,210,255,0.2)]"
+          className="max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl bg-[#13110E]/75 border border-[#D4AF37]/40 text-center space-y-6 shadow-[0_0_50px_rgba(0,210,255,0.2)]"
         >
-          <div className="w-16 h-16 rounded-full bg-[#00D2FF]/20 border border-[#00D2FF] flex items-center justify-center text-[#00D2FF] mx-auto shadow-[0_0_25px_#00D2FF]">
+          <div className="w-16 h-16 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] mx-auto shadow-[0_0_25px_#D4AF37]">
             <CheckCircle2 className="w-9 h-9" />
           </div>
 
@@ -390,18 +390,18 @@ ${categoryDetails}
           </div>
 
           {/* 6-Character Project Folder Box */}
-          <div className="p-6 rounded-2xl bg-[#040B20] border border-[#00D2FF]/30 space-y-3">
+          <div className="p-6 rounded-2xl bg-[#090807] border border-[#D4AF37]/30 space-y-3">
             <span className="text-xs uppercase tracking-wider text-[#94A3B8]">
               {isFa ? "شناسه اختصاصی پوشه و پیگیری پروژه شما" : "Your Dedicated Project & Folder ID"}
             </span>
             <div className="flex items-center justify-center gap-3">
-              <span className="text-3xl sm:text-4xl font-mono font-black text-[#00D2FF] tracking-widest selection:bg-[#00D2FF] selection:text-[#040B20]">
+              <span className="text-3xl sm:text-4xl font-mono font-black text-[#D4AF37] tracking-widest selection:bg-[#D4AF37] selection:text-[#090807]">
                 {projectCode}
               </span>
               <button
                 type="button"
                 onClick={handleCopyCode}
-                className="p-2.5 rounded-xl bg-[#00D2FF]/10 hover:bg-[#00D2FF] text-[#00D2FF] hover:text-[#040B20] border border-[#00D2FF]/30 transition-all cursor-pointer"
+                className="p-2.5 rounded-xl bg-[#D4AF37]/10 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-[#090807] border border-[#D4AF37]/30 transition-all cursor-pointer"
                 title={isFa ? "کپی شناسه" : "Copy ID"}
               >
                 {copiedCode ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
@@ -409,7 +409,7 @@ ${categoryDetails}
             </div>
             <p className="text-xs text-[#64748B] leading-relaxed">
               {isFa
-                ? "تمام فایل‌ها، مخزن کد و مراحل توسعه در UrClub با نام این شناسه ۶ حرفی فولدرگذاری و مدیریت خواهد شد."
+                ? "تمام فایل‌ها، مخزن کد و مراحل توسعه در YAZDAN با نام این شناسه ۶ حرفی فولدرگذاری و مدیریت خواهد شد."
                 : "All assets, code repositories, and milestone updates are indexed under this 6-character ID."}
             </p>
           </div>
@@ -459,7 +459,7 @@ ${categoryDetails}
         /* ─── Interactive Multi-step Form Grid ─── */
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
           {/* Main Steps Form (2 Columns on Desktop) */}
-          <div className="lg:col-span-2 p-4 sm:p-9 rounded-2xl bg-[#081432]/60 border border-white/[0.08]">
+          <div className="lg:col-span-2 p-4 sm:p-9 rounded-2xl bg-[#13110E]/60 border border-white/[0.08]">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* ────────── STEP 1: CATEGORY SELECTION ────────── */}
               {currentStep === 1 && (
@@ -518,16 +518,16 @@ ${categoryDetails}
                           onClick={() => setCategory(item.id)}
                           className={`p-3.5 sm:p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
                             isSelected
-                              ? "bg-[#00D2FF]/10 border-[#00D2FF] shadow-[0_0_25px_rgba(0,210,255,0.2)]"
-                              : "bg-[#040B20]/60 border-white/[0.08] hover:border-white/[0.2] hover:bg-[#040B20]"
+                              ? "bg-[#D4AF37]/10 border-[#D4AF37] shadow-[0_0_25px_rgba(0,210,255,0.2)]"
+                              : "bg-[#090807]/60 border-white/[0.08] hover:border-white/[0.2] hover:bg-[#090807]"
                           }`}
                         >
                           <div className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-2.5">
                             <div
                               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center shrink-0 ${
                                 isSelected
-                                  ? "bg-[#00D2FF] text-[#040B20]"
-                                  : "bg-white/[0.05] text-[#00D2FF]"
+                                  ? "bg-[#D4AF37] text-[#090807]"
+                                  : "bg-white/[0.05] text-[#D4AF37]"
                               }`}
                             >
                               <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -549,8 +549,8 @@ ${categoryDetails}
                       type="text"
                       value={brandName}
                       onChange={(e) => setBrandName(e.target.value)}
-                      placeholder={isFa ? "مثلاً: فروشگاه آنلاین آریا / کلاب ۲۰۲۶" : "e.g. UrClub Digital / Apex Platform"}
-                      className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60 transition-colors"
+                      placeholder={isFa ? "مثلاً: فروشگاه آنلاین آریا / کلاب ۲۰۲۶" : "e.g. YAZDAN Digital / Apex Platform"}
+                      className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60 transition-colors"
                     />
                   </div>
 
@@ -558,7 +558,7 @@ ${categoryDetails}
                     <button
                       type="button"
                       onClick={() => setCurrentStep(2)}
-                      className="px-6 py-3 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(0,210,255,0.25)]"
+                      className="px-6 py-3 rounded-xl bg-[#D4AF37] hover:bg-[#38bdf8] text-[#090807] font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(0,210,255,0.25)]"
                     >
                       <span>{isFa ? "مرحله بعد: مشخصات فنی" : "Next: Technical Specs"}</span>
                       <ArrowLeft className="w-4 h-4 rtl:rotate-0 ltr:rotate-180" />
@@ -593,7 +593,7 @@ ${categoryDetails}
                           <select
                             value={websiteType}
                             onChange={(e) => setWebsiteType(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="فروشگاهی (E-Commerce)">فروشگاهی (E-Commerce)</option>
                             <option value="شرکتی (Corporate)">شرکتی (Corporate / Business)</option>
@@ -610,7 +610,7 @@ ${categoryDetails}
                           <select
                             value={pageCount}
                             onChange={(e) => setPageCount(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="۱ تا ۵ صفحه (سبک و سریع)">۱ تا ۵ صفحه (سبک و سریع)</option>
                             <option value="۵ تا ۱۰ صفحه (استاندارد)">۵ تا ۱۰ صفحه (استاندارد)</option>
@@ -620,16 +620,16 @@ ${categoryDetails}
                       </div>
 
                       {/* Domain Selection */}
-                      <div className="p-4 rounded-xl bg-[#040B20]/60 border border-white/[0.06] space-y-3">
+                      <div className="p-4 rounded-xl bg-[#090807]/60 border border-white/[0.06] space-y-3">
                         <div className="flex items-center gap-2 text-xs font-bold text-white">
-                          <Globe className="w-4 h-4 text-[#00D2FF]" />
+                          <Globe className="w-4 h-4 text-[#D4AF37]" />
                           <span>{isFa ? "بخش دامنه و آدرس وب‌سایت (Domain)" : "Domain Configuration"}</span>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                           {[
                             {
                               id: "free_vercel_urclub",
-                              label: isFa ? "ساب‌دومین رایگان Vercel / UrClub" : "Free Vercel/UrClub Subdomain",
+                              label: isFa ? "ساب‌دومین رایگان Vercel / YAZDAN" : "Free Vercel/YAZDAN Subdomain",
                               desc: isFa ? "بدون هزینه دامنه" : "Zero domain cost",
                             },
                             {
@@ -649,8 +649,8 @@ ${categoryDetails}
                               onClick={() => setDomainChoice(d.id as any)}
                               className={`p-3 rounded-lg border text-right text-xs transition-all cursor-pointer ${
                                 domainChoice === d.id
-                                  ? "bg-[#00D2FF]/15 border-[#00D2FF] text-[#00D2FF]"
-                                  : "bg-[#081432]/40 border-white/[0.06] text-[#94A3B8]"
+                                  ? "bg-[#D4AF37]/15 border-[#D4AF37] text-[#D4AF37]"
+                                  : "bg-[#13110E]/40 border-white/[0.06] text-[#94A3B8]"
                               }`}
                             >
                               <div className="font-bold text-white text-[13px]">{d.label}</div>
@@ -666,7 +666,7 @@ ${categoryDetails}
                               value={customDomainName}
                               onChange={(e) => setCustomDomainName(e.target.value)}
                               placeholder="example.com"
-                              className="w-full px-4 py-2.5 rounded-lg bg-[#040B20] border border-white/[0.1] text-xs text-white"
+                              className="w-full px-4 py-2.5 rounded-lg bg-[#090807] border border-white/[0.1] text-xs text-white"
                               dir="ltr"
                             />
                           </div>
@@ -682,7 +682,7 @@ ${categoryDetails}
                                 onClick={() => setSelectedTld(tld)}
                                 className={`px-2.5 py-1 rounded text-xs font-mono font-bold ${
                                   selectedTld === tld
-                                    ? "bg-[#00D2FF] text-[#040B20]"
+                                    ? "bg-[#D4AF37] text-[#090807]"
                                     : "bg-white/[0.06] text-[#94A3B8]"
                                 }`}
                               >
@@ -694,9 +694,9 @@ ${categoryDetails}
                       </div>
 
                       {/* Hosting & Database Selection */}
-                      <div className="p-4 rounded-xl bg-[#040B20]/60 border border-white/[0.06] space-y-3">
+                      <div className="p-4 rounded-xl bg-[#090807]/60 border border-white/[0.06] space-y-3">
                         <div className="flex items-center gap-2 text-xs font-bold text-white">
-                          <Database className="w-4 h-4 text-[#00D2FF]" />
+                          <Database className="w-4 h-4 text-[#D4AF37]" />
                           <span>{isFa ? "هاستینگ و پایگاه داده (Hosting & Database)" : "Hosting & Database"}</span>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -723,8 +723,8 @@ ${categoryDetails}
                               onClick={() => setHostingDatabase(h.id as any)}
                               className={`p-3 rounded-lg border text-right text-xs transition-all cursor-pointer ${
                                 hostingDatabase === h.id
-                                  ? "bg-[#00D2FF]/15 border-[#00D2FF] text-[#00D2FF]"
-                                  : "bg-[#081432]/40 border-white/[0.06] text-[#94A3B8]"
+                                  ? "bg-[#D4AF37]/15 border-[#D4AF37] text-[#D4AF37]"
+                                  : "bg-[#13110E]/40 border-white/[0.06] text-[#94A3B8]"
                               }`}
                             >
                               <div className="font-bold text-white text-[13px]">{h.title}</div>
@@ -735,9 +735,9 @@ ${categoryDetails}
                       </div>
 
                       {/* Theme Style & Color Pickers */}
-                      <div className="p-4 rounded-xl bg-[#040B20]/60 border border-white/[0.06] space-y-3">
+                      <div className="p-4 rounded-xl bg-[#090807]/60 border border-white/[0.06] space-y-3">
                         <div className="flex items-center gap-2 text-xs font-bold text-white">
-                          <Palette className="w-4 h-4 text-[#00D2FF]" />
+                          <Palette className="w-4 h-4 text-[#D4AF37]" />
                           <span>{isFa ? "تم و رنگ‌بندی دلخواه (Theme & Colors)" : "Theme & Color Palette"}</span>
                         </div>
 
@@ -754,8 +754,8 @@ ${categoryDetails}
                               onClick={() => setThemeStyle(t.id)}
                               className={`p-2.5 rounded-lg border text-center text-xs transition-all cursor-pointer ${
                                 themeStyle === t.id
-                                  ? "bg-[#00D2FF]/15 border-[#00D2FF] text-[#00D2FF] font-bold"
-                                  : "bg-[#081432]/40 border-white/[0.06] text-[#94A3B8]"
+                                  ? "bg-[#D4AF37]/15 border-[#D4AF37] text-[#D4AF37] font-bold"
+                                  : "bg-[#13110E]/40 border-white/[0.06] text-[#94A3B8]"
                               }`}
                             >
                               {t.label}
@@ -773,7 +773,7 @@ ${categoryDetails}
                               onChange={(e) => setPrimaryColor(e.target.value)}
                               className="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0"
                             />
-                            <span className="text-xs font-mono text-[#00D2FF]">{primaryColor}</span>
+                            <span className="text-xs font-mono text-[#D4AF37]">{primaryColor}</span>
                           </div>
 
                           <div className="flex items-center gap-2">
@@ -789,7 +789,7 @@ ${categoryDetails}
 
                           {/* Quick color pills */}
                           <div className="flex items-center gap-1.5 mr-auto">
-                            {["#00D2FF", "#A855F7", "#EAB308", "#10B981", "#3B82F6"].map((hex) => (
+                            {["#D4AF37", "#A855F7", "#EAB308", "#10B981", "#3B82F6"].map((hex) => (
                               <button
                                 key={hex}
                                 type="button"
@@ -824,15 +824,15 @@ ${categoryDetails}
                                 key={feat}
                                 className={`flex items-center gap-2.5 p-3 rounded-xl border text-xs cursor-pointer select-none transition-all ${
                                   isChecked
-                                    ? "bg-[#00D2FF]/10 border-[#00D2FF]/40 text-white"
-                                    : "bg-[#040B20]/40 border-white/[0.06] text-[#94A3B8]"
+                                    ? "bg-[#D4AF37]/10 border-[#D4AF37]/40 text-white"
+                                    : "bg-[#090807]/40 border-white/[0.06] text-[#94A3B8]"
                                 }`}
                               >
                                 <input
                                   type="checkbox"
                                   checked={isChecked}
                                   onChange={() => toggleFeature(feat, websiteFeatures, setWebsiteFeatures)}
-                                  className="w-4 h-4 rounded text-[#00D2FF] focus:ring-0 bg-[#040B20] border-white/20 cursor-pointer"
+                                  className="w-4 h-4 rounded text-[#D4AF37] focus:ring-0 bg-[#090807] border-white/20 cursor-pointer"
                                 />
                                 <span>{feat}</span>
                               </label>
@@ -855,7 +855,7 @@ ${categoryDetails}
                           value={mobileAppName}
                           onChange={(e) => setMobileAppName(e.target.value)}
                           placeholder={isFa ? "مثلاً: اپلیکیشن خدمات تاکسی / فروشگاهی موبایل" : "e.g. Delivery or FinTech App"}
-                          className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60"
+                          className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60"
                         />
                       </div>
 
@@ -867,7 +867,7 @@ ${categoryDetails}
                           <select
                             value={targetPlatform}
                             onChange={(e) => setTargetPlatform(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="هر دو (Android + iOS)">هر دو پلتفرم (Android + iOS)</option>
                             <option value="فقط اندروید (Android)">فقط اندروید (Android APK / Google Play)</option>
@@ -882,7 +882,7 @@ ${categoryDetails}
                           <select
                             value={mobileDatabase}
                             onChange={(e) => setMobileDatabase(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="پایگاه داده ابری Supabase (رایگان)">Supabase Cloud (پیشنهادی - سریع و رایگان)</option>
                             <option value="سرور اختصاصی و REST API">سرور و API اختصاصی</option>
@@ -910,15 +910,15 @@ ${categoryDetails}
                                 key={feat}
                                 className={`flex items-center gap-2.5 p-3 rounded-xl border text-xs cursor-pointer select-none transition-all ${
                                   isChecked
-                                    ? "bg-[#00D2FF]/10 border-[#00D2FF]/40 text-white"
-                                    : "bg-[#040B20]/40 border-white/[0.06] text-[#94A3B8]"
+                                    ? "bg-[#D4AF37]/10 border-[#D4AF37]/40 text-white"
+                                    : "bg-[#090807]/40 border-white/[0.06] text-[#94A3B8]"
                                 }`}
                               >
                                 <input
                                   type="checkbox"
                                   checked={isChecked}
                                   onChange={() => toggleFeature(feat, mobileFeatures, setMobileFeatures)}
-                                  className="w-4 h-4 rounded text-[#00D2FF] focus:ring-0 bg-[#040B20] border-white/20 cursor-pointer"
+                                  className="w-4 h-4 rounded text-[#D4AF37] focus:ring-0 bg-[#090807] border-white/20 cursor-pointer"
                                 />
                                 <span>{feat}</span>
                               </label>
@@ -941,7 +941,7 @@ ${categoryDetails}
                           value={desktopSoftwareName}
                           onChange={(e) => setDesktopSoftwareName(e.target.value)}
                           placeholder={isFa ? "مثلاً: نرم‌افزار حسابداری / مدیریت مشتریان CRM" : "e.g. Accounting, CRM or ERP Suite"}
-                          className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60"
+                          className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60"
                         />
                       </div>
 
@@ -953,7 +953,7 @@ ${categoryDetails}
                           <select
                             value={targetOS}
                             onChange={(e) => setTargetOS(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="ویندوز (Windows)">ویندوز (Windows EXE/MSI)</option>
                             <option value="مک (macOS)">مک (macOS DMG)</option>
@@ -969,7 +969,7 @@ ${categoryDetails}
                           <select
                             value={desktopStorage}
                             onChange={(e) => setDesktopStorage(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="دیتابیس محلی سبک (SQLite)">دیتابیس محلی سبک (SQLite - آفلاین و سریع)</option>
                             <option value="اتصال به سرور ابری Supabase">اتصال آنلاین به دیتابیس ابری Supabase</option>
@@ -995,15 +995,15 @@ ${categoryDetails}
                                 key={feat}
                                 className={`flex items-center gap-2.5 p-3 rounded-xl border text-xs cursor-pointer select-none transition-all ${
                                   isChecked
-                                    ? "bg-[#00D2FF]/10 border-[#00D2FF]/40 text-white"
-                                    : "bg-[#040B20]/40 border-white/[0.06] text-[#94A3B8]"
+                                    ? "bg-[#D4AF37]/10 border-[#D4AF37]/40 text-white"
+                                    : "bg-[#090807]/40 border-white/[0.06] text-[#94A3B8]"
                                 }`}
                               >
                                 <input
                                   type="checkbox"
                                   checked={isChecked}
                                   onChange={() => toggleFeature(feat, desktopFeatures, setDesktopFeatures)}
-                                  className="w-4 h-4 rounded text-[#00D2FF] focus:ring-0 bg-[#040B20] border-white/20 cursor-pointer"
+                                  className="w-4 h-4 rounded text-[#D4AF37] focus:ring-0 bg-[#090807] border-white/20 cursor-pointer"
                                 />
                                 <span>{feat}</span>
                               </label>
@@ -1025,7 +1025,7 @@ ${categoryDetails}
                           <select
                             value={graphicType}
                             onChange={(e) => setGraphicType(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="پوستر تبلیغاتی حرفه‌ای">پوستر تبلیغاتی حرفه‌ای</option>
                             <option value="لوگو و هویت بصری برند">لوگو و هویت بصری برند</option>
@@ -1041,7 +1041,7 @@ ${categoryDetails}
                           <select
                             value={aspectRatio}
                             onChange={(e) => setAspectRatio(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                            className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                           >
                             <option value="استوری اینستاگرام (۹:۱۶ عمودی)">استوری / ریلز اینستاگرام (۹:۱۶ عمودی)</option>
                             <option value="پست اینستاگرام (۱:۱ مربعی)">پست اینستاگرام (۱:۱ مربعی)</option>
@@ -1058,7 +1058,7 @@ ${categoryDetails}
                         <select
                           value={deliveryFormat}
                           onChange={(e) => setDeliveryFormat(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#00D2FF]/60 cursor-pointer"
+                          className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white focus:outline-none focus:border-[#D4AF37]/60 cursor-pointer"
                         >
                           <option value="وکتور لایه‌باز SVG/AI + خروجی WebP/PNG">وکتور لایه‌باز برداری (SVG / AI) + فایل باکیفیت WebP/PNG</option>
                           <option value="فایل فتوشاپ لایه‌باز (PSD)">فایل فتوشاپ لایه‌باز (PSD)</option>
@@ -1075,7 +1075,7 @@ ${categoryDetails}
                           value={graphicDesignNotes}
                           onChange={(e) => setGraphicDesignNotes(e.target.value)}
                           placeholder={isFa ? "مثلاً: سبک مینیمال تیره با حاشیه‌های طلایی یا فیروزه‌ای..." : "e.g. Minimalist layout with clean contrast..."}
-                          className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60 resize-none"
+                          className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60 resize-none"
                         />
                       </div>
                     </div>
@@ -1093,7 +1093,7 @@ ${categoryDetails}
                     <button
                       type="button"
                       onClick={() => setCurrentStep(3)}
-                      className="px-6 py-3 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(0,210,255,0.25)]"
+                      className="px-6 py-3 rounded-xl bg-[#D4AF37] hover:bg-[#38bdf8] text-[#090807] font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(0,210,255,0.25)]"
                     >
                       <span>{isFa ? "مرحله بعد: اطلاعات تماس" : "Next: Contact Info"}</span>
                       <ArrowLeft className="w-4 h-4 rtl:rotate-0 ltr:rotate-180" />
@@ -1131,7 +1131,7 @@ ${categoryDetails}
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
                         placeholder={isFa ? "مثلاً: احمد رضایی" : "e.g. Alex Miller"}
-                        className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60"
+                        className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60"
                       />
                     </div>
 
@@ -1144,7 +1144,7 @@ ${categoryDetails}
                         value={clientPhone}
                         onChange={(e) => setClientPhone(e.target.value)}
                         placeholder="+49 ... / +93 ..."
-                        className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60"
+                        className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60"
                         dir="ltr"
                       />
                     </div>
@@ -1160,7 +1160,7 @@ ${categoryDetails}
                         value={clientEmail}
                         onChange={(e) => setClientEmail(e.target.value)}
                         placeholder="you@domain.com"
-                        className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60"
+                        className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60"
                         dir="ltr"
                       />
                     </div>
@@ -1174,7 +1174,7 @@ ${categoryDetails}
                         value={socialId}
                         onChange={(e) => setSocialId(e.target.value)}
                         placeholder="@username"
-                        className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60"
+                        className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60"
                         dir="ltr"
                       />
                     </div>
@@ -1189,7 +1189,7 @@ ${categoryDetails}
                       value={additionalNotes}
                       onChange={(e) => setAdditionalNotes(e.target.value)}
                       placeholder={isFa ? "هر نکته، لینک یا فایل نمونه‌ای که مد نظر دارید را در اینجا بنویسید..." : "Any additional notes, reference links, or timeline targets..."}
-                      className="w-full px-4 py-3 rounded-xl bg-[#040B20]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#00D2FF]/60 resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090807]/80 border border-white/[0.08] text-sm text-white placeholder-[#64748B] focus:outline-none focus:border-[#D4AF37]/60 resize-none"
                     />
                   </div>
 
@@ -1205,7 +1205,7 @@ ${categoryDetails}
                     <button
                       type="button"
                       onClick={() => setCurrentStep(4)}
-                      className="px-6 py-3 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] text-[#040B20] font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(0,210,255,0.25)]"
+                      className="px-6 py-3 rounded-xl bg-[#D4AF37] hover:bg-[#38bdf8] text-[#090807] font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(0,210,255,0.25)]"
                     >
                       <span>{isFa ? "مرحله بعد: بازبینی و ثبت نهایی" : "Next: Review & Submit"}</span>
                       <ArrowLeft className="w-4 h-4 rtl:rotate-0 ltr:rotate-180" />
@@ -1229,24 +1229,24 @@ ${categoryDetails}
                   </div>
 
                   {/* Highlight Box with the 6-character Code */}
-                  <div className="p-5 rounded-2xl bg-[#040B20] border border-[#00D2FF]/40 flex items-center justify-between gap-4">
+                  <div className="p-5 rounded-2xl bg-[#090807] border border-[#D4AF37]/40 flex items-center justify-between gap-4">
                     <div>
                       <span className="text-xs text-[#94A3B8]">
                         {isFa ? "شناسه پوشه اختصاصی پروژه شما:" : "Dedicated Folder & Tracking ID:"}
                       </span>
-                      <div className="text-2xl font-mono font-black text-[#00D2FF] tracking-widest mt-0.5">
+                      <div className="text-2xl font-mono font-black text-[#D4AF37] tracking-widest mt-0.5">
                         {projectCode}
                       </div>
                     </div>
                     <div className="text-left text-xs text-[#64748B] max-w-xs leading-relaxed hidden sm:block">
                       {isFa
-                        ? "این شناسه ۶ رقمی پوشه اصلی پروژه شما در سرورهای UrClub خواهد بود."
+                        ? "این شناسه ۶ رقمی پوشه اصلی پروژه شما در سرورهای YAZDAN خواهد بود."
                         : "Indexed directory name for your project repository."}
                     </div>
                   </div>
 
                   {/* Summary preview table */}
-                  <div className="p-4 rounded-xl bg-[#040B20]/60 border border-white/[0.06] space-y-2.5 text-xs">
+                  <div className="p-4 rounded-xl bg-[#090807]/60 border border-white/[0.06] space-y-2.5 text-xs">
                     <div className="flex justify-between py-1 border-b border-white/[0.04]">
                       <span className="text-[#94A3B8]">{isFa ? "دسته‌بندی:" : "Category:"}</span>
                       <span className="font-semibold text-white">
@@ -1264,9 +1264,9 @@ ${categoryDetails}
                       <>
                         <div className="flex justify-between py-1 border-b border-white/[0.04]">
                           <span className="text-[#94A3B8]">{isFa ? "دامنه:" : "Domain:"}</span>
-                          <span className="font-mono text-[#00D2FF]">
+                          <span className="font-mono text-[#D4AF37]">
                             {domainChoice === "free_vercel_urclub"
-                              ? "Vercel / UrClub Subdomain"
+                              ? "Vercel / YAZDAN Subdomain"
                               : domainChoice === "custom_owned"
                               ? customDomainName || "Owned Domain"
                               : `New ${selectedTld}`}
@@ -1313,7 +1313,7 @@ ${categoryDetails}
                       type="button"
                       onClick={handleSubmit}
                       disabled={isSubmitting}
-                      className="px-8 py-3.5 rounded-xl bg-[#00D2FF] hover:bg-[#38bdf8] disabled:opacity-50 text-[#040B20] font-extrabold text-sm flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_25px_rgba(0,210,255,0.4)]"
+                      className="px-8 py-3.5 rounded-xl bg-[#D4AF37] hover:bg-[#38bdf8] disabled:opacity-50 text-[#090807] font-extrabold text-sm flex items-center gap-2 cursor-pointer transition-all shadow-[0_0_25px_rgba(0,210,255,0.4)]"
                     >
                       <Send className="w-4 h-4" />
                       <span>
@@ -1329,13 +1329,13 @@ ${categoryDetails}
           </div>
 
           {/* ────────── LIVE SUMMARY CARD (Sticky Sidebar) ────────── */}
-          <div className="p-4 sm:p-6 rounded-2xl bg-[#081432]/60 border border-white/[0.08] lg:sticky lg:top-28 space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl bg-[#13110E]/60 border border-white/[0.08] lg:sticky lg:top-28 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
               <span className="text-xs font-bold text-white flex items-center gap-2">
-                <FileText className="w-4 h-4 text-[#00D2FF]" />
+                <FileText className="w-4 h-4 text-[#D4AF37]" />
                 <span>{isFa ? "خلاصه زنده سفارش" : "Live Summary Card"}</span>
               </span>
-              <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-[#00D2FF]/10 text-[#00D2FF] border border-[#00D2FF]/20">
+              <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
                 {projectCode}
               </span>
             </div>
@@ -1358,9 +1358,9 @@ ${categoryDetails}
                 <>
                   <div>
                     <span className="text-[#64748B] block text-[11px]">{isFa ? "دامنه و آدرس وبسایت:" : "Domain:"}</span>
-                    <span className="font-mono text-[#00D2FF]">
+                    <span className="font-mono text-[#D4AF37]">
                       {domainChoice === "free_vercel_urclub"
-                        ? "ساب‌دومین رایگان Vercel / UrClub"
+                        ? "ساب‌دومین رایگان Vercel / YAZDAN"
                         : domainChoice === "custom_owned"
                         ? customDomainName || "دامنه اختصاصی"
                         : `دامنه جدید (${selectedTld})`}

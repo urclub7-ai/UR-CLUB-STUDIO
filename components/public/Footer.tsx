@@ -23,12 +23,12 @@ interface FooterProps {
 
 const getSocialIcon = (platform: string) => {
   const p = platform.toLowerCase();
-  if (p.includes("behance")) return <Palette className="w-4 h-4 text-[#00D2FF]" />;
-  if (p.includes("dribbble")) return <Dribbble className="w-4 h-4 text-[#00D2FF]" />;
-  if (p.includes("instagram")) return <Instagram className="w-4 h-4 text-[#00D2FF]" />;
-  if (p.includes("linkedin")) return <Linkedin className="w-4 h-4 text-[#00D2FF]" />;
-  if (p.includes("twitter") || p.includes("x")) return <Twitter className="w-4 h-4 text-[#00D2FF]" />;
-  return <Globe className="w-4 h-4 text-[#00D2FF]" />;
+  if (p.includes("behance")) return <Palette className="w-4 h-4 text-[#D4AF37]" />;
+  if (p.includes("dribbble")) return <Dribbble className="w-4 h-4 text-[#D4AF37]" />;
+  if (p.includes("instagram")) return <Instagram className="w-4 h-4 text-[#D4AF37]" />;
+  if (p.includes("linkedin")) return <Linkedin className="w-4 h-4 text-[#D4AF37]" />;
+  if (p.includes("twitter") || p.includes("x")) return <Twitter className="w-4 h-4 text-[#D4AF37]" />;
+  return <Globe className="w-4 h-4 text-[#D4AF37]" />;
 };
 
 export default function Footer({
@@ -52,24 +52,30 @@ export default function Footer({
   ];
 
   return (
-    <footer className="border-t border-slate-200 dark:border-[#00D2FF]/20 bg-slate-100 dark:bg-[#040B20] py-8 sm:py-12 transition-colors">
+    <footer className="border-t border-stone-200 dark:border-[#D4AF37]/20 bg-stone-100 dark:bg-[#090807] py-8 sm:py-12 transition-colors">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 pb-6 md:pb-8 border-b border-slate-200 dark:border-[#00D2FF]/15">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 pb-6 md:pb-8 border-b border-stone-200 dark:border-[#D4AF37]/15">
           
           {/* Left: Brand Logo & Title */}
-          <Link href="/" className="flex items-center gap-2.5 group select-none">
-            <div className="relative w-8 h-8 shrink-0 flex items-center justify-center drop-shadow-[0_0_12px_rgba(0,210,255,0.7)]">
+          <Link href="/" className="flex items-center gap-3.5 group select-none" aria-label={isFa ? "یزدان" : "YAZDAN"}>
+            <div className="relative w-12 h-12 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center drop-shadow-[0_0_20px_rgba(212,175,55,0.75)]">
               <Image
-                src="/images/team_logo_transparent.png"
-                alt={isFa ? "لوگوی آر کلاب" : "UR CLUB Logo"}
-                width={32}
-                height={32}
-                className="w-full h-full object-contain"
+                src="/images/yazdan_emblem_transparent.png"
+                alt={isFa ? "لوگوی یزدان" : "YAZDAN Logo"}
+                width={64}
+                height={64}
+                className="w-full h-full object-contain transform transition-transform duration-300 group-hover:scale-105"
               />
             </div>
-            <span className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-[#00D2FF] transition-colors font-sans tracking-widest">
-              UR CLUB
-            </span>
+            {isFa ? (
+              <span className="text-2xl sm:text-[2.4rem] font-bold font-nastaliq text-transparent bg-clip-text bg-gradient-to-r from-[#8B6914] via-[#B8860B] to-[#705310] dark:from-[#F5DEB3] dark:via-[#D4AF37] dark:to-[#C5A880] group-hover:brightness-110 transition-colors leading-none pt-1">
+                یَزدان
+              </span>
+            ) : (
+              <span className="text-xl sm:text-[1.65rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#8B6914] via-[#B8860B] to-[#705310] dark:from-[#F5DEB3] dark:via-[#D4AF37] dark:to-[#C5A880] group-hover:brightness-110 transition-colors font-brand-en tracking-[0.22em]">
+                YAZDAN
+              </span>
+            )}
           </Link>
 
           {/* Center: Nav Links */}
@@ -78,7 +84,7 @@ export default function Footer({
               <Link 
                 key={link.href}
                 href={link.href}
-                className="text-xs font-medium text-slate-600 dark:text-[#CBD5E1] hover:text-sky-600 dark:hover:text-[#00D2FF] transition-colors"
+                className="text-xs font-medium text-black dark:text-white hover:text-[#8B6914] dark:hover:text-[#D4AF37] transition-colors"
               >
                 {link.label}
               </Link>
@@ -89,30 +95,30 @@ export default function Footer({
         </div>
 
         {/* Bottom Bar: Copyright on right, Legal Links on left (in RTL) */}
-        <div className="pt-6 border-t border-slate-200/60 dark:border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-[#94A3B8] text-center sm:text-start">
+        <div className="pt-6 border-t border-stone-200/60 dark:border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-black/85 dark:text-white/85 text-center sm:text-start">
           <p>
             {isFa
-              ? "© ۲۰۲۶ پلتفرم رسمی UR CLUB. تمام حقوق محفوظ است."
-              : "© 2026 UR CLUB Official Platform. All rights reserved."}
+              ? "© ۲۰۲۶ پلتفرم رسمی YAZDAN. تمام حقوق محفوظ است."
+              : "© 2026 YAZDAN Official Platform. All rights reserved."}
           </p>
           <div className="flex items-center gap-3 text-[11.5px]">
             <Link
               href="/privacy"
-              className="hover:text-sky-600 dark:hover:text-[#00D2FF] transition-colors"
+              className="hover:text-[#8B6914] dark:hover:text-[#D4AF37] transition-colors"
             >
               {isFa ? "حریم خصوصی" : "Privacy Policy"}
             </Link>
-            <span className="text-slate-300 dark:text-white/20">•</span>
+            <span className="text-stone-300 dark:text-white/20">•</span>
             <Link
               href="/terms"
-              className="hover:text-sky-600 dark:hover:text-[#00D2FF] transition-colors"
+              className="hover:text-[#8B6914] dark:hover:text-[#D4AF37] transition-colors"
             >
               {isFa ? "شرایط استفاده" : "Terms of Service"}
             </Link>
-            <span className="text-slate-300 dark:text-white/20">•</span>
+            <span className="text-stone-300 dark:text-white/20">•</span>
             <Link
               href="/policies"
-              className="hover:text-sky-600 dark:hover:text-[#00D2FF] transition-colors"
+              className="hover:text-[#8B6914] dark:hover:text-[#D4AF37] transition-colors"
             >
               {isFa ? "خط‌مشی پروژه‌ها" : "Project Policies"}
             </Link>
