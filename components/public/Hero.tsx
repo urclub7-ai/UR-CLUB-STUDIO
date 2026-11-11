@@ -91,25 +91,6 @@ export default function Hero({}: HeroProps) {
           {/* Column 1: Typography & CTAs (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-start">
             
-            {/* Mobile 3D Emblem Showcase Pill */}
-            <div className="lg:hidden flex items-center justify-center mb-4">
-              <div className="relative inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37]/15 via-white/80 to-[#D4AF37]/15 dark:from-[#D4AF37]/20 dark:via-[#13110E]/90 dark:to-[#D4AF37]/20 border border-[#B8860B]/35 dark:border-[#D4AF37]/45 shadow-[0_4px_20px_rgba(212,175,55,0.25)] backdrop-blur-xl">
-                <div className="relative w-7 h-7 shrink-0 drop-shadow-[0_0_12px_rgba(212,175,55,0.8)]">
-                  <Image
-                    src="/images/yazdan_emblem_transparent.png"
-                    alt="YAZDAN 3D Emblem"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="text-[11px] font-bold tracking-wider text-[#8B6914] dark:text-[#F5DEB3] uppercase">
-                  {isFa ? "یَزدان • مهندسی پلتفرم‌های برتر" : "YAZDAN • DIGITAL EXCELLENCE"}
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              </div>
-            </div>
-
             {/* Top Luxury Line Badge */}
             <div className="inline-flex items-center gap-2 sm:gap-2.5 mb-3.5 sm:mb-6 select-none">
               <span className="w-5 sm:w-10 h-[1px] bg-gradient-to-r from-transparent to-[#B8860B] dark:to-[#D4AF37]" />

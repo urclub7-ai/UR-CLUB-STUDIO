@@ -135,8 +135,10 @@ export default async function RootLayout({
   return (
     <html lang="fa" dir="rtl" className={`scroll-smooth transition-colors duration-200 ${inter.variable} ${vazir.variable} ${cinzel.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preload" href="/images/yazdan_intro_dark_poster.jpg" as="image" />
-        <link rel="preload" href="/images/yazdan_intro_light_poster.jpg" as="image" />
+        <link rel="preload" href="/images/yazdan_intro_dark_mobile_poster.jpg" as="image" media="(max-width: 767px)" />
+        <link rel="preload" href="/images/yazdan_intro_light_mobile_poster.jpg" as="image" media="(max-width: 767px)" />
+        <link rel="preload" href="/images/yazdan_intro_dark_poster.jpg" as="image" media="(min-width: 768px)" />
+        <link rel="preload" href="/images/yazdan_intro_light_poster.jpg" as="image" media="(min-width: 768px)" />
         <link rel="preload" href="/images/team_logo_transparent.png" as="image" />
         <style
           dangerouslySetInnerHTML={{
@@ -150,7 +152,7 @@ export default async function RootLayout({
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: #090807;
+                background-color: #000000;
               }
               html.light [data-preloader="true"],
               [data-theme="light"] [data-preloader="true"] {
