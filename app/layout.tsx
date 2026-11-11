@@ -75,11 +75,22 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "fa_AF",
       alternateLocale: ["en_US", "de_DE"],
       type: "website",
+      images: [
+        {
+          url: `${baseUrl}/images/yazdan_og_banner.jpg`,
+          secureUrl: `${baseUrl}/images/yazdan_og_banner.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "YAZDAN — Digital Excellence",
+          type: "image/jpeg",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: siteName,
       description,
+      images: [`${baseUrl}/images/yazdan_og_banner.jpg`],
     },
     robots: {
       index: true,
@@ -135,6 +146,13 @@ export default async function RootLayout({
   return (
     <html lang="fa" dir="rtl" className={`scroll-smooth transition-colors duration-200 ${inter.variable} ${vazir.variable} ${cinzel.variable}`} suppressHydrationWarning>
       <head>
+        <meta property="og:image" content="https://www.urclubstudio.com/images/yazdan_og_banner.jpg" />
+        <meta property="og:image:secure_url" content="https://www.urclubstudio.com/images/yazdan_og_banner.jpg" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="YAZDAN" />
+        <meta name="twitter:image" content="https://www.urclubstudio.com/images/yazdan_og_banner.jpg" />
         <link rel="preload" href="/images/yazdan_intro_dark_mobile_poster.jpg" as="image" media="(max-width: 767px)" />
         <link rel="preload" href="/images/yazdan_intro_light_mobile_poster.jpg" as="image" media="(max-width: 767px)" />
         <link rel="preload" href="/images/yazdan_intro_dark_poster.jpg" as="image" media="(min-width: 768px)" />
